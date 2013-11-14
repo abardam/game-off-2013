@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 0dcb32cc509c2aa4da1ea681eb8cf44b
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gridCube: {fileID: 400000, guid: 38d7623209569bb46be67a33ec0008b8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
