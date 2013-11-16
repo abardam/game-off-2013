@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LevelGenerator\Scripts\GridSpawner.cs" />
+     <Compile Include="Assets\Player\Controls.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Button.cs" />
      <Compile Include="Assets\UserInterface\Scripts\MainMenu.cs" />
   </ItemGroup>
