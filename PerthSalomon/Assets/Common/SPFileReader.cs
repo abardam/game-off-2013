@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml;
 
-public abstract class SPFileReader : MonoBehaviour {
+public abstract class SPFileReader {
 
-	// Use this for initialization
-	public abstract void Start ();
 	public abstract string[] ReadLevel();
-	public abstract string[] ReadEvents();
+	public abstract XmlDocument ReadEvents();
 
 
 }

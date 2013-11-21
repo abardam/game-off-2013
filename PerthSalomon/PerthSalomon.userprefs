@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelGenerator\Scripts\GridSpawner.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Events\SPEvent.cs">
     <Files>
-      <File FileName="Assets\Player\Scripts\Controls.cs" Line="1" Column="1" />
+      <File FileName="Assets\Events\EventManager.cs" Line="57" Column="28" />
       <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="8" Column="27" />
-      <File FileName="Assets\Common\SPFileReader.cs" Line="7" Column="9" />
-      <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="8" Column="18" />
+      <File FileName="Assets\Common\SPFileReader.cs" Line="8" Column="29" />
+      <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="10" Column="3" />
+      <File FileName="Assets\Events\SPEvent.cs" Line="29" Column="3" />
+      <File FileName="Assets\Events\Trigger.cs" Line="15" Column="22" />
+      <File FileName="Assets\Events\Eventlet.cs" Line="19" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

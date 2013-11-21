@@ -1,0 +1,6 @@
+<Events>
+	<Event>
+		<Trigger type="start"/>
+		<Eventlet debug="Hello world!" />
+	</Event>
+</Events>
