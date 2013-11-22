@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player\Scripts\Controls.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameLogic\GameState.cs">
     <Files>
-      <File FileName="Assets\Events\EventManager.cs" Line="28" Column="1" />
-      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="48" Column="39" />
-      <File FileName="Assets\Common\SPFileReader.cs" Line="12" Column="1" />
-      <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="20" Column="1" />
-      <File FileName="Assets\Events\SPEvent.cs" Line="35" Column="72" />
-      <File FileName="Assets\Events\Trigger.cs" Line="18" Column="42" />
+      <File FileName="Assets\GameLogic\GameState.cs" Line="6" Column="1" />
+      <File FileName="Assets\Events\EventManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Common\SPFileReader.cs" Line="1" Column="1" />
+      <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="1" Column="1" />
+      <File FileName="Assets\Events\SPEvent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Events\Trigger.cs" Line="1" Column="1" />
       <File FileName="Assets\Events\Eventlet.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\GameState.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\Util.cs" Line="1" Column="1" />
