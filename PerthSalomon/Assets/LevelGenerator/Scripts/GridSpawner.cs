@@ -6,6 +6,7 @@ public class GridSpawner : MonoBehaviour
 {	
 	public GameObject gridCube;
 	public GameObject player;
+	public GameState gameState;
 
 	// parse in thing
 	string[,] Parse() 
@@ -38,15 +39,13 @@ public class GridSpawner : MonoBehaviour
 		int width = grid1.GetLength(1);
 		int height = grid1.GetLength(0);
 
-		float xs = -3.5f;
-		float ys = 2.5f;
 
 		for (int i = 0; i < height; ++i)
 		{
 			for (int j = 0; j < width; ++j)
 			{
 				Debug.Log(grid1[i,j] + " ");
-				Vector3 pos = new Vector3(xs + j, ys - i, 0);
+				Vector3 pos = Util.GridToVec3(j,i);
 				Quaternion rot = Quaternion.identity;
 				Object obj = null;
 
@@ -63,7 +62,14 @@ public class GridSpawner : MonoBehaviour
 					continue;
 				}
 
-				Instantiate(obj, pos, rot);
+				Object temp = Instantiate(obj, pos, rot);
+
+				//edit gamestate
+				switch(grid1[i,j]){
+				case "s":
+					gameState.Player = (GameObject)temp;
+					break;
+				}
 			}
 		}
 

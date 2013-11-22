@@ -3,4 +3,8 @@
 		<Trigger type="start"/>
 		<Eventlet debug="Hello world!" />
 	</Event>
+  <Event>
+		<Trigger type="onenter" rectTop = "2" rectLeft = "2" rectBottom = "2" rectRight = "2"/>
+		<Eventlet debug="Hello again, world!" />
+	</Event>
 </Events>

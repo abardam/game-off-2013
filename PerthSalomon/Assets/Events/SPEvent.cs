@@ -20,11 +20,15 @@ public class SPEvent
 		eventletList.Add (e);
 	}
 
-	public List<Trigger> getTriggerList(){
-		return triggerList;
+	public List<Trigger> TriggerList {
+		get {
+			return triggerList;
+		}
 	}
 
-	public List<Eventlet> getEventletList(){
-		return eventletList;
+	public List<Eventlet> EventletList {
+		get {
+			return eventletList;
+		}
 	}
 }

@@ -10,11 +10,12 @@ public class Eventlet
 		debug = "";
 	}
 
-	public void setDebug(string s){
-		debug = s;
-	}
-
-	public string getDebug(){
-		return debug;
+	public string Debug {
+		get {
+			return debug;
+		}
+		set {
+			debug = value;
+		}
 	}
 }
