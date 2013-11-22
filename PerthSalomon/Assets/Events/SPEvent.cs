@@ -31,4 +31,11 @@ public class SPEvent
 			return eventletList;
 		}
 	}
+
+	//"checklist" triggers only need to be satisfied once, so we can cross them off our list
+	public void TriggerATrigger(Trigger t){
+		if (t.Checklist && triggerList.Contains (t)) {
+			triggerList.Remove(t);
+		}
+	}
 }

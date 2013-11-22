@@ -26,6 +26,12 @@ public class EventManager : MonoBehaviour {
 				string tts = triggerNode.Attributes["type"].Value;
 				Trigger.TriggerType tt = Trigger.TriggerType.Start;
 
+				bool checklist = false;
+				//checklist?
+				if(triggerNode.Attributes["checklist"] != null && triggerNode.Attributes["checklist"].Value == "true"){
+					checklist = true;
+				}
+
 				Rect r = new Rect();
 				//check tags for correct properties, then assign rectangle
 				if(triggerNode.Attributes["rectTop"] != null 				//y value of topmost tile (grid coordinates)
@@ -47,8 +53,8 @@ public class EventManager : MonoBehaviour {
 					
 					r.width = vBR.x - vTL.x + 1f;
 					r.height = vTL.y - vBR.y + 1f;
-					r.x = vTL.x;
-					r.y = vTL.y - r.height;
+					r.x = vTL.x - 0.5f;
+					r.y = vTL.y - r.height + 0.5f;
 				}
 
 				Trigger t = null;
@@ -61,7 +67,19 @@ public class EventManager : MonoBehaviour {
 					tt = Trigger.TriggerType.OnEnter;
 					t = new Trigger(tt, r);
 					break;
+				case "onexit":
+					tt = Trigger.TriggerType.Outside;
+					t = new Trigger(tt, r);
+
+					//onexit trigger is actually 2 triggers: one for entering the area and one for leaving
+					Trigger t2 = new Trigger(Trigger.TriggerType.OnEnter, r);
+					t2.Checklist = true;
+					e.addTrigger(t2);
+
+					break;
 				}
+
+				t.Checklist = checklist;
 
 				e.addTrigger(t);
 			}
@@ -89,12 +107,15 @@ public class EventManager : MonoBehaviour {
 		for(int e=eventList.Count-1; e>=0; --e){
 			bool triggered = true;
 			//for now, events trigger if all of their triggers trigger
-			foreach(Trigger t in eventList[e].TriggerList){
-
+			for(int tr=eventList[e].TriggerList.Count-1; tr >= 0; --tr){
+				Trigger t = eventList[e].TriggerList[tr];
 				//this switch checks NEGATIVELY, i.e. it sets triggered to false if it doesn't trigger now
 				switch(t.GetTriggerType){
 				case Trigger.TriggerType.Start:
 					//nothing! this triggertype automatically triggers
+
+					eventList[e].TriggerATrigger(t);
+
 					break;
 				case Trigger.TriggerType.OnEnter:
 					//triggers when player enters a defined rectangle
@@ -104,7 +125,21 @@ public class EventManager : MonoBehaviour {
 					else if(!Util.Vec3WithinRect(gameState.Player.transform.position, t.Rectangle)){
 						triggered = false;
 					}
-
+					else{
+						eventList[e].TriggerATrigger(t);
+					}
+					break;
+				case Trigger.TriggerType.Outside:
+					//triggers when player is not inside a defined rectangle
+					if(gameState.Player == null){
+						triggered = false;
+					}
+					else if(Util.Vec3WithinRect(gameState.Player.transform.position, t.Rectangle)){
+						triggered = false;
+					}
+					else{
+						eventList[e].TriggerATrigger(t);
+					}
 					break;
 				default:
 					triggered = false;

@@ -4,7 +4,11 @@
 		<Eventlet debug="Hello world!" />
 	</Event>
   <Event>
-		<Trigger type="onenter" rectTop = "2" rectLeft = "2" rectBottom = "2" rectRight = "2"/>
+		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
 		<Eventlet debug="Hello again, world!" />
+	</Event>
+  <Event>
+		<Trigger type="onexit" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
+		<Eventlet debug="Goodbye, world!" />
 	</Event>
 </Events>
