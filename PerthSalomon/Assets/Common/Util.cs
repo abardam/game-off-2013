@@ -16,4 +16,11 @@ public class Util
 
 		return new Vector3 (xs + x, ys - y, 0);
 	}
+	public static Vector3 GridToVec2(int x, int y){
+		
+		float xs = -3.5f;
+		float ys = 2.5f;
+		
+		return new Vector2 (xs + x, ys - y);
+	}
 }

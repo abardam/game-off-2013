@@ -1,22 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Events\EventManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player\Scripts\Controls.cs">
     <Files>
-      <File FileName="Assets\Events\EventManager.cs" Line="33" Column="77" />
+      <File FileName="Assets\Events\EventManager.cs" Line="28" Column="1" />
       <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="48" Column="39" />
       <File FileName="Assets\Common\SPFileReader.cs" Line="12" Column="1" />
       <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="20" Column="1" />
-      <File FileName="Assets\Events\SPEvent.cs" Line="12" Column="39" />
-      <File FileName="Assets\Events\Trigger.cs" Line="18" Column="17" />
+      <File FileName="Assets\Events\SPEvent.cs" Line="35" Column="72" />
+      <File FileName="Assets\Events\Trigger.cs" Line="18" Column="42" />
       <File FileName="Assets\Events\Eventlet.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\GameState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Common\Util.cs" Line="10" Column="2" />
+      <File FileName="Assets\Common\Util.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Scripts\Controls.cs" Line="20" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint hitAction="PrintExpression" traceExpression="{gameState}" file="C:\Users\fabian-d\gamejam\game-off-2013\PerthSalomon\Assets\Events\EventManager.cs" line="104" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

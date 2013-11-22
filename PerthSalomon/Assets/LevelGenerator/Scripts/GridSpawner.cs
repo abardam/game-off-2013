@@ -7,6 +7,7 @@ public class GridSpawner : MonoBehaviour
 	public GameObject gridCube;
 	public GameObject player;
 	public GameState gameState;
+	public CameraControl cameraControl;
 
 	// parse in thing
 	string[,] Parse() 
@@ -39,6 +40,8 @@ public class GridSpawner : MonoBehaviour
 		int width = grid1.GetLength(1);
 		int height = grid1.GetLength(0);
 
+		cameraControl.setGridParams (3.5f, 2.5f);
+		cameraControl.SetBounds (Util.GridToVec2 (0, 0), Util.GridToVec2 (width-1, height-1));
 
 		for (int i = 0; i < height; ++i)
 		{
@@ -68,6 +71,7 @@ public class GridSpawner : MonoBehaviour
 				switch(grid1[i,j]){
 				case "s":
 					gameState.Player = (GameObject)temp;
+					cameraControl.Target = gameState.Player;
 					break;
 				}
 			}
