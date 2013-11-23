@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CameraGhost : MonoBehaviour {
 
+	private static float SPEED = 1f;
+	private static float THRESHOLD = 0.1f;
 	private GameObject target;
 	// Use this for initialization
 	void Start () {
@@ -18,7 +20,22 @@ public class CameraGhost : MonoBehaviour {
 			                     -10);
 		}
 		
-		transform.position = newPos;
+		Vector3 dirVector = newPos - transform.position;
+
+		float norm = dirVector.magnitude;
+
+		if(norm > THRESHOLD)
+		{
+
+			float currSpeed = SPEED * Time.deltaTime;
+			if(norm > currSpeed){
+				norm = currSpeed;
+			}
+
+			Vector3 speedVector = currSpeed * dirVector.normalized;
+
+			transform.position+=speedVector;
+		}
 	}
 
 	public GameObject Target {
