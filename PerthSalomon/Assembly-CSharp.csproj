@@ -46,7 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Camera\CameraControl.cs" />
+     <Compile Include="Assets\Camera\Scripts\CameraControl.cs" />
+     <Compile Include="Assets\Camera\Scripts\CameraGhost.cs" />
      <Compile Include="Assets\Common\SPFileReader.cs" />
      <Compile Include="Assets\Common\SPFileReaderLocal.cs" />
      <Compile Include="Assets\Common\Util.cs" />

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraControl : MonoBehaviour {
 
-	private GameObject target;
+	public CameraGhost ghost;
 	private Vector2 minBounds;
 	private Vector2 maxBounds;
 	private float Xoff;
@@ -16,38 +16,36 @@ public class CameraControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 newPos = transform.position;
-		if (target != null) {
-			newPos = new Vector3(target.transform.position.x, 
-			                             target.transform.position.y,
-			                             -10);
-		}
-
+		newPos = new Vector3(ghost.transform.position.x, 
+		                     ghost.transform.position.y,
+		                     -10);
+		
 		if (minBounds != null && maxBounds != null) {
 			if (newPos.x < minBounds.x) {
-					newPos.x = minBounds.x;
+				newPos.x = minBounds.x;
 			}
 			if (newPos.y < minBounds.y) {
-					newPos.y = minBounds.y;
+				newPos.y = minBounds.y;
 			}
-
+			
 			if (newPos.x > maxBounds.x) {
-					newPos.x = maxBounds.x;
+				newPos.x = maxBounds.x;
 			}
 			if (newPos.y > maxBounds.y) {
-					newPos.y = maxBounds.y;
+				newPos.y = maxBounds.y;
 			}
 		}
 		
 		transform.position = newPos;
-
+		
 	}
-
+	
 	public GameObject Target {
 		get {
-			return target;
+			return ghost.Target;
 		}
 		set {
-			target = value;
+			ghost.Target = value;
 		}
 	}
 
