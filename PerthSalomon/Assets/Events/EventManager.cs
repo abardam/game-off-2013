@@ -8,6 +8,7 @@ public class EventManager : MonoBehaviour {
 
 	private List<SPEvent> eventList;
 	public GameState gameState;
+	public Dialogue dialogueManager;
 
 	// Use this for initialization
 	void Start () {
@@ -86,11 +87,28 @@ public class EventManager : MonoBehaviour {
 			
 			XmlNodeList eventletNodes = eventNode.SelectNodes("Eventlet");
 			foreach(XmlNode eventletNode in eventletNodes){
+				
+				Eventlet.EventletType ett = Eventlet.EventletType.Nothing;
 
-				Eventlet el = new Eventlet();
+				if(eventletNode.Attributes["type"] != null)
+				{
+					string ets = eventletNode.Attributes["type"].Value;
 
+					switch(ets){
+					case "dialogue":
+						ett = Eventlet.EventletType.Dialogue;
+						break;
+					}
+				}
+
+				Eventlet el = new Eventlet(ett);
+				
 				if(eventletNode.Attributes["debug"] != null){
 					el.Debug = (eventletNode.Attributes["debug"].Value);
+				}
+
+				if(eventletNode.Attributes["text"] != null){
+					el.Text = eventletNode.Attributes["text"].Value;
 				}
 
 				e.addEventlet(el);
@@ -158,6 +176,12 @@ public class EventManager : MonoBehaviour {
 				string db = el.Debug;
 				if(db != ""){
 					Debug.Log("Event triggers: " + db);
+				}
+
+				switch(el.GetEventletType){
+				case Eventlet.EventletType.Dialogue:
+					dialogueManager.SetDialogue(el.Text);
+					break;
 				}
 			}
 

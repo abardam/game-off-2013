@@ -1,25 +1,10 @@
-<<<<<<< HEAD
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Player/Scripts/SingleAnimation.cs">
-    <Files>
-      <File FileName="Assets/Player/Scripts/SingleAnimation.cs" Line="7" Column="29" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-</Properties>
-=======
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameLogic\GameState.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelGenerator\Scripts\GridSpawner.cs">
     <Files>
       <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="69" Column="6" />
       <File FileName="Assets\GameLogic\GameState.cs" Line="20" Column="3" />
       <File FileName="Assets\Events\EventManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\SPFileReader.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="1" Column="1" />
       <File FileName="Assets\Events\SPEvent.cs" Line="1" Column="1" />
@@ -34,4 +19,3 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
->>>>>>> 1ba22d3d5d91418fc229fc98589e4f425fe5989b
