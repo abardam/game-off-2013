@@ -5,6 +5,7 @@ public class Controls : MonoBehaviour
 {
 	public float speed = 0.1f;
 	private CharacterController charController;
+	public GameState gameState;
 	
 	void Start () 
 	{
@@ -19,6 +20,7 @@ public class Controls : MonoBehaviour
 	void Update () 
 	{
 		Vector3 v = Vector3.zero;
+		bool next = false;
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -40,10 +42,22 @@ public class Controls : MonoBehaviour
 			v.y -= 1.0f;
 		}
 
+		if(Input.GetKeyDown(KeyCode.Space)){
+			next = true;
+		}
+
 		v.Normalize();
 		v *= (speed*Time.deltaTime);
 
-		charController.Move(v);
+		if(gameState.Cutscene){
+			if(next){
+				gameState.dialogueManager.SkipOrAdvance();
+			}
+		}
+		else{
+			charController.Move(v);
+		}
+
 
 	}
 }

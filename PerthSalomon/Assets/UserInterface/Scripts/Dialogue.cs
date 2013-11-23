@@ -33,9 +33,7 @@ public class Dialogue : MonoBehaviour {
 			dialogueIndex += (TEXTSPEED * Time.deltaTime);
 
 			if(dialogueIndex >= dialogue.Length){
-				if(callback != null){
-					callback.Executed = Eventlet.ExecuteState.Executed;
-				}
+
 			}
 		}
 	}
@@ -46,6 +44,18 @@ public class Dialogue : MonoBehaviour {
 			string dispText = dialogue.Substring(0, dialogueIndex<dialogue.Length?
 			                                     (int)dialogueIndex:dialogue.Length);
 			GUI.Box (dialogueRect, dispText);
+		}
+	}
+
+	public void SkipOrAdvance(){
+		if(dialogueIndex >= dialogue.Length){
+			if(callback != null){
+				callback.Executed = Eventlet.ExecuteState.Executed;
+				active = false;
+			}
+
+		}else{
+			dialogueIndex = dialogue.Length;
 		}
 	}
 }

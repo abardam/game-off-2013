@@ -195,12 +195,14 @@ public class EventManager : MonoBehaviour
 										el.Executed = Eventlet.ExecuteState.Executed;
 										break;
 								case Eventlet.EventletType.Dialogue:
+										gameState.Cutscene = true;
 										dialogueManager.SetDialogue (el.Text);
 										dialogueManager.SetCallback (el);
 										break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
 								eventletQueue.RemoveAt (0);
+								gameState.Cutscene = false;
 						}
 				}
 		}

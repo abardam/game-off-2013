@@ -8,10 +8,14 @@ public class GameState : MonoBehaviour {
 	private GameObject player;
 	private GameObject player2;
 	private List<GameObject> enemies;
+	private bool cutscene;
+
+	public Dialogue dialogueManager;
 
 	// Use this for initialization
 	void Start () {
 		enemies = new List<GameObject> ();
+		cutscene = false;
 	}
 	
 	// Update is called once per frame
@@ -42,4 +46,14 @@ public class GameState : MonoBehaviour {
 			return enemies;
 		}
 	}
+
+	public bool Cutscene {
+		get {
+			return cutscene;
+		}
+		set {
+			cutscene = value;
+		}
+	}
+
 }

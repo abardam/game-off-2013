@@ -74,6 +74,8 @@ public class GridSpawner : MonoBehaviour
 				switch(grid1[i,j]){
 				case "s":
 					gameState.Player = (GameObject)temp;
+					(gameState.Player.GetComponent<Controls>()).gameState = gameState;
+
 					cameraControl.Target = gameState.Player;
 					break;
 				}
