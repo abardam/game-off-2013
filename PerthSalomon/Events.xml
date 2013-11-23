@@ -2,6 +2,8 @@
 	<Event>
 		<Trigger type="start"/>
 		<Eventlet debug="Hello world!" />
+		<Eventlet type="dialogue" text="ALASKA: Solomon! This is Alaska, do you copy?" debug="Hello" />
+		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." debug="Hello" />
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
