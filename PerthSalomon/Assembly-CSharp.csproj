@@ -46,6 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Camera\CameraControl.cs" />
+     <Compile Include="Assets\Common\SPFileReader.cs" />
+     <Compile Include="Assets\Common\SPFileReaderLocal.cs" />
+     <Compile Include="Assets\Common\Util.cs" />
+     <Compile Include="Assets\Events\EventManager.cs" />
+     <Compile Include="Assets\Events\Eventlet.cs" />
+     <Compile Include="Assets\Events\SPEvent.cs" />
+     <Compile Include="Assets\Events\Trigger.cs" />
+     <Compile Include="Assets\GameLogic\GameState.cs" />
      <Compile Include="Assets\LevelGenerator\Scripts\GridSpawner.cs" />
      <Compile Include="Assets\Player\Scripts\Controls.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Button.cs" />
