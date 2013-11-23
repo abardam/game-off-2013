@@ -4,22 +4,25 @@ using System.Collections;
 public class Dialogue : MonoBehaviour {
 
 	private static int TEXTSPEED = 10; //characters per second
+	public enum CutsceneType {None, Dialogue, Camera};
+	
+	public CameraGhost cameraGhost;
 
 	private string dialogue;
 	private float dialogueIndex;
 	private Rect dialogueRect;
-	private bool active;
+	private CutsceneType activeCutscene;
 	private Eventlet callback;
 	// Use this for initialization
 	void Start () {
-		active = false;
+		activeCutscene = CutsceneType.None;
 		dialogueRect = new Rect(0f, Screen.height*0.75f,Screen.width*1f,Screen.height*0.25f);
 	}
 
 	public void SetDialogue(string text){
 		dialogueIndex = 0;
 		dialogue = text;
-		active = true;
+		activeCutscene = CutsceneType.Dialogue;
 		callback = null;
 	}
 
@@ -29,17 +32,20 @@ public class Dialogue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(active){
+		if(activeCutscene == CutsceneType.Dialogue){
 			dialogueIndex += (TEXTSPEED * Time.deltaTime);
 
 			if(dialogueIndex >= dialogue.Length){
 
 			}
 		}
+
+		
+
 	}
 
 	void OnGUI(){
-		if(active)
+		if(activeCutscene == CutsceneType.Dialogue)
 		{
 			string dispText = dialogue.Substring(0, dialogueIndex<dialogue.Length?
 			                                     (int)dialogueIndex:dialogue.Length);
@@ -48,14 +54,42 @@ public class Dialogue : MonoBehaviour {
 	}
 
 	public void SkipOrAdvance(){
-		if(dialogueIndex >= dialogue.Length){
-			if(callback != null){
-				callback.Executed = Eventlet.ExecuteState.Executed;
-				active = false;
+
+		switch(activeCutscene)
+		{
+		case CutsceneType.Dialogue:
+			if(dialogueIndex >= dialogue.Length){
+				if(callback != null){
+					callback.Executed = Eventlet.ExecuteState.Executed;
+					activeCutscene = CutsceneType.None;
+				}
+
+			}else{
+				dialogueIndex = dialogue.Length;
+			}
+			break;
+		case CutsceneType.Camera:
+
+			if(cameraGhost.IsAtTarget()){
+				if(callback != null){
+					callback.Executed = Eventlet.ExecuteState.Executed;
+					activeCutscene = CutsceneType.None;
+				}
 			}
 
-		}else{
-			dialogueIndex = dialogue.Length;
+			break;
 		}
+	}
+
+	
+	
+	public void SetTarget(GameObject obj){
+		cameraGhost.Target = obj;
+		activeCutscene = CutsceneType.Camera;
+	}
+	
+	public void SetTarget(Vector3 vec){
+		cameraGhost.TargetV = vec;
+		activeCutscene = CutsceneType.Camera;
 	}
 }

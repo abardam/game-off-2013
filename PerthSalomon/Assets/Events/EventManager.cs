@@ -102,6 +102,10 @@ public class EventManager : MonoBehaviour
 										case "dialogue":
 												ett = Eventlet.EventletType.Dialogue;
 												break;
+					case "focus":
+						ett = Eventlet.EventletType.Focus;
+						break;
+
 										}
 								}
 
@@ -114,6 +118,14 @@ public class EventManager : MonoBehaviour
 								if (eventletNode.Attributes ["text"] != null) {
 										el.Text = eventletNode.Attributes ["text"].Value;
 								}
+
+				if(eventletNode.Attributes["targetX"] != null && 
+				   eventletNode.Attributes["targetY"] != null){
+					int gridX = int.Parse(eventletNode.Attributes["targetX"].Value);
+					int gridY = int.Parse(eventletNode.Attributes["targetY"].Value);
+
+					el.Target = Util.GridToVec3(gridX, gridY);
+				}
 
 								e.addEventlet (el);
 						}
@@ -199,10 +211,17 @@ public class EventManager : MonoBehaviour
 										dialogueManager.SetDialogue (el.Text);
 										dialogueManager.SetCallback (el);
 										break;
+				case Eventlet.EventletType.Focus:
+					gameState.Cutscene = true;
+					dialogueManager.SetTarget(el.Target);
+					dialogueManager.SetCallback(el);
+
+					break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
 								eventletQueue.RemoveAt (0);
 								gameState.Cutscene = false;
+				dialogueManager.SetTarget(gameState.Player);
 						}
 				}
 		}

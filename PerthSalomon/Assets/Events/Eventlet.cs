@@ -1,15 +1,17 @@
 
 using System;
+using UnityEngine;
 
 public class Eventlet
 {
-	public enum EventletType {Nothing, Dialogue};
+	public enum EventletType {Nothing, Dialogue, Focus};
 	public enum ExecuteState {Start, Executing, Executed};
 
 	private string debug;
 	private string text;
 	private EventletType eventletType;
 	private ExecuteState executed;
+	private Vector3 target;
 	public Eventlet (EventletType et)
 	{
 		eventletType = et;
@@ -50,4 +52,12 @@ public class Eventlet
 		}
 	}
 
+	public Vector3 Target {
+		get {
+			return target;
+		}
+		set {
+			target = value;
+		}
+	}
 }

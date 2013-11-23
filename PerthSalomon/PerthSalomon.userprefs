@@ -1,25 +1,24 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Camera\Scripts\CameraControl.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Events\EventManager.cs">
     <Files>
-      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="79" Column="1" />
-      <File FileName="Assets\GameLogic\GameState.cs" Line="1" Column="1" />
-      <File FileName="Assets\Events\EventManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="49" Column="18" />
+      <File FileName="Assets\GameLogic\GameState.cs" Line="58" Column="2" />
+      <File FileName="Assets\Events\EventManager.cs" Line="212" Column="49" />
       <File FileName="Assets\Common\SPFileReader.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="1" Column="1" />
       <File FileName="Assets\Events\SPEvent.cs" Line="1" Column="1" />
       <File FileName="Assets\Events\Trigger.cs" Line="1" Column="1" />
       <File FileName="Assets\Events\Eventlet.cs" Line="1" Column="1" />
       <File FileName="Assets\Common\Util.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player\Scripts\Controls.cs" Line="1" Column="1" />
-      <File FileName="Assets\UserInterface\Scripts\Dialogue.cs" Line="57" Column="9" />
-      <File FileName="Assets\Camera\Scripts\CameraControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Scripts\Controls.cs" Line="45" Column="22" />
+      <File FileName="Assets\UserInterface\Scripts\Dialogue.cs" Line="81" Column="40" />
+      <File FileName="Assets\Camera\Scripts\CameraControl.cs" Line="13" Column="17" />
+      <File FileName="Assets\Camera\Scripts\CameraGhost.cs" Line="48" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\enzo\gamejam\game-off-2013\PerthSalomon\Assets\LevelGenerator\Scripts\GridSpawner.cs" line="77" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

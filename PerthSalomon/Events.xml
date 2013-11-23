@@ -6,6 +6,7 @@
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
 		<Eventlet type="dialogue" text="Hello again, world!" debug="Hello" />
+		<Eventlet type="focus" targetX="5" targetY="5" />
 	</Event>
   <Event>
 		<Trigger type="onexit" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
