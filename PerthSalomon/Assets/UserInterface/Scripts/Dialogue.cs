@@ -5,10 +5,11 @@ public class Dialogue : MonoBehaviour {
 
 	private static int TEXTSPEED = 10; //characters per second
 
-	string dialogue;
-	float dialogueIndex;
-	Rect dialogueRect;
-	bool active;
+	private string dialogue;
+	private float dialogueIndex;
+	private Rect dialogueRect;
+	private bool active;
+	private Eventlet callback;
 	// Use this for initialization
 	void Start () {
 		active = false;
@@ -19,12 +20,23 @@ public class Dialogue : MonoBehaviour {
 		dialogueIndex = 0;
 		dialogue = text;
 		active = true;
+		callback = null;
+	}
+
+	public void SetCallback(Eventlet e){
+		callback = e;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(active){
 			dialogueIndex += (TEXTSPEED * Time.deltaTime);
+
+			if(dialogueIndex >= dialogue.Length){
+				if(callback != null){
+					callback.Executed = Eventlet.ExecuteState.Executed;
+				}
+			}
 		}
 	}
 
