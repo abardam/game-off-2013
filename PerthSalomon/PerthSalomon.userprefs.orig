@@ -1,6 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameLogic\GameState.cs">
+<<<<<<< Updated upstream
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player\Scripts\Controls.cs">
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelGenerator\Scripts\GridSpawner.cs">
+>>>>>>> Stashed changes
     <Files>
       <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="69" Column="6" />
       <File FileName="Assets\GameLogic\GameState.cs" Line="20" Column="3" />

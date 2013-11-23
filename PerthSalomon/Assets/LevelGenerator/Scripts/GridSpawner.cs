@@ -6,6 +6,7 @@ public class GridSpawner : MonoBehaviour
 {	
 	public GameObject gridCube;
 	public GameObject player;
+	public GameObject guard1;
 	public GameState gameState;
 	public CameraControl cameraControl;
 
@@ -52,16 +53,18 @@ public class GridSpawner : MonoBehaviour
 				Quaternion rot = Quaternion.identity;
 				Object obj = null;
 
-				if (grid1[i,j] == "1")
+				switch(grid1[i,j])
 				{
+				case "1":
 					obj = gridCube;
-				}
-				else if (grid1[i,j] == "s")
-				{
-					Debug.Log("s here");
+					break;
+				case "s":
 					obj = player;
-				}
-				else{
+					break;
+				case "e1":
+					obj = guard1;
+					break;
+				default:
 					continue;
 				}
 
