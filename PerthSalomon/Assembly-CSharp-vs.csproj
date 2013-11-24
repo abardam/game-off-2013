@@ -57,6 +57,10 @@
      <Compile Include="Assets\Events\Trigger.cs" />
      <Compile Include="Assets\GameLogic\GameState.cs" />
      <Compile Include="Assets\LevelGenerator\Scripts\GridSpawner.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerController.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerState.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerStateDiving.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerStateIdle.cs" />
      <Compile Include="Assets\Player\Scripts\Controls.cs" />
      <Compile Include="Assets\Player\Scripts\SingleAnimation.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Button.cs" />

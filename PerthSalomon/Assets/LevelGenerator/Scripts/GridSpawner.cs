@@ -59,7 +59,7 @@ public class GridSpawner : MonoBehaviour
 			{
 				for (int j = 0; j < width; ++j)
 				{
-					Debug.Log(grid1[i,j] + " ");
+//					Debug.Log(grid1[i,j] + " ");
 					Vector3 pos = Util.GridToVec3(j,i);
 					Quaternion rot = Quaternion.identity;
 					Object obj = null;
