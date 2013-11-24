@@ -206,17 +206,17 @@ public class EventManager : MonoBehaviour
 								case Eventlet.EventletType.Nothing:
 										el.Executed = Eventlet.ExecuteState.Executed;
 										break;
-								case Eventlet.EventletType.Dialogue:
-										gameState.Cutscene = true;
-										dialogueManager.SetDialogue (el.Text);
-										dialogueManager.SetCallback (el);
-										break;
-				case Eventlet.EventletType.Focus:
-					gameState.Cutscene = true;
-					dialogueManager.SetTarget(el.Target);
-					dialogueManager.SetCallback(el);
+//								case Eventlet.EventletType.Dialogue:
+//										gameState.Cutscene = true;
+//										dialogueManager.SetDialogue (el.Text);
+//										dialogueManager.SetCallback (el);
+//										break;
+								case Eventlet.EventletType.Focus:
+									gameState.Cutscene = true;
+									dialogueManager.SetTarget(el.Target);
+									dialogueManager.SetCallback(el);
 
-					break;
+									break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
 								eventletQueue.RemoveAt (0);
