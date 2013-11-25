@@ -18,6 +18,8 @@ public class GameState {
 		enemies = new List<GameObject> ();
 		stateDependables = new List<StateDependable>();
 		cutscene = false;
+		SPLevel level = LevelLoader.LoadLevel("levels.xml", "shit");
+
 
 	}
 
