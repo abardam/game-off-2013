@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 	public float speed;
 	private CharacterController characterController;
+	private Animator animator;
 	private PlayerControllerState state;
 
 	void Start() 
@@ -15,6 +16,15 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.LogWarning("Warning: no [CharacterController] component found.");
 		}
+
+		this.animator = this.GetComponent<Animator>();
+
+		if (!this.animator)
+		{
+			Debug.LogWarning("Warning: no [Animator] component found");
+		}
+
+		this.animator.Play("IdleRight");
 
 		this.speed = 0.8f;
 		this.state = new PlayerControllerStateDiving();
@@ -28,5 +38,10 @@ public class PlayerController : MonoBehaviour
 	public CharacterController GetCharacterController()
 	{
 		return this.characterController;
+	}
+
+	public Animator GetAnimator()
+	{
+		return this.animator;
 	}
 }

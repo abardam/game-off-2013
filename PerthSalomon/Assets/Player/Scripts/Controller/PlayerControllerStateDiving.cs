@@ -3,42 +3,41 @@ using System.Collections;
 
 public class PlayerControllerStateDiving : PlayerControllerState
 {	
-	enum DiveState
+	enum Orientation
 	{
-		DIVE_STATE_IDLE = 0,
-		DIVE_STATE_LEFT,
-		DIVE_STATE_RIGHT,
+		LEFT = 0,
+		RIGHT
 	};
 
-	enum Event
+	enum VerticalMotion
 	{
-		EVENT_RIGHT_ARROW_DOWN = 0,
-		EVENT_LEFT_ARROW_DOWN,
-		EVENT_RIGHT_ARROW_UP,
-		EVENT_LEFT_ARROW_UP
+		NONE = 0,
+		UP,
+		DOWN
 	};
 
-	DiveState[,] delta = {
-		{DiveState.DIVE_STATE_RIGHT, DiveState.DIVE_STATE_LEFT, DiveState.DIVE_STATE_LEFT, DiveState.DIVE_STATE_RIGHT}, // transitions for IDLE state
-		{DiveState.DIVE_STATE_IDLE, DiveState.DIVE_STATE_IDLE, DiveState.DIVE_STATE_IDLE, DiveState.DIVE_STATE_IDLE}, // transitions fo DIVE_STATE_LEFT
-		{DiveState.DIVE_STATE_IDLE, DiveState.DIVE_STATE_IDLE, DiveState.DIVE_STATE_IDLE, DiveState.DIVE_STATE_IDLE} // transitions fo DIVE_STATE_RIGHT
+	enum Motion
+	{
+		IDLE = 0,
+		IN_MOTION,
 	};
 
-
-	private DiveState state;
+	Orientation orientation;
+	Motion motion;
+	VerticalMotion verticalMotion;
 
 	public PlayerControllerStateDiving()
 	{
-		this.state = DiveState.DIVE_STATE_IDLE;
+		this.orientation = Orientation.RIGHT;
+		this.motion = Motion.IDLE;
+		this.verticalMotion = VerticalMotion.NONE;
 	}
 
 	public override void Update(PlayerController playerController) 
 	{
-		this.UpdateDiveState();
+		this.UpdateAnimationState(playerController);
 
 		Vector3 v = Vector3.zero;
-
-
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -67,31 +66,113 @@ public class PlayerControllerStateDiving : PlayerControllerState
 		playerController.GetCharacterController().Move(v);
 	}
 
-	private void UpdateDiveState()
+	// Updates the animation of the player depending on the pressed keys.
+	private void UpdateAnimationState(PlayerController playerController)
 	{
+		// figure out state based on keyboard input
+
 		if (Input.GetKeyDown(KeyCode.RightArrow))
 		{
-			this.state = delta[(int)this.state, (int)Event.EVENT_RIGHT_ARROW_DOWN];
-			Debug.Log(this.state);
+			if (this.motion == Motion.IDLE)
+			{
+				this.motion = Motion.IN_MOTION;
+				this.orientation = Orientation.RIGHT;
+			}
+			else if (this.motion == Motion.IN_MOTION)
+			{
+				this.motion = Motion.IDLE;
+			}
 		}
 		
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
-			this.state = delta[(int)this.state, (int)Event.EVENT_LEFT_ARROW_DOWN];
-			Debug.Log(this.state);
+			if (this.motion == Motion.IDLE)
+			{
+				this.motion = Motion.IN_MOTION;
+				this.orientation = Orientation.RIGHT;
+			}
+			else if (this.motion == Motion.IN_MOTION)
+			{
+				this.motion = Motion.IDLE;
+			}
 		}
 
 		if (Input.GetKeyUp(KeyCode.RightArrow))
 		{
-			this.state = delta[(int)this.state, (int)Event.EVENT_RIGHT_ARROW_UP];
-			Debug.Log(this.state);
+			if (this.motion == Motion.IDLE)
+			{
+				this.motion = Motion.IN_MOTION;
+				this.orientation = Orientation.LEFT;
+			}
+			else if (this.motion == Motion.IN_MOTION)
+			{
+				this.motion = Motion.IDLE;
+			}
+		}
+
+		if (Input.GetKeyUp(KeyCode.LeftArrow))
+		{
+			if (this.motion == Motion.IDLE)
+			{
+				this.motion = Motion.IN_MOTION;
+				this.orientation = Orientation.RIGHT;
+			}
+			else if (this.motion == Motion.IN_MOTION)
+			{
+				this.motion = Motion.IDLE;
+			}			
+		}
+
+
+		if (Input.GetKeyUp(KeyCode.RightArrow))
+		{
+
 		}
 		
 		if (Input.GetKeyUp(KeyCode.LeftArrow))
 		{
-			this.state = delta[(int)this.state, (int)Event.EVENT_LEFT_ARROW_UP];
-			Debug.Log(this.state);
+
 		}
 
+		Debug.Log(this.orientation);
+		Debug.Log(this.motion);
+
+
+		// figure out the animation's name from the state.
+		string animation = "Dive";
+
+		switch (this.motion)
+		{
+		case Motion.IDLE:
+
+			switch (this.orientation)
+			{
+			case Orientation.LEFT:
+			case Orientation.RIGHT:
+				animation = "IdleRight";
+				break;
+			}
+
+			break;
+		case Motion.IN_MOTION:
+
+			switch (this.orientation)
+			{
+			case Orientation.LEFT:
+			case Orientation.RIGHT:
+				animation = "Dive";
+				break;
+			}
+
+			break;
+		}
+
+		//Debug.Log(playerController.GetAnimator().GetCurrentAnimatorStateInfo(0).IsName(animation));
+
+		// if the animation is not playing already, play it.
+		if (!playerController.GetAnimator().GetCurrentAnimatorStateInfo(0).IsName(animation))
+		{
+			playerController.GetAnimator().Play(animation);
+		}
 	}
 }
