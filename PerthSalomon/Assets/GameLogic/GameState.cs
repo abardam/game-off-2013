@@ -12,10 +12,14 @@ public class GameState : MonoBehaviour {
 
 	public Dialogue dialogueManager;
 
+
+
 	// Use this for initialization
 	void Start () {
 		enemies = new List<GameObject> ();
+		eventDependables = new List<EventDependable>();
 		cutscene = false;
+
 	}
 	
 	// Update is called once per frame
