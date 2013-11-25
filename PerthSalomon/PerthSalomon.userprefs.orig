@@ -1,14 +1,12 @@
 <<<<<<< HEAD
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DialogueController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LevelGenerator/Scripts/GridSpawner.cs">
     <Files>
-      <File FileName="Assets\Events\EventManager.cs" Line="210" Column="21" />
-      <File FileName="Assets\Player\Scripts\Controller\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player\Scripts\Controller\PlayerControllerStateDiving.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player\Scripts\Controls.cs" Line="1" Column="1" />
-      <File FileName="Assets\Events\EventDependable.cs" Line="8" Column="34" />
-      <File FileName="Assets\DialogueController.cs" Line="8" Column="2" />
+      <File FileName="Assets/Player/Scripts/Controller/PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Player/Scripts/Controller/PlayerControllerStateDiving.cs" Line="1" Column="1" />
+      <File FileName="Assets/Player/Scripts/Controls.cs" Line="1" Column="1" />
+      <File FileName="Assets/LevelGenerator/Scripts/GridSpawner.cs" Line="31" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -17,18 +15,27 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 =======
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Player/Scripts/Controller/PlayerControllerStateDiving.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Events\DialogueController.cs">
     <Files>
-      <File FileName="Assets/Player/Scripts/Controller/PlayerControllerStateDiving.cs" Line="27" Column="78" />
-      <File FileName="Assets/Player/Scripts/Controller/PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Player/Scripts/Controller/PlayerControllerStateDiving.cs" Line="27" Column="78" />
-      <File FileName="Assets/Player/Scripts/Controls.cs" Line="1" Column="1" />
+      <File FileName="Assets\Events\DialogueController.cs" Line="7" Column="24" />
+      <File FileName="Assets\Events\EventManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Scripts\Controller\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Scripts\Controller\PlayerControllerStateDiving.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Scripts\Controls.cs" Line="1" Column="1" />
+      <File FileName="Assets\Events\StateDependable.cs" Line="1" Column="1" />
+      <File FileName="Assets\GameLogic\GameState.cs" Line="9" Column="29" />
+      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="89" Column="7" />
+      <File FileName="Assets\UserInterface\Scripts\DialogueManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Scripts\Controller\PlayerControllerStateIdle.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelLoader.cs" Line="13" Column="4" />
+      <File FileName="Assets\Common\SPFileReader.cs" Line="8" Column="48" />
+      <File FileName="Assets\Common\SPFileReaderLocal.cs" Line="19" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
->>>>>>> f8351530a798fff60c95cee626c043a43005b3d8
+>>>>>>> 628452b4f10ba36c7db1f48ba2f40e25d1f668c7
 </Properties>

@@ -5,15 +5,16 @@ using System.Xml;
 
 public class SPFileReaderLocal : SPFileReader {
 
-	public override string[] ReadLevel(){
-		return File.ReadAllLines("Book1.csv");
+	public override string[] ReadGrid(string filename){
+		return File.ReadAllLines(filename);
 	}
 
-	public override XmlDocument ReadEvents ()
+	public override XmlDocument ReadXML (string filename)
 	{
 		XmlDocument xml = new XmlDocument();
-		xml.Load("Events.xml");
+		xml.Load(filename);
 
 		return xml;
 	}
+
 }
