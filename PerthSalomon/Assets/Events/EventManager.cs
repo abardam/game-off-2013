@@ -9,13 +9,15 @@ public class EventManager : MonoBehaviour
 
 		private List<SPEvent> eventList;
 		private List<Eventlet> eventletQueue;
-		public GameState gameState;
-		public Dialogue dialogueManager;
-
-
+		public DialogueManager dialogueManager;
+	
+		private GameState gameState;
+	
 		// Use this for initialization
 		void Start ()
 		{
+		gameState = GameState.GetInstance();
+
 				eventList = new List<SPEvent> ();
 				eventletQueue = new List<Eventlet> ();
 
@@ -206,21 +208,21 @@ public class EventManager : MonoBehaviour
 								case Eventlet.EventletType.Nothing:
 										el.Executed = Eventlet.ExecuteState.Executed;
 										break;
-								case Eventlet.EventletType.Dialogue:
-										gameState.Cutscene = true;
+				case Eventlet.EventletType.Dialogue:
+					gameState.SetModeDialogue();
 										dialogueManager.SetDialogue (el.Text);
 										dialogueManager.SetCallback (el);
 										break;
 								case Eventlet.EventletType.Focus:
-									gameState.Cutscene = true;
+					gameState.SetModeDialogue();
 									dialogueManager.SetTarget(el.Target);
 									dialogueManager.SetCallback(el);
 
 									break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
-								eventletQueue.RemoveAt (0);
-								gameState.Cutscene = false;
+				eventletQueue.RemoveAt (0);
+				gameState.SetModeGame();
 				dialogueManager.SetTarget(gameState.Player);
 						}
 				}

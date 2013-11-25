@@ -7,10 +7,10 @@ public class GridSpawner : MonoBehaviour
 	public GameObject gridCube;
 	public GameObject player;
 	public GameObject guard1;
-	public GameState gameState;
 	public CameraControl cameraControl;
 
 	private bool parsed;
+	private GameState gameState;
 
 	// parse in thing
 	string[,] Parse() 
@@ -39,7 +39,7 @@ public class GridSpawner : MonoBehaviour
 	void Start() 
 	{
 		parsed = false;
-
+		gameState = GameState.GetInstance();
 	}
 
 	void Update ()

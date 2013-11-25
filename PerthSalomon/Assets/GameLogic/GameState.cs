@@ -3,23 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 
 //This class should contain every variable we could possibly want to access about the game
-public class GameState : MonoBehaviour {
+public class GameState {
 
 	private GameObject player;
 	private GameObject player2;
 	private List<GameObject> enemies;
 	private bool cutscene;
+	private List<StateDependable> stateDependables;
 
-	public Dialogue dialogueManager;
-
-
+	public DialogueManager dialogueManager;
 
 	// Use this for initialization
-	void Start () {
+	private GameState() {
 		enemies = new List<GameObject> ();
-		eventDependables = new List<EventDependable>();
+		stateDependables = new List<StateDependable>();
 		cutscene = false;
 
+	}
+
+	private static GameState instance;
+	public static GameState GetInstance(){
+		if(instance == null){
+			instance = new GameState();
+		}
+
+		return instance;
 	}
 	
 	// Update is called once per frame
@@ -51,13 +59,23 @@ public class GameState : MonoBehaviour {
 		}
 	}
 
-	public bool Cutscene {
-		get {
-			return cutscene;
-		}
-		set {
-			cutscene = value;
+	public void SetModeDialogue(){
+		cutscene = true;
+
+		foreach(StateDependable sd in stateDependables){
+			sd.SetCutscene(cutscene);
 		}
 	}
 
+	public void SetModeGame(){
+		cutscene = false;
+		
+		foreach(StateDependable sd in stateDependables){
+			sd.SetCutscene(cutscene);
+		}
+	}
+
+	public void RegisterDependable(StateDependable sd){
+		stateDependables.Add(sd);
+	}
 }

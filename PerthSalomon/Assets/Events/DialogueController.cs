@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DialogueController : MonoBehaviour, EventDependable {
+public class DialogueController : StateDependable {
 
-	public Dialogue dialogueManager;
+	public DialogueManager dialogueManager;
 	private bool cutscene;
 
 	// Use this for initialization
@@ -22,7 +22,7 @@ public class DialogueController : MonoBehaviour, EventDependable {
 	
 	}
 
-	public void SetCutscene(bool c){
+	public override void SetCutscene(bool c){
 		cutscene = c;
 	}
 }

@@ -52,10 +52,10 @@
      <Compile Include="Assets\Common\SPFileReaderLocal.cs" />
      <Compile Include="Assets\Common\Util.cs" />
      <Compile Include="Assets\Events\DialogueController.cs" />
-     <Compile Include="Assets\Events\EventDependable.cs" />
      <Compile Include="Assets\Events\EventManager.cs" />
      <Compile Include="Assets\Events\Eventlet.cs" />
      <Compile Include="Assets\Events\SPEvent.cs" />
+     <Compile Include="Assets\Events\StateDependable.cs" />
      <Compile Include="Assets\Events\Trigger.cs" />
      <Compile Include="Assets\GameLogic\GameState.cs" />
      <Compile Include="Assets\LevelGenerator\Scripts\GridSpawner.cs" />
@@ -66,7 +66,7 @@
      <Compile Include="Assets\Player\Scripts\Controls.cs" />
      <Compile Include="Assets\Player\Scripts\SingleAnimation.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Button.cs" />
-     <Compile Include="Assets\UserInterface\Scripts\Dialogue.cs" />
+     <Compile Include="Assets\UserInterface\Scripts\DialogueManager.cs" />
      <Compile Include="Assets\UserInterface\Scripts\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

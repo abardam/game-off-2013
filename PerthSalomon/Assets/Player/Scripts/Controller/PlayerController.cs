@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour 
+public class PlayerController : StateDependable 
 {
 	public float speed;
 	private CharacterController characterController;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 		this.animator.Play("IdleRight");
 
 		this.speed = 0.8f;
-		this.state = new PlayerControllerStateDiving();
+		//this.state = new PlayerControllerStateDiving();
 	}
 
 	void SetIdle()
@@ -53,5 +53,14 @@ public class PlayerController : MonoBehaviour
 	public Animator GetAnimator()
 	{
 		return this.animator;
+	}
+
+	public override void SetCutscene (bool cutscene)
+	{
+		if(cutscene){
+			this.state = new PlayerControllerStateIdle();
+		}else{
+			this.state = new PlayerControllerStateDiving();
+		}
 	}
 }

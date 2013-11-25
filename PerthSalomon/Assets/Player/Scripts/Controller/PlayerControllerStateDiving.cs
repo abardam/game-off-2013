@@ -191,7 +191,5 @@ public class PlayerControllerStateDiving : PlayerControllerState
 			playerController.GetAnimator().Play(animation);
 		}
 
-		Debug.Log(this.vState);
-
 	}
 }
