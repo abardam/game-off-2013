@@ -10,19 +10,10 @@ public class GameState {
 	private List<GameObject> enemies;
 	private bool cutscene;
 	private List<StateDependable> stateDependables;
+	private LevelLoader levelLoader;
 
 	public DialogueManager dialogueManager;
-
-	// Use this for initialization
-	private GameState() {
-		enemies = new List<GameObject> ();
-		stateDependables = new List<StateDependable>();
-		cutscene = false;
-		SPLevel level = LevelLoader.LoadLevel("levels.xml", "shit");
-
-
-	}
-
+	
 	private static GameState instance;
 	public static GameState GetInstance(){
 		if(instance == null){
@@ -31,10 +22,13 @@ public class GameState {
 
 		return instance;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	private GameState() {
+		enemies = new List<GameObject> ();
+		stateDependables = new List<StateDependable>();
+		cutscene = false;
+		
+		SPLevel level = LevelLoader.LoadLevel("levels.xml", "shit");
 	}
 
 	public GameObject Player {
