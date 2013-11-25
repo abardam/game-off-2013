@@ -24,7 +24,7 @@ public class PlayerControllerStateDiving : PlayerControllerState
 			{HState.H_MOVE_LEFT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_LEFT}, // Transitions for State: H_IDLE_LEFT
 			{HState.H_MOVE_LEFT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_LEFT}, // Transitions for State: H_IDLE_RIGHT
 			{HState.H_ERROR, HState.H_IDLE_LEFT, HState.H_IDLE_LEFT, HState.H_ERROR}, // Transitions for state: H_MOVE_LEFT
-			{HState.H_IDLE_RIGHT, HState.H_ERROR, HState.H_ERROR, HState.H_IDLE_RIGHT}, // Transitions for state: H_MOVE_LEFT
+			{HState.H_IDLE_RIGHT, HState.H_ERROR, HState.H_ERROR, HState.H_IDLE_RIGHT} // Transitions for state: H_MOVE_LEFT
 		};
 
 	enum VState
