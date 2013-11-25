@@ -17,7 +17,7 @@ public class GridSpawner : MonoBehaviour
 	{
 		SPFileReader reader = new SPFileReaderLocal();
 
-		string[] values = reader.ReadLevel();
+		string[] values = reader.ReadGrid("Book1.csv");
 		int height = values.Length;
 		string[] t = values[0].Split(',');
 

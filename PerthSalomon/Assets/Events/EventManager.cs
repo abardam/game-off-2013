@@ -22,7 +22,7 @@ public class EventManager : MonoBehaviour
 				eventletQueue = new List<Eventlet> ();
 
 				SPFileReader reader = new SPFileReaderLocal ();
-				XmlDocument xmlDoc = reader.ReadEvents ();
+				XmlDocument xmlDoc = reader.ReadXML ("events.xml");
 
 				XmlNodeList eventNodes = xmlDoc.SelectNodes ("//Events/Event");
 				foreach (XmlNode eventNode in eventNodes) {

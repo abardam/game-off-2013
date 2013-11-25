@@ -42,7 +42,10 @@ public class PlayerController : StateDependable
 
 	void Update() 
 	{
-		this.state.Update(this);
+		if (this.state != null)
+		{
+			this.state.Update(this);
+		}
 	}
 
 	public CharacterController GetCharacterController()
