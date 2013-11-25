@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour {
 
-	private static int TEXTSPEED = 10; //characters per second
+	private static int TEXTSPEED = 50; //characters per second
 	public enum CutsceneType {None, Dialogue, Camera};
 	
 	public CameraGhost cameraGhost;
