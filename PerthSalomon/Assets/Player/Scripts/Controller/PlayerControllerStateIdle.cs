@@ -7,7 +7,6 @@ public class PlayerControllerStateIdle : PlayerControllerState
 	{
 		if (Input.anyKey)
 		{
-			Debug.Log("Dude I am Idle");
 		}
 	}
 }

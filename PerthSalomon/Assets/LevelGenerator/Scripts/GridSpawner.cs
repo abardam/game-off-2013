@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 public class GridSpawner : MonoBehaviour 
@@ -11,13 +12,16 @@ public class GridSpawner : MonoBehaviour
 
 	private bool parsed;
 	private GameState gameState;
+	private string gridFilename;
+
+	private List<GameObject> allGameObjects;
 
 	// parse in thing
 	string[,] Parse() 
 	{
 		SPFileReader reader = new SPFileReaderLocal();
 
-		string[] values = reader.ReadGrid("Book1.csv");
+		string[] values = reader.ReadGrid(gridFilename);
 		int height = values.Length;
 		string[] t = values[0].Split(',');
 
@@ -35,10 +39,14 @@ public class GridSpawner : MonoBehaviour
 
 		return array;
 	}
-	
+
+	public GridSpawner():base(){	
+		parsed = true;
+		allGameObjects = new List<GameObject>();
+	}
+
 	void Start() 
 	{
-		parsed = false;
 		gameState = GameState.GetInstance();
 	}
 
@@ -85,14 +93,34 @@ public class GridSpawner : MonoBehaviour
 					switch(grid1[i,j]){
 					case "s":
 						gameState.Player = (GameObject)temp;
-						(gameState.Player.GetComponent<Controls>()).gameState = gameState;
 						
 						cameraControl.Target = gameState.Player;
 						break;
 					}
+
+					allGameObjects.Add ((GameObject)temp);
 				}
 			}
 		}
 
+	}
+
+	public string GridFilename {
+		get {
+			return gridFilename;
+		}
+		set {
+			gridFilename = value;
+			Reset();
+			parsed = false;
+
+		}
+	}
+
+	public void Reset(){
+		while(allGameObjects.Count > 0){
+			Destroy(allGameObjects[0]);
+			allGameObjects.RemoveAt(0);
+		}
 	}
 }

@@ -10,19 +10,30 @@ public class EventManager : MonoBehaviour
 		private List<SPEvent> eventList;
 		private List<Eventlet> eventletQueue;
 		public DialogueManager dialogueManager;
-	
+	public LevelLoader levelLoader;
 		private GameState gameState;
-	
+		private string eventsFilename;
+		private bool parsed;
+
+	public EventManager():base(){
+		
+		parsed = true;
+		
+		eventList = new List<SPEvent> ();
+		eventletQueue = new List<Eventlet> ();
+	}
+
 		// Use this for initialization
 		void Start ()
+	{
+		gameState = GameState.GetInstance ();
+
+		}
+
+		void Parse ()
 		{
-		gameState = GameState.GetInstance();
-
-				eventList = new List<SPEvent> ();
-				eventletQueue = new List<Eventlet> ();
-
 				SPFileReader reader = new SPFileReaderLocal ();
-				XmlDocument xmlDoc = reader.ReadXML ("events.xml");
+				XmlDocument xmlDoc = reader.ReadXML (eventsFilename);
 
 				XmlNodeList eventNodes = xmlDoc.SelectNodes ("//Events/Event");
 				foreach (XmlNode eventNode in eventNodes) {
@@ -104,10 +115,12 @@ public class EventManager : MonoBehaviour
 										case "dialogue":
 												ett = Eventlet.EventletType.Dialogue;
 												break;
-					case "focus":
-						ett = Eventlet.EventletType.Focus;
+										case "focus":
+												ett = Eventlet.EventletType.Focus;
+												break;
+					case "loadlevel":
+						ett = Eventlet.EventletType.LoadLevel;
 						break;
-
 										}
 								}
 
@@ -121,13 +134,13 @@ public class EventManager : MonoBehaviour
 										el.Text = eventletNode.Attributes ["text"].Value;
 								}
 
-				if(eventletNode.Attributes["targetX"] != null && 
-				   eventletNode.Attributes["targetY"] != null){
-					int gridX = int.Parse(eventletNode.Attributes["targetX"].Value);
-					int gridY = int.Parse(eventletNode.Attributes["targetY"].Value);
+								if (eventletNode.Attributes ["targetX"] != null && 
+										eventletNode.Attributes ["targetY"] != null) {
+										int gridX = int.Parse (eventletNode.Attributes ["targetX"].Value);
+										int gridY = int.Parse (eventletNode.Attributes ["targetY"].Value);
 
-					el.Target = Util.GridToVec3(gridX, gridY);
-				}
+										el.Target = Util.GridToVec3 (gridX, gridY);
+								}
 
 								e.addEventlet (el);
 						}
@@ -139,6 +152,10 @@ public class EventManager : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
+				if(!parsed){
+			Parse ();
+			parsed = true;
+		}
 				//lets check our events if they trigger:
 
 				for (int e=eventList.Count-1; e>=0; --e) {
@@ -208,23 +225,45 @@ public class EventManager : MonoBehaviour
 								case Eventlet.EventletType.Nothing:
 										el.Executed = Eventlet.ExecuteState.Executed;
 										break;
-				case Eventlet.EventletType.Dialogue:
-					gameState.SetModeDialogue();
+								case Eventlet.EventletType.Dialogue:
+										gameState.SetModeDialogue ();
 										dialogueManager.SetDialogue (el.Text);
 										dialogueManager.SetCallback (el);
 										break;
 								case Eventlet.EventletType.Focus:
-					gameState.SetModeDialogue();
-									dialogueManager.SetTarget(el.Target);
-									dialogueManager.SetCallback(el);
+										gameState.SetModeDialogue ();
+										dialogueManager.SetTarget (el.Target);
+										dialogueManager.SetCallback (el);
+					break;
+				case Eventlet.EventletType.LoadLevel:
+					gameState.SetModeGame();
+					levelLoader.levelName = el.Text;
+					levelLoader.LoadLevel();
 
-									break;
+										break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
-				eventletQueue.RemoveAt (0);
-				gameState.SetModeGame();
-				dialogueManager.SetTarget(gameState.Player);
+								eventletQueue.RemoveAt (0);
+								gameState.SetModeGame ();
+								dialogueManager.SetTarget (gameState.Player);
 						}
 				}
 		}
+
+		public string EventsFilename {
+				get {
+						return eventsFilename;
+				}
+				set {
+						eventsFilename = value;
+			Reset();
+			parsed = false;
+				}
+		}
+
+	public void Reset(){
+		eventList.Clear();
+		eventletQueue.Clear();
+
+	}
 }

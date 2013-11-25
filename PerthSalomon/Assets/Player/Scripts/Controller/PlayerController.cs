@@ -8,6 +8,10 @@ public class PlayerController : StateDependable
 	private Animator animator;
 	private PlayerControllerState state;
 
+	public PlayerController():base(){	
+		this.state = new PlayerControllerStateDiving();
+	}
+
 	void Start() 
 	{
 		this.characterController = this.GetComponent<CharacterController>();
@@ -27,7 +31,6 @@ public class PlayerController : StateDependable
 		this.animator.Play("IdleRight");
 
 		this.speed = 0.8f;
-		//this.state = new PlayerControllerStateDiving();
 	}
 
 	void SetIdle()

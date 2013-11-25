@@ -20,7 +20,7 @@ public class CameraGhost : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 newPos = transform.position;
-		if (onObject) {
+		if (onObject && target != null) {
 			newPos = new Vector3(target.transform.position.x, 
 			                     target.transform.position.y,
 			                     -10);
