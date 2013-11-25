@@ -30,6 +30,16 @@ public class PlayerController : MonoBehaviour
 		this.state = new PlayerControllerStateDiving();
 	}
 
+	void SetIdle()
+	{
+		this.state = new PlayerControllerStateIdle();
+	}
+
+	void SetDiving()
+	{
+		this.state = new PlayerControllerStateDiving();
+	}
+
 	void Update() 
 	{
 		this.state.Update(this);
