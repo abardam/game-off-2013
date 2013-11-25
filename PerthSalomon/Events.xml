@@ -1,9 +1,20 @@
 <Events>
 	<Event>
 		<Trigger type="start"/>
-		<Eventlet debug="Hello world!" />
+
 		<Eventlet type="dialogue" text="ALASKA: Solomon! This is Alaska, do you copy?" debug="Hello" />
 		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." debug="Hello" />
+		<Eventlet type="dialogue" text="ALASKA: How many times have told you, call me ALASKA!" debug="Hello" />
+		<Eventlet type="dialogue" text="SOLOMON: A thousand pardons, Ferrari. What's the mission again?" debug="Hello" />
+		<Eventlet type="dialogue" text="ALASKA: Ugh, whatever. OK, Solomon, your mission this time is to grab up all the change in the famous Trevi Fountain." debug="Hello" />
+		<Eventlet type="dialogue" text="SOLOMON: Piece of Salmon!" debug="Hello" />
+		<Eventlet type="dialogue" text="ALASKA: What?" debug="Hello" />
+		<Eventlet type="dialogue" text="SOLOMON: Don't you know? It means, 'This will be easy.'" debug="Hello" />
+		<Eventlet type="dialogue" text="ALASKA: I think you mean, 'Piece of Cake.'" debug="Hello" />
+		<Eventlet type="dialogue" text="SOLOMON: That doesn't even make sense. Cake can be quite hard." debug="Hello" />
+		<Eventlet type="dialogue" text="ALASKA: Whatever! OK, just go get those coins, and don't get caught by any of the guards this time Solomon!" debug="Hello" />
+		<Eventlet type="dialogue" text="SOLOMON: Got it! Piece of Salmon!" debug="Hello" />
+		<Eventlet type="dialogue" text="ALASKA: . . . ." debug="Hello" />
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
