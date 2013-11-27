@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 
 public class GridSpawner : MonoBehaviour 
 {	
@@ -15,6 +16,14 @@ public class GridSpawner : MonoBehaviour
 	private string gridFilename;
 
 	private List<GameObject> allGameObjects;
+
+	private class CodeFilenamePair
+	{
+		public string code;
+		public string filename;
+	}
+
+	private List<CodeFilenamePair> tileCodes;
 
 	// parse in thing
 	string[,] Parse() 
@@ -48,6 +57,7 @@ public class GridSpawner : MonoBehaviour
 	void Start() 
 	{
 		gameState = GameState.GetInstance();
+		ReadInTileCodes("TileCodes.xml");
 	}
 
 	void Update ()
@@ -90,11 +100,15 @@ public class GridSpawner : MonoBehaviour
 					Object temp = Instantiate(obj, pos, rot);
 					
 					//edit gamestate
-					switch(grid1[i,j]){
+					switch(grid1[i,j])
+					{
 					case "s":
 						gameState.Player = (GameObject)temp;
 						
 						cameraControl.Target = gameState.Player;
+						break;
+					case "1":
+						this.SetTexture((GameObject)temp, grid1, i, j);
 						break;
 					}
 
@@ -117,10 +131,120 @@ public class GridSpawner : MonoBehaviour
 		}
 	}
 
-	public void Reset(){
-		while(allGameObjects.Count > 0){
+	public void Reset()
+	{
+		while(allGameObjects.Count > 0)
+		{
 			Destroy(allGameObjects[0]);
 			allGameObjects.RemoveAt(0);
 		}
+	}
+
+	private void ReadInTileCodes(string filename)
+	{
+		tileCodes = new List<CodeFilenamePair>(); 
+
+		SPFileReader reader = new SPFileReaderLocal();
+		XmlDocument xml  = reader.ReadXML (filename);
+		XmlNodeList nodeList = xml.SelectNodes("//Tiles/Tile");
+
+		int i = 0;
+		foreach(XmlNode node in nodeList){
+			CodeFilenamePair cfp = new CodeFilenamePair();
+			cfp.code = node.Attributes["code"].Value;
+			cfp.filename = node.Attributes["filename"].Value;
+			tileCodes.Add(cfp);
+		}
+
+	}
+
+	private void SetTexture(GameObject obj, string[,] grid, int i, int j)
+	{
+		SpriteRenderer r = obj.GetComponent<SpriteRenderer>();
+
+		if (!r)
+		{
+			Debug.Log("SpriteRenderer not found");
+		}
+
+		char[] neighborCode = ComputeNeighborCode(grid, i, j);
+
+		//r.material.mainTexture = t;
+
+		foreach (CodeFilenamePair cfp in tileCodes)
+		{
+			if (IsSameCode(neighborCode, cfp.code.ToCharArray()))
+			{
+				Texture2D t = (Texture2D)Resources.Load(cfp.filename);
+
+				if (!t)
+				{
+					Debug.Log("Texture not found!!!");
+				}
+
+				Sprite s = Sprite.Create(t, new Rect(0, 0, 128, 128), new Vector2(0.5f, 0.5f), 128.0f);
+				r.sprite = s;
+				return;
+			}
+		}
+		{
+		Texture2D t = (Texture2D)Resources.Load("error");
+		
+		if (!t)
+		{
+			Debug.Log("Texture not found!!!");
+		}
+		
+		Sprite s = Sprite.Create(t, new Rect(0, 0, 128, 128), new Vector2(0.5f, 0.5f), 128.0f);
+		r.sprite = s;
+		}
+	}
+	
+	private bool IsSameCode(char[] neighborCode, char[] tileCode)
+	{
+		if (neighborCode.Length != tileCode.Length)
+		{
+			Debug.Log("invalid array length");
+		}
+
+		bool s = true;
+
+		for (int i = 0; i < 8; i++)
+		{
+			if (!((neighborCode[i] == tileCode[i]) || (tileCode[i] == '*')))
+			{
+				s = false;
+			}
+		}
+
+		return s;
+	}
+
+	private bool CheckValid(int i, int maximum){
+		return 0 <= i && i < maximum;
+	}
+
+	private char[] ComputeNeighborCode(string[,] grid, int i, int j)
+	{
+		char[] n = new char[8];
+
+		int u=0;
+		for(int i2=i-1;i2<=i+1;++i2){
+			for(int j2=j-1;j2<=j+1;++j2){
+
+				if(i2 == i && j2 == j) continue;
+
+				if(CheckValid(i2,grid.GetLength(0)) && CheckValid(j2,grid.GetLength(1))){
+					n[u] = grid[i2,j2] == "1"? '1' : '0';
+				}else{
+					n[u] = '1';
+				}
+
+				++u;
+			}
+		}
+
+		return n;
+
 	}
 }

@@ -1,0 +1,20 @@
+<Tiles>
+    <Tile code="11111111" filename="tile0" />
+    <Tile filename="tile1" code="*1101*11" />
+    <Tile filename="tile2" code="11*1011*" />
+    <Tile filename="tile3" code="11111*0*" />
+    <Tile filename="tile4" code="*1101*00" />
+    <Tile filename="tile5" code="11*1000*" />
+    <Tile filename="tile6" code="11100*0*" />
+    <Tile filename="tile7" code="11100*1*" />
+    <Tile filename="tile8" code="01000*0*" />
+    <Tile filename="tile9" code="10111101" />
+    <Tile filename="tile10" code="*0101*01" />
+    <Tile filename="tile11" code="*0001*11" />
+    <Tile filename="tile12" code="00011000" />
+    <Tile filename="tile13" code="10*1010*" />
+    <Tile filename="tile14" code="00*1011*" />
+    <Tile filename="tile15" code="01000111" />
+    <Tile filename="tile16" code="01000010" />
+    <Tile filename="tile17" code="00000010" />
+</Tiles>
