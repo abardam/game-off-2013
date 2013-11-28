@@ -8,7 +8,8 @@ public class PlayerController : StateDependable
 	private Animator animator;
 	private PlayerControllerState state;
 
-	public PlayerController():base(){	
+	public PlayerController():base()
+	{	
 		this.state = new PlayerControllerStateDiving();
 	}
 

@@ -4,12 +4,8 @@
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
-		<Eventlet type="dialogue" text="Hello again, world!" debug="Hello" />
-		<Eventlet type="focus" targetX="1" targetY="1" />
 	</Event>
   <Event>
 		<Trigger type="onexit" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
-		<Eventlet type="dialogue" text="Goodbye, world!"  />
-		<Eventlet type="loadlevel" text="shit2" debug="Goodbye" />
 	</Event>
 </Events>

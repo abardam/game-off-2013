@@ -51,6 +51,8 @@
      <Compile Include="Assets\Common\SPFileReader.cs" />
      <Compile Include="Assets\Common\SPFileReaderLocal.cs" />
      <Compile Include="Assets\Common\Util.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardController.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardControllerState.cs" />
      <Compile Include="Assets\Events\DialogueController.cs" />
      <Compile Include="Assets\Events\EventDependable.cs" />
      <Compile Include="Assets\Events\EventManager.cs" />
