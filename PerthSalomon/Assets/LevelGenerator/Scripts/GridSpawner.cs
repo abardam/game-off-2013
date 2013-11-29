@@ -21,6 +21,10 @@ public class GridSpawner : MonoBehaviour
 	{
 		public string code;
 		public string filename;
+		public float up=0f;
+		public float down=1f;
+		public float left=0f;
+		public float right=1f;
 	}
 
 	private List<CodeFilenamePair> tileCodes;
@@ -72,6 +76,8 @@ public class GridSpawner : MonoBehaviour
 			
 			cameraControl.setGridParams (3.5f, 2.5f);
 			cameraControl.SetBounds (Util.GridToVec2 (0, 0), Util.GridToVec2 (width-1, height-1));
+
+			gameState.SetGridSize(height, width);
 			
 			for (int i = 0; i < height; ++i)
 			{
@@ -110,6 +116,12 @@ public class GridSpawner : MonoBehaviour
 					case "1":
 						this.SetTexture((GameObject)temp, grid1, i, j);
 						break;
+					}
+
+					if(grid1[i,j] == "1"){
+						gameState.SetGridCell(i,j,1);
+					}else{
+						gameState.SetGridCell(i,j,0);
 					}
 
 					allGameObjects.Add ((GameObject)temp);
@@ -153,6 +165,21 @@ public class GridSpawner : MonoBehaviour
 			CodeFilenamePair cfp = new CodeFilenamePair();
 			cfp.code = node.Attributes["code"].Value;
 			cfp.filename = node.Attributes["filename"].Value;
+
+			if(node.Attributes["up"] != null){
+				cfp.up = float.Parse(node.Attributes["up"].Value);
+			}
+			if(node.Attributes["down"] != null){
+				cfp.down = float.Parse(node.Attributes["down"].Value);
+			}
+			if(node.Attributes["left"] != null){
+				cfp.left = float.Parse(node.Attributes["left"].Value);
+			}
+			if(node.Attributes["right"] != null){
+				cfp.right = float.Parse(node.Attributes["right"].Value);
+			}
+
+
 			tileCodes.Add(cfp);
 		}
 
@@ -161,6 +188,7 @@ public class GridSpawner : MonoBehaviour
 	private void SetTexture(GameObject obj, string[,] grid, int i, int j)
 	{
 		SpriteRenderer r = obj.GetComponent<SpriteRenderer>();
+
 
 		if (!r)
 		{
