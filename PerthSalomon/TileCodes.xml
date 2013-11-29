@@ -7,7 +7,7 @@
     <Tile filename="tile5" code="11*1000*" right="0.75" down="0.5" />
     <Tile filename="tile6" code="11100*0*" left="0.1" right="0.9" down="0.5"/>
     <Tile filename="tile7" code="11100*1*" left="0.1" right="0.9" />
-    <Tile filename="tile8" code="*1*00*0*" left="0.2" right="0.2" down="0.5"/>
+    <Tile filename="tile8" code="*1*00*0*" left="0.2" right="0.8" down="0.5"/>
     <Tile filename="tile9" code="10111101" up="0.1" down="0.9"/>
     <Tile filename="tile10" code="*0101*01" left="0.5" up="0.1" down="0.9" />
     <Tile filename="tile11" code="*0001*11" left="0.25" up="0.1" />
@@ -15,9 +15,9 @@
     <Tile filename="tile13" code="10*1010*" up="0.1" right="0.5" down="0.9" />
     <Tile filename="tile14" code="00*1011*" up="0.1" right="0.75" />
     <Tile filename="tile15" code="01000111" left="0.2" right="0.8" />
-    <Tile filename="tile16" code="01000010" left="0.2" right="0.2" />
-    <Tile filename="tile17" code="*0*00010" left="0.2" right="0.2" up="0.67" />
-	<Tile filename="tile18" code="*0*00*0*" up="0.2" left="0.2" right="0.2" down="0.2"/>
+    <Tile filename="tile16" code="01000010" left="0.2" right="0.8" />
+    <Tile filename="tile17" code="*0*00010" left="0.2" right="0.8" up="0.67" />
+	<Tile filename="tile18" code="*0*00*0*" up="0.2" left="0.2" right="0.8" down="0.8"/>
 	<Tile filename="tile19" code="00011111" up="0.1" />
 	<Tile filename="tile20" code="11111010" left="0.1" right="0.9"/>
 	<Tile filename="tile21" code="01011111" />
@@ -25,4 +25,8 @@
 	<Tile filename="tile23" code="10011111" up="0.1" />
 	<Tile filename="tile24" code="10111111" up="0.1"/>
 	<Tile filename="tile25" code="*0*00111" left="0.2" right="0.2" up="0.8"/>
+	<Tile filename="tile26" code="11011111" />
+	<Tile filename="tile27" code="01111111" />
+	<Tile filename="tile28" code="11111110" />
+	<Tile filename="tile29" code="11111011" />
 </Tiles>
