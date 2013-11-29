@@ -13,6 +13,8 @@ public class GameState {
 	private LevelLoader levelLoader;
 
 	public DialogueManager dialogueManager;
+
+	private int[,] obstacleGrid;
 	
 	private static GameState instance;
 	public static GameState GetInstance(){
@@ -71,5 +73,22 @@ public class GameState {
 
 	public void RegisterDependable(StateDependable sd){
 		stateDependables.Add(sd);
+	}
+
+	public int[,] ObstacleGrid {
+		get {
+			return obstacleGrid;
+		}
+		set {
+			obstacleGrid = value;
+		}
+	}
+
+	public void SetGridSize(int height, int width){
+		this.obstacleGrid = new int[height,width];
+	}
+
+	public void SetGridCell(int row, int col, int value){
+		this.obstacleGrid[row,col] = value;
 	}
 }
