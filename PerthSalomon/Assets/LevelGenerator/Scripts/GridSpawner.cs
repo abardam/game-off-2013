@@ -188,11 +188,15 @@ public class GridSpawner : MonoBehaviour
 	private void SetTexture(GameObject obj, string[,] grid, int i, int j)
 	{
 		SpriteRenderer r = obj.GetComponent<SpriteRenderer>();
-
+		BoxCollider bc = obj.GetComponent<BoxCollider>();
 
 		if (!r)
 		{
 			Debug.Log("SpriteRenderer not found");
+		}
+
+		if(!bc){
+			Debug.Log("BoxCollider not found");
 		}
 
 		char[] neighborCode = ComputeNeighborCode(grid, i, j);
@@ -212,6 +216,15 @@ public class GridSpawner : MonoBehaviour
 
 				Sprite s = Sprite.Create(t, new Rect(0, 0, 128, 128), new Vector2(0.5f, 0.5f), 128.0f);
 				r.sprite = s;
+
+				bc.center = new Vector3((cfp.right + cfp.left - 1f)/2f,
+				                        -(cfp.up + cfp.down - 1f)/2f,
+				                        0f);
+
+				bc.size = new Vector3(cfp.right - cfp.left,
+				                      cfp.down - cfp.up,
+				                      1f);
+
 				return;
 			}
 		}
