@@ -20,11 +20,14 @@ public class GuardController : MonoBehaviour
 	
 	void Update() 
 	{
+
+		//GridTile gtg = Util.Vect2ToGrid(
+
+
 		if (this.IsPlayerVisible())
 		{
 			FollowPlayer();
 		}
-
 	}
 
 	private bool IsPlayerVisible()
