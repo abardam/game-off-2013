@@ -2,6 +2,26 @@
 using System;
 using UnityEngine;
 
+
+// a grid tile
+public class GridTile
+{
+	public int i;
+	public int j;
+	
+	public GridTile(int x, int y)
+	{
+		i = x;
+		j = y;
+	}
+
+	bool Equals(GridTile gt)
+	{
+		return this.i == gt.i && this.j == gt.j;
+	}
+};
+
+
 public class Util
 {
 	public static bool Vec3WithinRect(Vector3 vec3, Rect rect){
@@ -26,20 +46,14 @@ public class Util
 		
 		return new Vector2 (xs + x, ys - y);
 	}
+	
 
-
-	public class GridCoordinate
-	{
-		int i;
-		int j;
-	}
-
-	public static GridCoordinate Vect2ToGrid(Vector2 v)
+	public static GridTile Vect2ToGrid(Vector2 v)
 	{
 		int i = (int)(v.x + 4.0f);
-		int j = (int)(v.y - 3);
+		int j = -(int)(v.y - 3);
 
-		return new GridCoordinate();
+		return new GridTile(i, j);
 	}
 
 }

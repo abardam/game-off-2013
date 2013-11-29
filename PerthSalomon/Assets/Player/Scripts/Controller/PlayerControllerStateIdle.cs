@@ -7,6 +7,7 @@ public class PlayerControllerStateIdle : PlayerControllerState
 	{
 		if (Input.anyKey)
 		{
+
 		}
 	}
 }
