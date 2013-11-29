@@ -15,6 +15,7 @@ public class GuardController : MonoBehaviour
 		this.orientation = new Vector2(-1.0f, 0.0f);
 		this.arc = 1.0f/3.0f*(float)(Math.PI);
 		this.characterController = this.GetComponent<CharacterController>();
+
 	}
 	
 	void Update() 
