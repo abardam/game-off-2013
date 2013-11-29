@@ -1,34 +1,17 @@
-<<<<<<< HEAD
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Enemy/Scripts/GuardController.cs">
-    <Files>
-      <File FileName="Assets/LevelGenerator/Scripts/GridSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets/Enemy/Scripts/GuardController.cs" Line="59" Column="57" />
-      <File FileName="Assets/Enemy/Scripts/GuardControllerState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Player/Scripts/Controller/PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Player/Scripts/Controller/PlayerControllerStateDiving.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-=======
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelGenerator\Scripts\GridSpawner.cs">
     <Files>
-      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="19" Column="2" />
-      <File FileName="Assets\Enemy\Scripts\GuardController.cs" Line="48" Column="3" />
+      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="222" Column="31" />
+      <File FileName="Assets\Enemy\Scripts\GuardController.cs" Line="1" Column="1" />
       <File FileName="Assets\Enemy\Scripts\GuardControllerState.cs" Line="1" Column="1" />
       <File FileName="Assets\Player\Scripts\Controller\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Player\Scripts\Controller\PlayerControllerStateDiving.cs" Line="1" Column="1" />
+      <File FileName="Assets\GameLogic\GameState.cs" Line="93" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
->>>>>>> 6aa7e29cea322641471952006016f0f02169dd20
 </Properties>

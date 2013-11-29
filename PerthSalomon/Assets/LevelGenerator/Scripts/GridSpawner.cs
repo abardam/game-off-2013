@@ -214,7 +214,7 @@ public class GridSpawner : MonoBehaviour
 					Debug.Log("Texture not found!!!");
 				}
 
-				Sprite s = Sprite.Create(t, new Rect(0, 0, 128, 128), new Vector2(0.5f, 0.5f), 128.0f);
+				Sprite s = Sprite.Create(t, new Rect(0, 0, 128, 128), new Vector2(0.5f, 0.5f), 127.0f);
 				r.sprite = s;
 
 				bc.center = new Vector3((cfp.right + cfp.left - 1f)/2f,
