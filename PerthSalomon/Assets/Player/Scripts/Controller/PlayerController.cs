@@ -46,6 +46,15 @@ public class PlayerController : StateDependable
 
 	void Update() 
 	{
+		Vector2 pos = new Vector2();
+		pos.x = this.transform.position.x;
+		pos.y = this.transform.position.y;
+
+		GridTile gc = Util.Vect2ToGrid(pos);
+
+		Debug.Log("[" + gc.i + ", " + gc.j + "]");
+//		Pathfinder.FindPath();
+
 		if (this.state != null)
 		{
 			this.state.Update(this);
