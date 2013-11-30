@@ -24,9 +24,10 @@
 	<Tile filename="tile22" code="00111111" up="0.1" />
 	<Tile filename="tile23" code="10011111" up="0.1" />
 	<Tile filename="tile24" code="10111111" up="0.1"/>
-	<Tile filename="tile25" code="*0*00111" left="0.2" right="0.2" up="0.8"/>
+	<Tile filename="tile25" code="*0*00111" left="0.2" right="0.8" up="0.8"/>
 	<Tile filename="tile26" code="11011111" />
 	<Tile filename="tile27" code="01111111" />
-	<Tile filename="tile28" code="11111110" />
-	<Tile filename="tile29" code="11111011" />
+	<Tile filename="tile28" code="11111110"  right="0.8" down="0.8"/>
+	<Tile filename="tile29" code="11111011" left="0.2" down="0.8" />
+	<Tile filename="tile30" code="11*1001*" right="0.8"/>
 </Tiles>
