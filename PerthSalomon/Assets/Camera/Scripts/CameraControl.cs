@@ -15,6 +15,28 @@ public class CameraControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//update: also clamps ghost pos
+		Vector3 ghostPos = ghost.transform.position;
+
+		if (minBounds != null && maxBounds != null) {
+			if (ghostPos.x < minBounds.x) {
+				ghostPos.x = minBounds.x;
+			}
+			if (ghostPos.y < minBounds.y) {
+				ghostPos.y = minBounds.y;
+			}
+			
+			if (ghostPos.x > maxBounds.x) {
+				ghostPos.x = maxBounds.x;
+			}
+			if (ghostPos.y > maxBounds.y) {
+				ghostPos.y = maxBounds.y;
+			}
+		}
+
+		ghost.transform.position.Set(ghostPos.x, ghostPos.y, ghostPos.z);
+
 		Vector3 newPos = transform.position;
 		newPos = new Vector3(ghost.transform.position.x, 
 		                     ghost.transform.position.y,
