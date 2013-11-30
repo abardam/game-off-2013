@@ -97,6 +97,10 @@ public class EventManager : MonoBehaviour
 										e.addTrigger (t2);
 
 										break;
+								default:
+										tt = Trigger.TriggerType.Start;
+										t = new Trigger (tt);
+										break;
 								}
 
 								t.Checklist = checklist;
@@ -135,15 +139,15 @@ public class EventManager : MonoBehaviour
 										el.Text = eventletNode.Attributes ["text"].Value;
 								}
 
-								if(eventletNode.Attributes["leftPortrait"] != null){
-					el.LeftPortrait = eventletNode.Attributes["leftPortrait"].Value;
-				}
+								if (eventletNode.Attributes ["leftPortrait"] != null) {
+										el.LeftPortrait = eventletNode.Attributes ["leftPortrait"].Value;
+								}
 				
-				if(eventletNode.Attributes["rightPortrait"] != null){
-					el.RightPortrait = eventletNode.Attributes["rightPortrait"].Value;
-				}
+								if (eventletNode.Attributes ["rightPortrait"] != null) {
+										el.RightPortrait = eventletNode.Attributes ["rightPortrait"].Value;
+								}
 
-				if (eventletNode.Attributes ["targetX"] != null && 
+								if (eventletNode.Attributes ["targetX"] != null && 
 										eventletNode.Attributes ["targetY"] != null) {
 										int gridX = int.Parse (eventletNode.Attributes ["targetX"].Value);
 										int gridY = int.Parse (eventletNode.Attributes ["targetY"].Value);
@@ -236,7 +240,7 @@ public class EventManager : MonoBehaviour
 										break;
 								case Eventlet.EventletType.Dialogue:
 										gameState.SetModeDialogue ();
-										dialogueManager.SetDialogue (el.Text,el.LeftPortrait,el.RightPortrait);
+										dialogueManager.SetDialogue (el.Text, el.LeftPortrait, el.RightPortrait);
 										dialogueManager.SetCallback (el);
 
 										break;
