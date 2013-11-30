@@ -198,7 +198,7 @@ public class DialogueManager : MonoBehaviour {
 			string dispText = dialogue.Substring(0, dialogueIndex<dialogue.Length?
 			                                     (int)dialogueIndex:dialogue.Length);
 			GUI.skin = skin;
-			//GUI.Box (dialogueRect, "");
+			GUI.Box (dialogueRect, "");
 
 			GUI.Label(textRect, dispText);
 

@@ -78,6 +78,7 @@
      <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerStateIdle.cs" />
      <Compile Include="Assets\Player\Scripts\Controls.cs" />
      <Compile Include="Assets\Player\Scripts\SingleAnimation.cs" />
+     <Compile Include="Assets\Screens\GameOverScript.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Button.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Dialogue.cs" />
      <Compile Include="Assets\UserInterface\Scripts\DialogueManager.cs" />

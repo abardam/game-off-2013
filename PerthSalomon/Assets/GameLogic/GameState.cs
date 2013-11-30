@@ -13,6 +13,7 @@ public class GameState {
 	private LevelLoader levelLoader;
 	private int coins;
 	private Hashtable doorTable;
+	private string levelName;
 
 	public DialogueManager dialogueManager;
 
@@ -28,6 +29,7 @@ public class GameState {
 	}
 
 	private GameState() {
+		levelName = "";
 		enemies = new List<GameObject> ();
 		stateDependables = new List<StateDependable>();
 		cutscene = false;
@@ -140,6 +142,15 @@ public class GameState {
 		}
 		set {
 			doorTable = value;
+		}
+	}
+
+	public string LevelName {
+		get {
+			return levelName;
+		}
+		set {
+			levelName = value;
 		}
 	}
 }

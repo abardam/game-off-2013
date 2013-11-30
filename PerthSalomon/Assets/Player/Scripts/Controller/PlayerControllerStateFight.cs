@@ -6,6 +6,8 @@ public class PlayerControllerStateFight : PlayerControllerState
 	bool hasAnimationStarted;
 	float elapsed;
 
+	private static float HPPERSECOND=1f;
+
 	public PlayerControllerStateFight()
 	{
 		this.hasAnimationStarted = false;
@@ -27,6 +29,7 @@ public class PlayerControllerStateFight : PlayerControllerState
 			playerController.SetState(new PlayerControllerStateDiving());
 		}
 
+		playerController.Health -= HPPERSECOND * Time.deltaTime;
 	}
 	
 }

@@ -7,6 +7,9 @@ public class PlayerController : StateDependable
 	private CharacterController characterController;
 	private Animator animator;
 	private PlayerControllerState state;
+	private float health;
+
+	public static float MAXHEALTH=15f;
 
 	public PlayerController():base()
 	{	
@@ -14,6 +17,7 @@ public class PlayerController : StateDependable
 
 	void Start() 
 	{
+		health = MAXHEALTH;
 		this.characterController = this.GetComponent<CharacterController>();
 
 		if (!this.characterController)
@@ -57,6 +61,8 @@ public class PlayerController : StateDependable
 		if (this.state == null) 
 			this.state = new PlayerControllerStateDiving();
 		this.state.Update(this);
+
+		if(this.health < 0) Application.LoadLevel ("GameOver");
 	}
 
 	public CharacterController GetCharacterController()
@@ -95,5 +101,15 @@ public class PlayerController : StateDependable
 	public void SetState(PlayerControllerState state)
 	{
 		this.state = state;
+	}
+
+	public float Health {
+		get {
+			return health;
+		}
+		set {
+			health = value;
+			if(health > MAXHEALTH) health = MAXHEALTH;
+		}
 	}
 }

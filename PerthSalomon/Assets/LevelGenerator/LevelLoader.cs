@@ -24,6 +24,7 @@ public class LevelLoader : MonoBehaviour
 				level.Name = lName;
 				level.EventsFilename = levelNode.Attributes["events"].Value;
 				level.GridFilename = levelNode.Attributes["grid"].Value;
+				GameState.GetInstance().LevelName = lName;
 
 				break;
 			}
@@ -36,6 +37,7 @@ public class LevelLoader : MonoBehaviour
 	}
 
 	void Start(){
+		if(GameState.GetInstance().LevelName != "") levelName = GameState.GetInstance().LevelName;
 		LoadLevel();
 	}
 }
