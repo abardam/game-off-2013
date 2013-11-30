@@ -67,6 +67,23 @@ public class GridSpawner : MonoBehaviour
 		gameState = GameState.GetInstance();
 	}
 
+	Color getKeyColor(int id){
+		switch(id){
+		case 1:
+			return Color.blue;
+		case 2:
+			return Color.cyan;
+		case 3:
+			return Color.green;
+		case 4:
+			return Color.red;
+		case 5:
+			return Color.yellow;
+		default:
+			return Color.black;
+		}
+	}
+
 	void Update ()
 	{
 		if(!parsed)
@@ -147,7 +164,8 @@ public class GridSpawner : MonoBehaviour
 						continue;
 					}
 					
-					Object temp = Instantiate(obj, pos, rot);
+					GameObject temp = (GameObject)Instantiate(obj, pos, rot);
+
 					
 					//edit gamestate
 					switch(code)
@@ -173,9 +191,11 @@ public class GridSpawner : MonoBehaviour
 						break;
 					case "d":
 						gameState.DoorTable[id] = temp;
+						temp.GetComponent<SpriteRenderer>().color = getKeyColor(id);
 						break;
 					case "k":
 						(temp as GameObject).GetComponent<PickupObject>().ID = id;
+						temp.GetComponent<SpriteRenderer>().color = getKeyColor(id);
 						break;
 					}
 
