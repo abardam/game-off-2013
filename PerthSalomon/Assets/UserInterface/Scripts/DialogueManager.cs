@@ -46,6 +46,9 @@ public class DialogueManager : MonoBehaviour {
 	private Rect portraitRectLeft;
 	private Rect portraitRectRight;
 
+	private string currentPortraitLeft;
+	private string currentPortraitRight;
+
 	public DialogueManager():base(){
 		dialoguePortraitTable = new Hashtable();
 		portraitsLoaded = false;
@@ -59,9 +62,13 @@ public class DialogueManager : MonoBehaviour {
 		dialogueRect = new Rect(0f, Screen.height*0.75f,Screen.width*1f,Screen.height*0.25f);
 	}
 
-	public void SetDialogue(string text){
+	public void SetDialogue(string text, string portraitLeft, string portraitRight){
 		dialogueIndex = 0;
 		dialogue = text;
+
+		currentPortraitLeft = portraitLeft;
+		currentPortraitRight = portraitRight;
+
 		activeCutscene = CutsceneType.Dialogue;
 		callback = null;
 	}
@@ -73,6 +80,7 @@ public class DialogueManager : MonoBehaviour {
 	private void LoadPortraits(){
 
 		portraitRectLeft = new Rect(0f, Screen.height*0.5f, Screen.height*0.5f, Screen.height*0.5f);
+		portraitRectRight = new Rect(Screen.width - Screen.height*0.5f, Screen.height*0.5f, Screen.height*0.5f,Screen.height*0.5f);
 
 		//init textures
 		
@@ -82,6 +90,13 @@ public class DialogueManager : MonoBehaviour {
 		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 3"));
 		
 		dialoguePortraitTable.Add("alaska talk", alaskaTalk);
+
+		DialoguePortrait solomonTalk = new DialoguePortrait();
+		solomonTalk.AddTexture((Texture2D)Resources.Load("solomon talk 1"));
+		solomonTalk.AddTexture((Texture2D)Resources.Load("solomon talk 2"));
+		solomonTalk.AddTexture((Texture2D)Resources.Load("solomon talk 3"));
+
+		dialoguePortraitTable.Add("solomon talk", solomonTalk);
 	}
 
 	// Update is called once per frame
@@ -111,7 +126,14 @@ public class DialogueManager : MonoBehaviour {
 			string dispText = dialogue.Substring(0, dialogueIndex<dialogue.Length?
 			                                     (int)dialogueIndex:dialogue.Length);
 			GUI.Box (dialogueRect, dispText);
-			GUI.DrawTexture(portraitRectLeft, (dialoguePortraitTable["alaska talk"] as DialoguePortrait).GetCurrentTexture());
+
+			if(currentPortraitLeft != ""){
+				GUI.DrawTexture(portraitRectLeft, (dialoguePortraitTable[currentPortraitLeft] as DialoguePortrait).GetCurrentTexture());
+			}
+			if(currentPortraitRight != ""){	
+				GUI.DrawTexture(portraitRectRight, (dialoguePortraitTable[currentPortraitRight] as DialoguePortrait).GetCurrentTexture());
+			}
+
 		}
 	}
 
