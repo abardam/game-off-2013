@@ -18,8 +18,24 @@ public class GuardController : StateDependable
 	private GameObject sightArcCW; //the sight arc line clockwise
 	private GameObject sightArcCCW; //the sight arc line counterclockwise
 
+	private float alertTimer;
+	private static float PLAYER_SPOTTED_ALERT = 10; //10 seconds after the player leaves the sight arcs, the guard will auto reset to green
+
+	private bool sightArcUp;
+
+	public enum AlertState{
+		RED,
+		YELLOW,
+		GREEN
+	};
+
+	private AlertState alertState;
+
 	void Start() 
 	{	
+		sightArcUp = true;
+		alertTimer = -1;
+		alertState = AlertState.GREEN;
 		this.orientation = new Vector2(-1.0f, 0.0f);
 		this.arc = 1.0f/3.0f*(float)(Math.PI);
 		this.characterController = this.GetComponent<CharacterController>();
@@ -35,11 +51,32 @@ public class GuardController : StateDependable
 	
 	void Update() 
 	{
-		if(this.state == null) this.state = new GuardControllerStatePatrolling();
-		
+		alertTimer -= Time.deltaTime;
+
+		if(this.state == null || (alertTimer < 0 && alertState != AlertState.GREEN)) {
+			this.state = new GuardControllerStatePatrolling();
+			alertState = AlertState.GREEN;
+		}
+
+		if(alertState == AlertState.GREEN){
+			if(sightArcUp){
+				orientation.y = 0.5f;
+			}else{
+				orientation.y = -0.5f;
+			}
+			if(state is GuardControllerStatePatrolling){
+				Vector2 d = (state as GuardControllerStatePatrolling).GetLastMovement();
+				if(d.x < 0) orientation.x = -0.86603f;
+				else if(d.x > 0) orientation.x = 0.86603f;
+			}
+		}
+
 		if (this.IsPlayerVisible(GameState.GetInstance().Player))
 		{
 			FollowPlayer(GameState.GetInstance().Player);
+			alertTimer = PLAYER_SPOTTED_ALERT;
+			alertState = AlertState.RED;
+			orientation = GameState.GetInstance().Player.transform.position - this.transform.position;
 		}
 
 		this.state.Update(this);
@@ -87,6 +124,10 @@ public class GuardController : StateDependable
 		}
 
 		return isVisible;
+	}
+
+	public void FlipSightArc(){
+		sightArcUp = !sightArcUp;
 	}
 
 	private void FollowPlayer(GameObject go)

@@ -33,6 +33,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	private static float DIRECTDISTANCESQ = 2f;
 
 	private float speed;
+	private Vector2 lastMovement;
 
 	public GuardControllerStatePatrolling()
 	{
@@ -85,6 +86,11 @@ public class GuardControllerStatePatrolling : GuardControllerState
 			this.moveState = MoveState.STATE_MOVING_RIGHT;
 			guardController.GetComponent<Animator>().Play("Dive");
 		}
+		lastMovement = d;
+	}
+
+	public Vector2 GetLastMovement(){
+		return lastMovement;
 	}
 
 	private void Patrol(GuardController guardController)
@@ -195,6 +201,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 			this.currentStartPoint = guardController.StartPoint;
 			this.currentEndPoint = guardController.EndPoint;
 			patrolState = PatrolState.STATE_PATROLLING_START_TO_END;
+			guardController.FlipSightArc();
 		}
 		else if (this.currentStartPoint.Equals(guardController.EndPoint))
 		{
