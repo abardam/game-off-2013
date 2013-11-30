@@ -1,0 +1,16 @@
+<Events>
+	<Event>
+		<Trigger type="start"/>
+<<<<<<< HEAD
+=======
+		<Eventlet type="focus" targetX="15" targetY="15" debug="m1" />
+		<Eventlet type="dialogue" text="hehehehehe" leftPortrait="solomon face left" rightPortrait="solomon face right"/>
+>>>>>>> b4ae4434e2b59106314d0c7874e53e5fec0dfd05
+	</Event>
+  <Event>
+		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
+	</Event>
+  <Event>
+		<Trigger type="onexit" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
+	</Event>
+</Events>
