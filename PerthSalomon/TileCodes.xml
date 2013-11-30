@@ -4,7 +4,7 @@
     <Tile filename="tile2" code="11*1011*" right="0.75" />
     <Tile filename="tile3" code="11111*0*" down="0.5" />
     <Tile filename="tile4" code="*1101*00" left="0.25" down="0.5" />
-    <Tile filename="tile5" code="11*1000*" right="0.75" down="0.5" />
+    <Tile filename="tile5" code="11*10*0*" right="0.75" down="0.5" />
     <Tile filename="tile6" code="11100*0*" left="0.1" right="0.9" down="0.5"/>
     <Tile filename="tile7" code="11100*1*" left="0.1" right="0.9" />
     <Tile filename="tile8" code="*1*00*0*" left="0.2" right="0.8" down="0.5"/>
