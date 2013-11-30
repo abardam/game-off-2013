@@ -10,7 +10,8 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		STATE_PATROLLING_START_TO_END = 0,
 		STATE_PATROLLING_END_TO_START,
 		STATE_PATROLLING_INITIAL_TO_START,
-		STATE_NOT_PATROLLING
+		STATE_NOT_PATROLLING,
+		STATE_DIRECT_CHASE
 	};
 
 	enum MoveState
@@ -26,6 +27,10 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	private PatrolState patrolState;
 	private MoveState moveState;
 	private Queue<GridTile> pathQueue;
+
+	//enzo hacky shit
+	private GameObject directTarget;
+	private static float DIRECTDISTANCESQ = 2f;
 
 	private float speed;
 
@@ -45,6 +50,9 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		case PatrolState.STATE_NOT_PATROLLING:
 			this.SetStartPointAndEndPoint(guardController);
 			break;
+		case PatrolState.STATE_DIRECT_CHASE:
+			MoveToDirect(guardController);
+			break;
 		default:
 			this.Patrol(guardController);
 			break;
@@ -53,12 +61,30 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 	public override void TargetSighted (GuardController guardController, GameObject target)
 	{
-		SetStartPointAndEndPointTarget (guardController, Util.Vect3ToGrid (target.transform.position));
+		float dist = Vector3.SqrMagnitude (guardController.transform.position - target.transform.position);
+
+		if(dist > DIRECTDISTANCESQ){
+			SetStartPointAndEndPointTarget (guardController, Util.Vect3ToGrid (target.transform.position));
+		}else{
+			directTarget = target;
+			patrolState = PatrolState.STATE_DIRECT_CHASE;
+		}
 	}
 
-	private void UpdateAnimation()
+	private void UpdateAnimation(GuardController guardController, Vector2 d)
 	{
-
+		
+		// updated animation if neccessary
+		if (d.x < 0f && this.moveState == MoveState.STATE_MOVING_RIGHT)
+		{
+			this.moveState = MoveState.STATE_MOVING_LEFT;
+			guardController.GetComponent<Animator>().Play("DiveLeft");
+		}
+		if (d.x > 0f && this.moveState == MoveState.STATE_MOVING_LEFT)
+		{
+			this.moveState = MoveState.STATE_MOVING_RIGHT;
+			guardController.GetComponent<Animator>().Play("Dive");
+		}
 	}
 
 	private void Patrol(GuardController guardController)
@@ -127,7 +153,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	{
 		//this.pathQueue.Peek().Dump();
 
-		if(this.pathQueue == null) return;
+		if(this.pathQueue == null || this.pathQueue.Count < 1) return;
 
 		Vector2 v0 = Util.GridToVec2(this.pathQueue.Peek());
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
@@ -137,18 +163,26 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	
 		Vector3 m = new Vector3(d.x, d.y, 0.0f);
 
-		// updated animation if neccessary
-		if (d.x < 0f && this.moveState == MoveState.STATE_MOVING_RIGHT)
-		{
-			this.moveState = MoveState.STATE_MOVING_LEFT;
-			guardController.GetComponent<Animator>().Play("DiveLeft");
-		}
-		if (d.x > 0f && this.moveState == MoveState.STATE_MOVING_LEFT)
-		{
-			this.moveState = MoveState.STATE_MOVING_RIGHT;
-			guardController.GetComponent<Animator>().Play("Dive");
+		UpdateAnimation (guardController, d);
+
+		guardController.GetComponent<CharacterController>().Move(this.speed*Time.deltaTime*m);
+	}
+
+	private void MoveToDirect(GuardController guardController){
+		Vector3 m = directTarget.transform.position - guardController.transform.position;
+
+		if(Vector3.SqrMagnitude(m) > DIRECTDISTANCESQ){
+
+			this.patrolState = PatrolState.STATE_NOT_PATROLLING;
+
+			return;
 		}
 
+		m.Normalize ();
+		Vector2 d = new Vector2 (m.x, m.y);
+		
+		UpdateAnimation (guardController, d);
+		
 		guardController.GetComponent<CharacterController>().Move(this.speed*Time.deltaTime*m);
 	}
 
@@ -193,6 +227,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 	private void SetStartPointAndEndPointTarget(GuardController guardController, GridTile targetTile)
 	{
+		patrolState = PatrolState.STATE_PATROLLING_INITIAL_TO_START;
 		this.currentStartPoint = Util.Vect3ToGrid(guardController.transform.position);
 
 		this.currentEndPoint = targetTile;
