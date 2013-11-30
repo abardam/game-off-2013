@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class GuardController : StateDependable
 {
@@ -119,8 +120,24 @@ public class GuardController : StateDependable
 
 		if (this.range > dist && this.arc/2.0f > Math.Acos(Vector2.Dot(d2, orientation)/(d2.magnitude*orientation.magnitude)))
 		{
-			Debug.Log("I SEE YA");
+			List<GridTile> gtList = GameState.GetInstance().GetAllWallTilesBetween(
+				Util.Vect3ToGrid(go.transform.position), Util.Vect3ToGrid(this.transform.position));
+
 			isVisible = true;
+
+			foreach(GridTile gt in gtList){
+				Ray ray = new Ray(gp, d);
+				Debug.DrawRay(gp, d,Color.green);
+				Bounds b = new Bounds();
+				b.center = Util.GridToVec3(gt.i, gt.j);
+				b.size = new Vector3(1f,1f,1f);
+
+				if(b.IntersectRay(ray)){
+					isVisible = false;
+					break;
+				}
+			}
+
 		}
 
 		return isVisible;

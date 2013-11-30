@@ -91,4 +91,26 @@ public class GameState {
 	public void SetGridCell(int row, int col, int value){
 		this.obstacleGrid[row,col] = value;
 	}
+
+	public List<GridTile> GetAllWallTilesBetween(GridTile a, GridTile b){ //non inclusive
+		int top = a.j < b.j? a.j : b.j;
+		int bottom = a.j >= b.j? a.j : b.j;
+		int left = a.i < b.i? a.i : b.i;
+		int right = a.i >= b.i ? a.i : b.i;
+
+		List<GridTile> gtList = new List<GridTile>();
+
+		for(int r = top; r <= bottom; ++ r){
+			for(int c = left; c <= right; ++c){
+				if(obstacleGrid[r,c] == 1){
+					GridTile gt = new GridTile(c,r);
+
+					if(!gt.Equals(a) && !gt.Equals(b))
+						gtList.Add(gt);
+				}
+			}
+		}
+
+		return gtList;
+	}
 }

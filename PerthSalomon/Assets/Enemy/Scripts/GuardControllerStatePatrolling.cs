@@ -140,7 +140,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
 		Vector2 d = v0 - v1;
 
-		if (d.magnitude <= 0.1f)
+		if (d.magnitude <= 0.4f)
 		{
 			this.pathQueue.Dequeue();
 

@@ -1,0 +1,8 @@
+<Levels>
+<<<<<<< HEAD
+	<Level name="shit" grid="Book1.csv" events="Events2.xml" />
+=======
+	<Level name="shit" grid="Book1.csv" events="Events.xml" />
+>>>>>>> 0fb21c36321d281c1f1b66edb46d76c012125771
+	<Level name="shit2" grid="Book2.csv" events="Events2.xml" />
+</Levels>
