@@ -12,7 +12,7 @@ public class GuardController : StateDependable
 	private GuardControllerState state;
 	private GridTile startPoint;		// start point for patrolling
 	private GridTile endPoint;			// end point for patrolling
-
+	private int id;						//guard id, w/r/t the grid
 
 	void Start() 
 	{	
@@ -20,8 +20,7 @@ public class GuardController : StateDependable
 		this.arc = 1.0f/3.0f*(float)(Math.PI);
 		this.characterController = this.GetComponent<CharacterController>();
 		this.startPoint = Util.Vect3ToGrid(this.transform.position);
-		this.endPoint = new GridTile(1, 1);
-		//this.state = new GuardControllerStatePatrolling();
+		//this.state = new GuardControllerStatePatrolling(); apparently this comes after events, so i commented it -- enzo
 
 		Physics.IgnoreCollision(this.characterController, GameState.GetInstance().Player.GetComponent<CharacterController>());
 	}
@@ -119,4 +118,12 @@ public class GuardController : StateDependable
 		}
 	}
 
+	public int ID {
+		get {
+			return id;
+		}
+		set {
+			id = value;
+		}
+	}
 }

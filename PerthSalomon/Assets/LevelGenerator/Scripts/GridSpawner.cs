@@ -79,6 +79,8 @@ public class GridSpawner : MonoBehaviour
 			cameraControl.SetBounds (Util.GridToVec2 (0, 0), Util.GridToVec2 (width-1, height-1));
 
 			gameState.SetGridSize(height, width);
+
+			Hashtable startOrEndpoint = new Hashtable(); // for guards. if the endpoint comes first, hashtable[id] should have it; and vice versa
 			
 			for (int i = 0; i < height; ++i)
 			{
@@ -88,8 +90,15 @@ public class GridSpawner : MonoBehaviour
 					Vector3 pos = Util.GridToVec3(j,i);
 					Quaternion rot = Quaternion.identity;
 					Object obj = null;
-					
-					switch(grid1[i,j].Substring(0,1))
+
+					int id = 0;
+					if(grid1[i,j].Length > 1){
+						id = int.Parse(grid1[i,j].Substring(1));
+					}
+
+					string code = grid1[i,j].Substring(0,1);
+
+					switch(code)
 					{
 					case "1":
 						obj = gridCube;
@@ -100,9 +109,20 @@ public class GridSpawner : MonoBehaviour
 					case "e":
 						obj = guard1;
 						break;
+
+					case "f":
+						if(startOrEndpoint.ContainsKey(id)){
+							(startOrEndpoint[id] as GuardController).EndPoint = new GridTile(j,i);
+						}else{
+							startOrEndpoint.Add(id, new GridTile(j,i));
+						}
+						continue;
+						break;
+
 					case "c":
 						obj = coin;
 						break;
+
 					default:
 						continue;
 					}
@@ -110,7 +130,7 @@ public class GridSpawner : MonoBehaviour
 					Object temp = Instantiate(obj, pos, rot);
 					
 					//edit gamestate
-					switch(grid1[i,j])
+					switch(code)
 					{
 					case "s":
 						gameState.Player = (GameObject)temp;
@@ -119,6 +139,13 @@ public class GridSpawner : MonoBehaviour
 						break;
 					case "1":
 						this.SetTexture((GameObject)temp, grid1, i, j);
+						break;
+					case "e":
+						if(startOrEndpoint.ContainsKey(id)){
+							(temp as GameObject).GetComponent<GuardController>().EndPoint = (GridTile)startOrEndpoint[id];
+						}else{
+							startOrEndpoint.Add(id, temp);
+						}
 						break;
 					}
 

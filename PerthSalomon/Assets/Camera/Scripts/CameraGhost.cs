@@ -3,18 +3,21 @@ using System.Collections;
 
 public class CameraGhost : MonoBehaviour {
 
-	private static float SPEED = 1f;
-	private static float THRESHOLD = 0.1f;
+	private static float ACCELERATION = 1f;
+	private static float MAXSPEED = 2f;
+	private static float THRESHOLD = 0.01f;
 	private GameObject target;
 	private Vector3 targetV;
 
 	private bool onObject;
 
 	private bool atTarget;
+	private float speed;
 
 	// Use this for initialization
 	void Start () {
 		onObject = false;
+		speed = 0;
 	}
 	
 	// Update is called once per frame
@@ -36,20 +39,29 @@ public class CameraGhost : MonoBehaviour {
 
 		if(norm > THRESHOLD)
 		{
-
-			float currSpeed = SPEED * Time.deltaTime;
-			if(norm > currSpeed){
-				norm = currSpeed;
-			}
-
-			Vector3 speedVector = currSpeed * dirVector.normalized;
-
-			transform.position+=speedVector;
+			
 			atTarget = false;
-		}
-		else{
+			
+			speed += ACCELERATION * Time.deltaTime;
+			if(speed > MAXSPEED) speed = MAXSPEED;
+		}else{
+			
 			atTarget = true;
+			
+			speed -= ACCELERATION * Time.deltaTime;
+			if(speed < 0) speed = 0;
 		}
+
+		float currSpeed = speed * Time.deltaTime;
+		if(norm > currSpeed){
+			norm = currSpeed;
+		}else if(currSpeed > norm){
+			currSpeed = norm;
+		}
+
+		Vector3 speedVector = currSpeed * dirVector.normalized;
+
+		transform.position+=speedVector;
 	}
 
 	public bool IsAtTarget(){
