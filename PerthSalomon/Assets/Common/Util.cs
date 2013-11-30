@@ -8,7 +8,7 @@ public class GridTile
 {
 	public int i;
 	public int j;
-	
+
 	public GridTile(int x, int y)
 	{
 		i = x;
@@ -22,7 +22,7 @@ public class GridTile
 
 	public void Dump()
 	{
-		Debug.Log("Grid Tile = [i = " + i + " j = " + j + "]");
+	//	Debug.Log("Grid Tile = [i = " + i + " j = " + j + "]");
 	}
 
 	public string ToString()

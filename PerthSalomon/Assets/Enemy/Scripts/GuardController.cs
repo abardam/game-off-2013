@@ -15,13 +15,15 @@ public class GuardController : MonoBehaviour
 
 
 	void Start() 
-	{
+	{	
 		this.orientation = new Vector2(-1.0f, 0.0f);
 		this.arc = 1.0f/3.0f*(float)(Math.PI);
 		this.characterController = this.GetComponent<CharacterController>();
 		this.startPoint = Util.Vect3ToGrid(this.transform.position);
 		this.endPoint = new GridTile(1, 1);
 		this.state = new GuardControllerStatePatrolling();
+
+		Physics.IgnoreCollision(this.characterController, GameState.GetInstance().Player.GetComponent<CharacterController>());
 	}
 	
 	void Update() 
