@@ -51,9 +51,9 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		}
 	}
 
-	public override void TargetSighted (GameObject target)
+	public override void TargetSighted (GuardController guardController, GameObject target)
 	{
-		throw new System.NotImplementedException ();
+		SetStartPointAndEndPointTarget (guardController, Util.Vect3ToGrid (target.transform.position));
 	}
 
 	private void UpdateAnimation()
@@ -84,6 +84,8 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	{
 		int i = 0;
 
+		if(this.currentPath == null) return false;
+
 		foreach (GridTile gt in this.currentPath)
 		{
 			if (gt.Equals(this.currentTile))
@@ -99,6 +101,9 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 	private bool DetermineNextTile(int i, GuardController guardController)
 	{
+		if (pathQueue.Count < 1)
+						return true;
+
 		Vector2 v0 = Util.GridToVec2(this.pathQueue.Peek());
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
 		Vector2 d = v0 - v1;
@@ -121,6 +126,9 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	private void MoveTo(GuardController guardController)
 	{
 		//this.pathQueue.Peek().Dump();
+
+		if(this.pathQueue == null) return;
+
 		Vector2 v0 = Util.GridToVec2(this.pathQueue.Peek());
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
 		Vector2 d = v0 - v1;
@@ -181,17 +189,20 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		this.currentPath = Pathfinder.FindPath(this.currentStartPoint, this.currentEndPoint);
 		this.pathQueue.Clear();
 		this.pathQueue.Enqueue(this.currentStartPoint);
-	
-		if (this.currentEndPoint.i > this.currentStartPoint.i)
-		{
-			this.moveState = MoveState.STATE_MOVING_RIGHT;
-			guardController.GetComponent<Animator>().Play("Dive");
+	}
+
+	private void SetStartPointAndEndPointTarget(GuardController guardController, GridTile targetTile)
+	{
+		this.currentStartPoint = Util.Vect3ToGrid(guardController.transform.position);
+
+		this.currentEndPoint = targetTile;
+		this.currentTile = this.currentStartPoint;
+		this.currentPath = Pathfinder.FindPath(this.currentStartPoint, this.currentEndPoint);
+		this.pathQueue.Clear();
+		if(currentPath != null){
+			if(currentPath.Count > 1)
+				this.pathQueue.Enqueue (currentPath[1]);
+			else pathQueue.Enqueue(currentPath[0]);
 		}
-		else
-		{
-			this.moveState = MoveState.STATE_MOVING_LEFT;
-			guardController.GetComponent<Animator>().Play("DiveLeft");
-		}
-		
 	}
 }

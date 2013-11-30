@@ -6,7 +6,7 @@ public class GuardControllerStateIdle : GuardControllerState {
 	{
 	}
 
-	public override void TargetSighted (GameObject target)
+	public override void TargetSighted (GuardController gc, GameObject target)
 	{
 	}
 }

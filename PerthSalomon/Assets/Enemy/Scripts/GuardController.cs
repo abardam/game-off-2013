@@ -27,18 +27,21 @@ public class GuardController : StateDependable
 	
 	void Update() 
 	{
+		if(this.state == null) this.state = new GuardControllerStatePatrolling();
+		
+		if (this.IsPlayerVisible(GameState.GetInstance().Player))
+		{
+			FollowPlayer(GameState.GetInstance().Player);
+		}
+
 		this.state.Update(this);
 		//this.FindPathToPlayer();
 
-		if (this.IsPlayerVisible())
-		{
-			FollowPlayer();
-		}
 	}
 
-	private bool IsPlayerVisible()
+	private bool IsPlayerVisible(GameObject go)
 	{
-		Vector3 pp = GameState.GetInstance().Player.transform.position;
+		Vector3 pp = go.transform.position;
 		Vector3 gp = this.transform.position;
 
 		Vector3 d = pp - gp;
@@ -59,15 +62,18 @@ public class GuardController : StateDependable
 		return isVisible;
 	}
 
-	private void FollowPlayer()
+	private void FollowPlayer(GameObject go)
 	{
+		/*
 		Vector3 pp = GameState.GetInstance().Player.transform.position;
 		Vector3 gp = this.transform.position;
 
 		Vector3 d = pp - gp;
 		d.Normalize();
 		this.characterController.Move(Time.deltaTime*0.25f*d);
-		Debug.Log(d);
+		Debug.Log(d);*/
+
+		this.state.TargetSighted (this, go);
 	
 	}
 
