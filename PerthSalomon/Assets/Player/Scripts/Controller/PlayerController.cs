@@ -52,7 +52,7 @@ public class PlayerController : StateDependable
 
 		GridTile gc = Util.Vect2ToGrid(pos);
 
-		Debug.Log("[" + gc.i + ", " + gc.j + "]");
+//		Debug.Log("[" + gc.i + ", " + gc.j + "]");
 //		Pathfinder.FindPath();
 
 		if (this.state != null)

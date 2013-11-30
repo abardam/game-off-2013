@@ -9,6 +9,7 @@ public class Node
 	public GridTile gt;
 	public float g;
 	public float f;
+	public Node pred;
 
 	public Node(GridTile gtN, float gN, float fN)
 	{
@@ -69,40 +70,84 @@ public class Pathfinder
 
 		while (open.Count > 0)
 		{
-
 			Node current = open.Values[0];
 			open.RemoveAt(0);
 
 			if (current.Equals(endNode))
 			{
-				Debug.Log("FOUND");
-				return null;
+				List<GridTile> path = new List<GridTile>();
+				Stack<GridTile> spath = new Stack<GridTile>();
+				Node backt = current;
+
+				while (backt.pred != null)
+				{
+					spath.Push(backt.gt);
+					backt = backt.pred;
+				}
+
+				while (spath.Count > 0)
+				{
+					GridTile gt = spath.Pop();
+					path.Add(gt);
+				}
+
+				return path;
 			}
 
 			closed.Add(current);
-
+			Expand(current, endNode, open, closed);
 		}
 
-		Debug.Log("NOT FOUND");
+
 		return null;
 	}
 
 
 	private static void Expand(
 		Node current,
-		System.Collections.Generic.SortedList<float, GridTile> open,
-		HashSet<GridTile> closed
+		Node endNode,
+		System.Collections.Generic.SortedList<float, Node> open,
+		HashSet<Node> closed
 	)
 	{
 		HashSet<Node> succ = GetSuccessors(current);
 
-//		foreach (GridTile successor in succ)
-//		{
-//			if (closed.Contains(successor))
-//			{
-//				float f = 
-//			}
-//		}
+		foreach (Node successor in succ)
+		{
+			if (closed.Contains(successor))
+			{
+				continue;
+			}
+
+			float tmpg = current.g + ComputeCost(current, successor);
+
+			if (open.ContainsValue(successor))
+			{
+				float g = open.Values[open.IndexOfValue(successor)].g;
+
+				if (g <= tmpg)
+				{
+					continue;
+				}
+			}
+
+			float newg = tmpg;
+			float f = tmpg + ComputeCost(successor, endNode);
+
+			if (open.ContainsValue(successor))
+			{
+				open.RemoveAt(open.IndexOfValue(successor));
+			}
+
+			successor.pred = current;
+			successor.g = newg;
+			successor.f = f;
+
+			open.Add(f, successor);
+		}
+
+		//Debug.Log("open count " + open.Count);
+		//Debug.Log("Expand end");
 	}
 
 	private static HashSet<Node> GetSuccessors(Node current)
@@ -110,21 +155,43 @@ public class Pathfinder
 		NodeEqComp eq = new NodeEqComp();
 		HashSet<Node> succ = new HashSet<Node>(eq);
 
-		int gw = GameState.GetInstance().ObstacleGrid.GetLength(1);
-		int gh = GameState.GetInstance().ObstacleGrid.GetLength(0);
 
-		for (int u = current.gt.i - 1; u <= current.gt.i + 1; u++)
-		{
-			for (int v = current.gt.j - 1; v <= current.gt.j + 1; v++)
-			{
-				if (!((u == current.gt.i) && (v == current.gt.j)) && u >= 0 && v >= 0 && u < gw && v < gh)
-				{
-					succ.Add(new Node(new GridTile(u, v), 0.0f, 0.0f));
-				}
-			}
-		}
+//		for (int u = current.gt.i - 1; u <= current.gt.i + 1; u++)
+//		{
+//			for (int v = current.gt.j - 1; v <= current.gt.j + 1; v++)
+//			{
+//				if (!((u == current.gt.i) && (v == current.gt.j)) && u >= 0 && v >= 0 && u < gw && v < gh)
+//				{
+//					succ.Add(new Node(new GridTile(u, v), 0.0f, 0.0f));
+//				}
+//			}
+//		} 
+
+
+		int i = current.gt.i;
+		int j = current.gt.j;
+
+		SafeAdd(new Node(new GridTile(i - 1, j), 0.0f, 0.0f), succ);
+		SafeAdd(new Node(new GridTile(i + 1, j), 0.0f, 0.0f), succ);
+		SafeAdd(new Node(new GridTile(i, j - 1), 0.0f, 0.0f), succ);
+		SafeAdd(new Node(new GridTile(i, j + 1), 0.0f, 0.0f), succ);
 
 		return succ;
 	}
 
+	private static void SafeAdd(Node node, HashSet<Node> succ)
+	{
+		int gw = GameState.GetInstance().ObstacleGrid.GetLength(1);
+		int gh = GameState.GetInstance().ObstacleGrid.GetLength(0);
+
+		if (node.gt.i >= 0  && node.gt.i < gw && node.gt.j >= 0 && node.gt.j < gh && 0 == GameState.GetInstance().ObstacleGrid[node.gt.j, node.gt.i])
+		{
+			succ.Add(node);
+		}
+	}
+
+	private static float ComputeCost(Node current, Node successor)
+	{
+		return (float)(Math.Abs(current.gt.i - successor.gt.i) + Math.Abs(current.gt.j - successor.gt.j)); 
+	}
 }

@@ -1,16 +1,18 @@
 <<<<<<< HEAD
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Common/Util.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Enemy/Scripts/GuardController.cs">
     <Files>
-      <File FileName="Assets/Enemy/Scripts/Pathfinder.cs" Line="49" Column="23" />
-      <File FileName="Assets/Common/Util.cs" Line="39" Column="10" />
-      <File FileName="Assets/Player/Scripts/Controller/PlayerControllerStateIdle.cs" Line="1" Column="1" />
-      <File FileName="Assets/Player/Scripts/Controller/PlayerController.cs" Line="55" Column="37" />
+      <File FileName="Assets/Enemy/Scripts/GuardController.cs" Line="28" Column="1" />
+      <File FileName="Assets/Enemy/Scripts/Pathfinder.cs" Line="114" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/scatterbrain/Documents/game-off-2013/PerthSalomon/Assets/Enemy/Scripts/Pathfinder.cs" line="131" />
+      <Breakpoint file="/Users/scatterbrain/Documents/game-off-2013/PerthSalomon/Assets/Enemy/Scripts/GuardController.cs" line="28" />
+      <Breakpoint file="/Users/scatterbrain/Documents/game-off-2013/PerthSalomon/Assets/Enemy/Scripts/GuardController.cs" line="29" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 =======
@@ -18,7 +20,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelGenerator\Scripts\GridSpawner.cs">
     <Files>
-      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="222" Column="31" />
+      <File FileName="Assets\LevelGenerator\Scripts\GridSpawner.cs" Line="12" Column="25" />
       <File FileName="Assets\Enemy\Scripts\GuardController.cs" Line="1" Column="1" />
       <File FileName="Assets\Enemy\Scripts\GuardControllerState.cs" Line="1" Column="1" />
       <File FileName="Assets\Player\Scripts\Controller\PlayerController.cs" Line="1" Column="1" />
@@ -30,5 +32,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
->>>>>>> c3fc6b0f9bd8fb91d5a9f5c65babc298ac34dfa5
+>>>>>>> acc3077143189c77f05fb0c9e856d0b98b53fb01
 </Properties>
