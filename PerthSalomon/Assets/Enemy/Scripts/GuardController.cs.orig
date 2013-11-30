@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class GuardController : StateDependable
 {
@@ -51,24 +52,6 @@ public class GuardController : StateDependable
 	
 	void Update() 
 	{
-<<<<<<< HEAD
-		if(this.state == null)
-		{
-			this.state = new GuardControllerStatePatrolling();
-		}
-		
-		if (this.IsPlayerVisible(GameState.GetInstance().Player))
-		{
-			FollowPlayer(GameState.GetInstance().Player);
-
-			if (this.IsPlayerInFightingRange())
-			{
-				this.state = new GuardControllerStateFight();
-				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
-				Debug.Log("fight");
-			}
-
-=======
 		alertTimer -= Time.deltaTime;
 
 		if(this.state == null || (alertTimer < 0 && alertState != AlertState.GREEN)) {
@@ -95,7 +78,12 @@ public class GuardController : StateDependable
 			alertTimer = PLAYER_SPOTTED_ALERT;
 			alertState = AlertState.RED;
 			orientation = GameState.GetInstance().Player.transform.position - this.transform.position;
->>>>>>> 0c8ebf3ed0a742d3125df27e6450f9f42b9ff71e
+
+			if (this.IsPlayerInFightingRange() && !(this.state is GuardControllerStateFight))
+			{
+				this.state = new GuardControllerStateFight();
+				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
+			}
 		}
 
 		this.state.Update(this);
@@ -138,21 +126,37 @@ public class GuardController : StateDependable
 
 		if (this.range > dist && this.arc/2.0f > Math.Acos(Vector2.Dot(d2, orientation)/(d2.magnitude*orientation.magnitude)))
 		{
+<<<<<<< HEAD
+			List<GridTile> gtList = GameState.GetInstance().GetAllWallTilesBetween(
+				Util.Vect3ToGrid(go.transform.position), Util.Vect3ToGrid(this.transform.position));
+
+=======
+>>>>>>> 35e6d21ac44eab42a55494cc32f86c8cf5997744
 			isVisible = true;
+
+			foreach(GridTile gt in gtList){
+				Ray ray = new Ray(gp, d);
+				Debug.DrawRay(gp, d,Color.green);
+				Bounds b = new Bounds();
+				b.center = Util.GridToVec3(gt.i, gt.j);
+				b.size = new Vector3(1f,1f,1f);
+
+				if(b.IntersectRay(ray)){
+					isVisible = false;
+					break;
+				}
+			}
+
 		}
 
 		return isVisible;
 	}
 
-<<<<<<< HEAD
-	private bool IsPlayerInFightingRange()
-=======
 	public void FlipSightArc(){
 		sightArcUp = !sightArcUp;
 	}
 
-	private void FollowPlayer(GameObject go)
->>>>>>> 0c8ebf3ed0a742d3125df27e6450f9f42b9ff71e
+	private bool IsPlayerInFightingRange()
 	{
 		float fightingRange = 0.1f;
 		float dist = Vector3.SqrMagnitude(this.transform.position - GameState.GetInstance().Player.transform.position);
