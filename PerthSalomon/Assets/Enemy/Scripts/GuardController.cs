@@ -15,14 +15,11 @@ public class GuardController : MonoBehaviour
 		this.orientation = new Vector2(-1.0f, 0.0f);
 		this.arc = 1.0f/3.0f*(float)(Math.PI);
 		this.characterController = this.GetComponent<CharacterController>();
-
 	}
 	
 	void Update() 
 	{
-
-		//GridTile gtg = Util.Vect2ToGrid(
-
+		this.FindPathToPlayer();
 
 		if (this.IsPlayerVisible())
 		{
@@ -65,4 +62,19 @@ public class GuardController : MonoBehaviour
 	
 	}
 
+	private void FindPathToPlayer()
+	{
+		Vector2 gpos = new Vector2(1.5f, 1.5f);
+		gpos.x = this.transform.position.x;
+		gpos.y = this.transform.position.y;
+		
+		Vector2 ppos = new Vector2(2.5f, 2.5f);
+		ppos.x = GameState.GetInstance().Player.transform.position.x;
+		ppos.y = GameState.GetInstance().Player.transform.position.y;
+		
+		GridTile ggt = Util.Vect2ToGrid(gpos);
+		GridTile pgt = Util.Vect2ToGrid(ppos);
+				
+		Pathfinder.FindPath(ggt, pgt);
+	}
 }

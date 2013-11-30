@@ -15,9 +15,14 @@ public class GridTile
 		j = y;
 	}
 
-	bool Equals(GridTile gt)
+	public bool Equals(GridTile gt)
 	{
 		return this.i == gt.i && this.j == gt.j;
+	}
+
+	public void Dump()
+	{
+		Debug.Log("Grid Tile = [i = " + i + " j = " + j + "]");
 	}
 };
 
@@ -51,7 +56,7 @@ public class Util
 	public static GridTile Vect2ToGrid(Vector2 v)
 	{
 		int i = (int)(v.x + 4.0f);
-		int j = -(int)(v.y - 3);
+		int j = -(int)(v.y - 3.0f);
 
 		return new GridTile(i, j);
 	}

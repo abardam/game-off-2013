@@ -9,6 +9,7 @@ public class Node
 	public GridTile gt;
 	public float g;
 	public float f;
+	public Node pred;
 
 	public Node(GridTile gtN, float gN, float fN)
 	{
@@ -69,22 +70,35 @@ public class Pathfinder
 
 		while (open.Count > 0)
 		{
-
 			Node current = open.Values[0];
 			open.RemoveAt(0);
 
 			if (current.Equals(endNode))
 			{
-				Debug.Log("FOUND");
-				return null;
+				List<GridTile> path = new List<GridTile>();
+				Stack<GridTile> spath = new Stack<GridTile>();
+				Node backt = current;
+
+				while (backt.pred != null)
+				{
+					spath.Push(backt.gt);
+					backt = backt.pred;
+				}
+
+				while (spath.Count > 0)
+				{
+					GridTile gt = spath.Pop();
+					path.Add(gt);
+				}
+
+				return path;
 			}
 
 			closed.Add(current);
-
 			Expand(current, endNode, open, closed);
 		}
 
-		Debug.Log("NOT FOUND");
+
 		return null;
 	}
 
@@ -125,11 +139,15 @@ public class Pathfinder
 				open.RemoveAt(open.IndexOfValue(successor));
 			}
 
+			successor.pred = current;
 			successor.g = newg;
 			successor.f = f;
 
 			open.Add(f, successor);
 		}
+
+		//Debug.Log("open count " + open.Count);
+		//Debug.Log("Expand end");
 	}
 
 	private static HashSet<Node> GetSuccessors(Node current)
@@ -147,7 +165,7 @@ public class Pathfinder
 //					succ.Add(new Node(new GridTile(u, v), 0.0f, 0.0f));
 //				}
 //			}
-//		}
+//		} 
 
 
 		int i = current.gt.i;
@@ -166,7 +184,7 @@ public class Pathfinder
 		int gw = GameState.GetInstance().ObstacleGrid.GetLength(1);
 		int gh = GameState.GetInstance().ObstacleGrid.GetLength(0);
 
-		if (node.gt.i >= 0  && node.gt.i < gw && node.gt.j >= 0 && node.gt.j < gh)
+		if (node.gt.i >= 0  && node.gt.i < gw && node.gt.j >= 0 && node.gt.j < gh && 0 == GameState.GetInstance().ObstacleGrid[node.gt.j, node.gt.i])
 		{
 			succ.Add(node);
 		}
