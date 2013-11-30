@@ -74,9 +74,11 @@ public class PlayerController : StateDependable
 	public override void SetCutscene (bool cutscene)
 	{
 		if(cutscene){
-			this.state = new PlayerControllerStateIdle();
+			if(!(this.state is PlayerControllerStateIdle))
+				this.state = new PlayerControllerStateIdle();
 		}else{
-			this.state = new PlayerControllerStateDiving();
+			if(!(this.state is PlayerControllerStateDiving))
+				this.state = new PlayerControllerStateDiving();
 		}
 	}
 }

@@ -10,23 +10,24 @@ public class EventManager : MonoBehaviour
 		private List<SPEvent> eventList;
 		private List<Eventlet> eventletQueue;
 		public DialogueManager dialogueManager;
-	public LevelLoader levelLoader;
+		public LevelLoader levelLoader;
 		private GameState gameState;
 		private string eventsFilename;
 		private bool parsed;
 
-	public EventManager():base(){
+		public EventManager ():base()
+		{
 		
-		parsed = true;
+				parsed = true;
 		
-		eventList = new List<SPEvent> ();
-		eventletQueue = new List<Eventlet> ();
-	}
+				eventList = new List<SPEvent> ();
+				eventletQueue = new List<Eventlet> ();
+		}
 
 		// Use this for initialization
 		void Start ()
-	{
-		gameState = GameState.GetInstance ();
+		{
+				gameState = GameState.GetInstance ();
 
 		}
 
@@ -118,9 +119,9 @@ public class EventManager : MonoBehaviour
 										case "focus":
 												ett = Eventlet.EventletType.Focus;
 												break;
-					case "loadlevel":
-						ett = Eventlet.EventletType.LoadLevel;
-						break;
+										case "loadlevel":
+												ett = Eventlet.EventletType.LoadLevel;
+												break;
 										}
 								}
 
@@ -134,7 +135,15 @@ public class EventManager : MonoBehaviour
 										el.Text = eventletNode.Attributes ["text"].Value;
 								}
 
-								if (eventletNode.Attributes ["targetX"] != null && 
+								if(eventletNode.Attributes["leftPortrait"] != null){
+					el.LeftPortrait = eventletNode.Attributes["leftPortrait"].Value;
+				}
+				
+				if(eventletNode.Attributes["rightPortrait"] != null){
+					el.RightPortrait = eventletNode.Attributes["rightPortrait"].Value;
+				}
+
+				if (eventletNode.Attributes ["targetX"] != null && 
 										eventletNode.Attributes ["targetY"] != null) {
 										int gridX = int.Parse (eventletNode.Attributes ["targetX"].Value);
 										int gridY = int.Parse (eventletNode.Attributes ["targetY"].Value);
@@ -152,10 +161,10 @@ public class EventManager : MonoBehaviour
 		// Update is called once per frame
 		void Update ()
 		{
-				if(!parsed){
-			Parse ();
-			parsed = true;
-		}
+				if (!parsed) {
+						Parse ();
+						parsed = true;
+				}
 				//lets check our events if they trigger:
 
 				for (int e=eventList.Count-1; e>=0; --e) {
@@ -227,43 +236,64 @@ public class EventManager : MonoBehaviour
 										break;
 								case Eventlet.EventletType.Dialogue:
 										gameState.SetModeDialogue ();
-										dialogueManager.SetDialogue (el.Text);
+										dialogueManager.SetDialogue (el.Text,el.LeftPortrait,el.RightPortrait);
 										dialogueManager.SetCallback (el);
+
 										break;
 								case Eventlet.EventletType.Focus:
 										gameState.SetModeDialogue ();
-										dialogueManager.SetTarget (el.Target);
+										GridTile gt = Util.Vect2ToGrid (new Vector2 (el.Target.x, el.Target.y));
+					
+										if (gt.i < 4)
+												gt.i = 4;
+										if (gt.i > gameState.ObstacleGrid.GetLength (1) - 5)
+												gt.i = gameState.ObstacleGrid.GetLength (1) - 5;
+					
+										if (gt.j < 4)
+												gt.j = 4;
+										if (gt.j > gameState.ObstacleGrid.GetLength (0) - 5)
+												gt.j = gameState.ObstacleGrid.GetLength (0) - 5;
+
+										dialogueManager.SetTarget (Util.GridToVec3 (gt.i, gt.j));
 										dialogueManager.SetCallback (el);
-					break;
-				case Eventlet.EventletType.LoadLevel:
-					gameState.SetModeGame();
-					levelLoader.levelName = el.Text;
-					levelLoader.LoadLevel();
+										break;
+								case Eventlet.EventletType.LoadLevel:
+										gameState.SetModeGame ();
+										levelLoader.levelName = el.Text;
+										levelLoader.LoadLevel ();
 
 										break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
 								eventletQueue.RemoveAt (0);
+			
+						}/* i'm moving this to the bottom, when all events are executed
+						else if (el.Executed == Eventlet.ExecuteState.Executed) {
+								eventletQueue.RemoveAt (0);
 								gameState.SetModeGame ();
 								dialogueManager.SetTarget (gameState.Player);
-						}
+						}*/
+				} else {
+						gameState.SetModeGame ();
+						dialogueManager.SetTarget (gameState.Player);
 				}
 		}
-
+	
 		public string EventsFilename {
 				get {
 						return eventsFilename;
 				}
 				set {
 						eventsFilename = value;
-			Reset();
-			parsed = false;
+						Reset ();
+						parsed = false;
 				}
 		}
 
-	public void Reset(){
-		eventList.Clear();
-		eventletQueue.Clear();
+		public void Reset ()
+		{
+				eventList.Clear ();
+				eventletQueue.Clear ();
 
-	}
+		}
 }
