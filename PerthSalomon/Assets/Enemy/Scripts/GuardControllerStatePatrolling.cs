@@ -51,6 +51,11 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		}
 	}
 
+	public override void TargetSighted (GameObject target)
+	{
+		throw new System.NotImplementedException ();
+	}
+
 	private void UpdateAnimation()
 	{
 

@@ -21,11 +21,11 @@ public class PlayerControllerStateDiving : PlayerControllerState
 	};
 
 	HState[,] deltaH = {
-			{HState.H_MOVE_LEFT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_LEFT}, // Transitions for State: H_IDLE_LEFT
-			{HState.H_MOVE_LEFT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_LEFT}, // Transitions for State: H_IDLE_RIGHT
-			{HState.H_ERROR, HState.H_IDLE_LEFT, HState.H_IDLE_LEFT, HState.H_ERROR}, // Transitions for state: H_MOVE_LEFT
-			{HState.H_IDLE_RIGHT, HState.H_ERROR, HState.H_ERROR, HState.H_IDLE_RIGHT} // Transitions for state: H_MOVE_LEFT
-		};
+		{HState.H_MOVE_LEFT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_LEFT}, // Transitions for State: H_IDLE_LEFT
+		{HState.H_MOVE_LEFT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_LEFT}, // Transitions for State: H_IDLE_RIGHT
+		{HState.H_MOVE_LEFT, HState.H_IDLE_LEFT, HState.H_IDLE_LEFT, HState.H_MOVE_LEFT}, // Transitions for state: H_MOVE_LEFT
+		{HState.H_IDLE_RIGHT, HState.H_MOVE_RIGHT, HState.H_MOVE_RIGHT, HState.H_IDLE_RIGHT} // Transitions for state: H_MOVE_RIGHT
+	};
 
 	enum VState
 	{
@@ -45,8 +45,8 @@ public class PlayerControllerStateDiving : PlayerControllerState
 
 	VState[,] deltaV = {
 		{VState.V_MOVE_UP, VState.V_MOVE_DOWN, VState.V_MOVE_DOWN, VState.V_MOVE_UP}, // Transitions for state: V_IDLE
-		{VState.V_ERROR, VState.V_IDLE, VState.V_IDLE, VState.V_ERROR}, // Transitions for state: V_MOVE_UP
-		{VState.V_IDLE, VState.V_ERROR, VState.V_ERROR, VState.V_IDLE}, // Transitions for state: V_MOVE_DOWN
+		{VState.V_MOVE_UP, VState.V_IDLE, VState.V_IDLE, VState.V_MOVE_UP}, // Transitions for state: V_MOVE_UP
+		{VState.V_IDLE, VState.V_MOVE_DOWN, VState.V_MOVE_DOWN, VState.V_IDLE}, // Transitions for state: V_MOVE_DOWN
 		{VState.V_ERROR, VState.V_ERROR, VState.V_ERROR, VState.V_ERROR}
 	};
 		
