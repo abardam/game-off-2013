@@ -156,7 +156,7 @@ public class DialogueManager : MonoBehaviour {
 
 		DialoguePortrait dondSmugL = new DialoguePortrait ();
 		dondSmugL.AddTexture ((Texture2D)Resources.Load ("dondface0005"));
-		dialoguePortraitTable.Add ("don dicaprio smug left");
+		dialoguePortraitTable.Add ("don dicaprio smug left", dondSmugL);
 
 		DialoguePortrait dondTalkL = new DialoguePortrait ();
 		dondTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0002"));
