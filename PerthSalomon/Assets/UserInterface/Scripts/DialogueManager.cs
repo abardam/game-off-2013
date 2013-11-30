@@ -49,10 +49,12 @@ public class DialogueManager : MonoBehaviour {
 	private string currentPortraitLeft;
 	private string currentPortraitRight;
 
+	public GUISkin skin;
+	private Rect textRect;
+
 	public DialogueManager():base(){
 		dialoguePortraitTable = new Hashtable();
 		portraitsLoaded = false;
-
 	}
 
 	// Use this for initialization
@@ -60,6 +62,7 @@ public class DialogueManager : MonoBehaviour {
 		GameState.GetInstance().dialogueManager = this;
 		activeCutscene = CutsceneType.None;
 		dialogueRect = new Rect(0f, Screen.height*0.75f,Screen.width*1f,Screen.height*0.25f);
+		textRect = new Rect(Screen.width*0.25f, Screen.height*0.75f,Screen.width*0.5f,Screen.height*0.25f);
 	}
 
 	public void SetDialogue(string text, string portraitLeft, string portraitRight){
@@ -174,7 +177,10 @@ public class DialogueManager : MonoBehaviour {
 		{
 			string dispText = dialogue.Substring(0, dialogueIndex<dialogue.Length?
 			                                     (int)dialogueIndex:dialogue.Length);
-			GUI.Box (dialogueRect, dispText);
+			GUI.skin = skin;
+			//GUI.Box (dialogueRect, "");
+
+			GUI.TextArea(textRect, dialogue);
 
 			if(currentPortraitLeft != ""){
 				GUI.DrawTexture(portraitRectLeft, (dialoguePortraitTable[currentPortraitLeft] as DialoguePortrait).GetCurrentTexture());
