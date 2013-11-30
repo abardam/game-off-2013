@@ -23,7 +23,7 @@ public class GuardControllerStateFight : GuardControllerState
 
 
 		this.elapsed += Time.deltaTime;
-		Debug.Log(this.elapsed);
+		//Debug.Log(this.elapsed);
 
 		if (elapsed > 4.8f)
 		{
