@@ -25,6 +25,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	private List<GridTile> currentPath;
 	private PatrolState patrolState;
 	private MoveState moveState;
+	private Queue<GridTile> pathQueue;
 
 	private float speed;
 
@@ -32,7 +33,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	{
 		// default init member
 		this.speed = 0.8f;
-
+		this.pathQueue = new Queue<GridTile>();
 		this.moveState = MoveState.STATE_IDLE;
 		this.patrolState = PatrolState.STATE_NOT_PATROLLING;
 	}
@@ -53,16 +54,14 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	private void Patrol(GuardController guardController)
 	{
 		UpdateCurrentTile(guardController);
-		GridTile nextTile = FindNextTile(guardController);	
 
-		if (nextTile == null)
+		if (UpdatePathQueueAndCheckIsEnd(guardController))
 		{
 			this.SetStartPointAndEndPoint(guardController);
 		}
 		else
 		{
-			nextTile.Dump();
-			MoveTo(nextTile, guardController);
+			MoveTo(guardController);
 		}
 	}
 
@@ -71,7 +70,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		this.currentTile = Util.Vect3ToGrid(guardController.transform.position);
 	}
 
-	private GridTile FindNextTile(GuardController guardController)
+	private bool UpdatePathQueueAndCheckIsEnd(GuardController guardController)
 	{
 		int i = 0;
 
@@ -85,40 +84,34 @@ public class GuardControllerStatePatrolling : GuardControllerState
 			i++;
 		}
 
-		return null;
+		return true;
 	}
 
-	private GridTile DetermineNextTile(int i, GuardController guardController)
+	private bool DetermineNextTile(int i, GuardController guardController)
 	{
-		if (i >= currentPath.Count - 1)
-		{
-			return null;
-		}
-		
-		return this.currentPath[i + 1];
-
-		Vector2 v0 = Util.GridToVec2(this.currentTile);
+		Vector2 v0 = Util.GridToVec2(this.pathQueue.Peek());
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
 		Vector2 d = v0 - v1;
 
 		if (d.magnitude <= 0.1f)
 		{
+			this.pathQueue.Dequeue();
+
 			if (i >= currentPath.Count - 1)
 			{
-				return null;
+				return true;
 			}
 
-			return this.currentPath[i + 1];
+			this.pathQueue.Enqueue(currentPath[i + 1]);
 		}
-		else 
-		{
-			return this.currentPath[i];
-		}
+
+		return false;
 	}
 
-	private void MoveTo(GridTile gt, GuardController guardController)
+	private void MoveTo(GuardController guardController)
 	{
-		Vector2 v0 = Util.GridToVec2(gt);
+		this.pathQueue.Peek().Dump();
+		Vector2 v0 = Util.GridToVec2(this.pathQueue.Peek());
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
 		Vector2 d = v0 - v1;
 
@@ -165,5 +158,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		this.currentTile = this.currentStartPoint;
 		this.currentPath = Pathfinder.FindPath(this.currentStartPoint, this.currentEndPoint);
 		this.moveState = MoveState.STATE_IDLE;
+		this.pathQueue.Clear();
+		this.pathQueue.Enqueue(this.currentStartPoint);
 	}
 }
