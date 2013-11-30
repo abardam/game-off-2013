@@ -53,6 +53,7 @@
      <Compile Include="Assets\Common\Util.cs" />
      <Compile Include="Assets\Enemy\Scripts\GuardController.cs" />
      <Compile Include="Assets\Enemy\Scripts\GuardControllerState.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardControllerStateIdle.cs" />
      <Compile Include="Assets\Enemy\Scripts\GuardControllerStatePatrolling.cs" />
      <Compile Include="Assets\Enemy\Scripts\Pathfinder.cs" />
      <Compile Include="Assets\Events\DialogueController.cs" />

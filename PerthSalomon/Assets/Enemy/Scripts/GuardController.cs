@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class GuardController : MonoBehaviour 
+public class GuardController : StateDependable
 {
 
 	private float arc;
@@ -21,7 +21,7 @@ public class GuardController : MonoBehaviour
 		this.characterController = this.GetComponent<CharacterController>();
 		this.startPoint = Util.Vect3ToGrid(this.transform.position);
 		this.endPoint = new GridTile(1, 1);
-		this.state = new GuardControllerStatePatrolling();
+		//this.state = new GuardControllerStatePatrolling();
 
 		Physics.IgnoreCollision(this.characterController, GameState.GetInstance().Player.GetComponent<CharacterController>());
 	}
@@ -105,4 +105,18 @@ public class GuardController : MonoBehaviour
 			endPoint = value;
 		}
 	}
+
+	public override void SetCutscene(bool cutscene){
+		if (cutscene) {
+			if(!(this.state is GuardControllerStateIdle)){
+				state = new GuardControllerStateIdle();
+			}
+
+		} else {
+			if(!(this.state is GuardControllerStatePatrolling)){
+				state = new GuardControllerStatePatrolling();
+			}
+		}
+	}
+
 }
