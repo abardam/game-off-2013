@@ -7,10 +7,11 @@ public class LevelLoader : MonoBehaviour
 	public GridSpawner gridSpawner;
 	public EventManager eventManager;
 	public string levelName;
+	private bool levelLoaded;
 
-	public void LoadLevel(){
-		SPFileReader reader = new SPFileReaderLocal();
-		XmlDocument xml = reader.ReadXML("levels.xml");
+	private bool LoadLevel(){
+		XmlDocument xml = SPFileReaderManager.ReadXML("levels.xml");
+		if(xml == null) return false;
 
 		SPLevel level = new SPLevel();
 
@@ -33,11 +34,23 @@ public class LevelLoader : MonoBehaviour
 		gridSpawner.GridFilename = level.GridFilename;
 		eventManager.EventsFilename = level.EventsFilename;
 
-
+		return true;
 	}
 
 	void Start(){
 		if(GameState.GetInstance().LevelName != "") levelName = GameState.GetInstance().LevelName;
-		LoadLevel();
+		levelLoaded = false;
+	}
+
+	void Update(){
+		if(!levelLoaded){
+
+			levelLoaded = LoadLevel();
+		}
+	}
+
+	public void TryLoadLevel ()
+	{
+		levelLoaded = false;
 	}
 }

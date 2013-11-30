@@ -35,9 +35,10 @@ public class GridSpawner : MonoBehaviour
 	// parse in thing
 	string[,] Parse() 
 	{
-		SPFileReader reader = new SPFileReaderLocal();
+		string[] values = SPFileReaderManager.ReadGrid(gridFilename);
 
-		string[] values = reader.ReadGrid(gridFilename);
+		if(values == null) return null;
+
 		int height = values.Length;
 		string[] t = values[0].Split(',');
 
@@ -64,15 +65,23 @@ public class GridSpawner : MonoBehaviour
 	void Start() 
 	{
 		gameState = GameState.GetInstance();
-		ReadInTileCodes("TileCodes.xml");
 	}
 
 	void Update ()
 	{
 		if(!parsed)
 		{
-			parsed = true;
+
+			parsed = ReadInTileCodes("TileCodes.xml");
+
+			if(!parsed) return;
+
 			string[,] grid1 = this.Parse();
+
+			if(grid1 == null) {
+				parsed = false;
+				return;
+			}
 			
 			int width = grid1.GetLength(1);
 			int height = grid1.GetLength(0);
@@ -213,12 +222,12 @@ public class GridSpawner : MonoBehaviour
 		}
 	}
 
-	private void ReadInTileCodes(string filename)
+	private bool ReadInTileCodes(string filename)
 	{
 		tileCodes = new List<CodeFilenamePair>(); 
 
-		SPFileReader reader = new SPFileReaderLocal();
-		XmlDocument xml  = reader.ReadXML (filename);
+		XmlDocument xml = SPFileReaderManager.ReadXML (filename);
+		if(xml == null) return false;
 		XmlNodeList nodeList = xml.SelectNodes("//Tiles/Tile");
 
 		int i = 0;
@@ -244,6 +253,7 @@ public class GridSpawner : MonoBehaviour
 			tileCodes.Add(cfp);
 		}
 
+		return true;
 	}
 
 	private void SetTexture(GameObject obj, string[,] grid, int i, int j)

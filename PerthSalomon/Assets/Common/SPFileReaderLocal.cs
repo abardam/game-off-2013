@@ -5,6 +5,10 @@ using System.Xml;
 
 public class SPFileReaderLocal : SPFileReader {
 
+	public void Start(){
+		SPFileReaderManager.reader = this;
+	}
+
 	public override string[] ReadGrid(string filename){
 		return File.ReadAllLines(filename);
 	}

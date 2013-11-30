@@ -31,10 +31,11 @@ public class EventManager : MonoBehaviour
 
 		}
 
-		void Parse ()
+		bool Parse ()
 		{
-				SPFileReader reader = new SPFileReaderLocal ();
-				XmlDocument xmlDoc = reader.ReadXML (eventsFilename);
+		XmlDocument xmlDoc = SPFileReaderManager.ReadXML (eventsFilename);
+
+		if(xmlDoc == null) return false;
 
 				XmlNodeList eventNodes = xmlDoc.SelectNodes ("//Events/Event");
 				foreach (XmlNode eventNode in eventNodes) {
@@ -160,15 +161,17 @@ public class EventManager : MonoBehaviour
 
 						eventList.Add (e);
 				}
+
+		return true;
 		}
 	
 		// Update is called once per frame
 		void Update ()
 		{
 				if (!parsed) {
-						Parse ();
-						parsed = true;
-				}
+						
+			parsed = Parse ();
+		}
 				//lets check our events if they trigger:
 
 				for (int e=eventList.Count-1; e>=0; --e) {
@@ -264,7 +267,7 @@ public class EventManager : MonoBehaviour
 								case Eventlet.EventletType.LoadLevel:
 										gameState.SetModeGame ();
 										levelLoader.levelName = el.Text;
-										levelLoader.LoadLevel ();
+					levelLoader.TryLoadLevel();
 
 										break;
 								}

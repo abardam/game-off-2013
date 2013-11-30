@@ -4,9 +4,10 @@ using System.Xml;
 
 public class Level{ 
 
-	public static SPLevel LoadLevel(string filename, string levelName){
-		SPFileReader reader = new SPFileReaderLocal();
-		XmlDocument xml = reader.ReadXML(filename);
+	private static SPLevel LoadLevel(string filename, string levelName){
+		XmlDocument xml = SPFileReaderManager.ReadXML(filename);
+
+		if(xml == null) return null;
 
 		SPLevel level = new SPLevel();
 
