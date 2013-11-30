@@ -51,7 +51,23 @@ public class Util
 		
 		return new Vector2 (xs + x, ys - y);
 	}
+
+	public static Vector2 Vect3ToVect2(Vector3 v)
+	{
+		return new Vector2(v.x, v.y);
+	}
+
 	
+	public static GridTile GetGridCoordForGameobject(GameObject o)
+	{
+		return Vect2ToGrid(Vect3ToVect2(o.transform.position));
+	}
+
+	public static GridTile Vect3ToGrid(Vector3 v)
+	{
+		return Vect2ToGrid(Vect3ToVect2(v));
+	}
+
 
 	public static GridTile Vect2ToGrid(Vector2 v)
 	{
