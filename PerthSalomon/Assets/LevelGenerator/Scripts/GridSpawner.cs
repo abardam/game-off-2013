@@ -9,6 +9,7 @@ public class GridSpawner : MonoBehaviour
 	public GameObject gridCube;
 	public GameObject player;
 	public GameObject guard1;
+	public GameObject coin;
 	public CameraControl cameraControl;
 
 	private bool parsed;
@@ -88,7 +89,7 @@ public class GridSpawner : MonoBehaviour
 					Quaternion rot = Quaternion.identity;
 					Object obj = null;
 					
-					switch(grid1[i,j])
+					switch(grid1[i,j].Substring(0,1))
 					{
 					case "1":
 						obj = gridCube;
@@ -96,8 +97,11 @@ public class GridSpawner : MonoBehaviour
 					case "s":
 						obj = player;
 						break;
-					case "e1":
+					case "e":
 						obj = guard1;
+						break;
+					case "c":
+						obj = coin;
 						break;
 					default:
 						continue;
