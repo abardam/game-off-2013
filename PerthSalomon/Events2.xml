@@ -19,6 +19,13 @@ leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		
 	</Event>
   <Event>
-		<Trigger type="defeated" rectTop = "2" rectLeft = "9" rectBottom = "4" rectRight = "11"/>
+		<Trigger type="onenter" rectTop = "2" rectLeft = "9" rectBottom = "4" rectRight = "11"/>
+		<Eventlet type="dialogue" text="SOLOMON: ALASKA! By Jove, I did it! I finally caught Di Caprio!" leftPortrait="solomon talk left" rightPortrait=""/>
+		<Eventlet type="dialogue" text="ALASKA: GREAT! Did you get the loot bag, too?" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Yes, my dear Ferrari, I have indeed." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: Well, let's see how much gold we got!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Huzzah! The bag is filled only with the highest-quality Alaskan smoked salmon steaks! " leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: . . . ." leftPortrait="solomon face left" rightPortrait="alaska face left"/>
+		<Eventlet type="dialogue" text="SOLOMON: We did it, Ferrari! We are kings!" leftPortrait="solomon talk left" rightPortrait="alaska face left"/>
 	</Event>
 </Events>
