@@ -1,7 +1,7 @@
 <Events>
 	<Event>
 		<Trigger type="start"/>
-		<Eventlet type="dialogue" text="blah blah blah" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="blah blah blah bluh bluh bluh bluh blee blee blee blee bloo bloo bloob bloo" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
