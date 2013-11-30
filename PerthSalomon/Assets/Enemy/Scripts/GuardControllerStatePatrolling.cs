@@ -36,6 +36,9 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 	public GuardControllerStatePatrolling()
 	{
+		Debug.Log("PATROLLING");
+
+
 		// default init member
 		this.speed = 0.8f;
 		this.pathQueue = new Queue<GridTile>();

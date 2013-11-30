@@ -35,11 +35,22 @@ public class GuardController : StateDependable
 	
 	void Update() 
 	{
-		if(this.state == null) this.state = new GuardControllerStatePatrolling();
+		if(this.state == null)
+		{
+			this.state = new GuardControllerStatePatrolling();
+		}
 		
 		if (this.IsPlayerVisible(GameState.GetInstance().Player))
 		{
 			FollowPlayer(GameState.GetInstance().Player);
+
+			if (this.IsPlayerInFightingRange())
+			{
+				this.state = new GuardControllerStateFight();
+				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
+				Debug.Log("fight");
+			}
+
 		}
 
 		this.state.Update(this);
@@ -82,44 +93,25 @@ public class GuardController : StateDependable
 
 		if (this.range > dist && this.arc/2.0f > Math.Acos(Vector2.Dot(d2, orientation)/(d2.magnitude*orientation.magnitude)))
 		{
-			Debug.Log("I SEE YA");
 			isVisible = true;
 		}
 
 		return isVisible;
 	}
 
-	private void FollowPlayer(GameObject go)
+	private bool IsPlayerInFightingRange()
 	{
-		/*
-		Vector3 pp = GameState.GetInstance().Player.transform.position;
-		Vector3 gp = this.transform.position;
+		float fightingRange = 0.1f;
+		float dist = Vector3.SqrMagnitude(this.transform.position - GameState.GetInstance().Player.transform.position);
 
-		Vector3 d = pp - gp;
-		d.Normalize();
-		this.characterController.Move(Time.deltaTime*0.25f*d);
-		Debug.Log(d);*/
-
-		this.state.TargetSighted (this, go);
-	
+		return dist < fightingRange;
 	}
 
-//	private void FindPathToPlayer()
-//	{
-//		Vector2 gpos = new Vector2(1.5f, 1.5f);
-//		gpos.x = this.transform.position.x;
-//		gpos.y = this.transform.position.y;
-//		
-//		Vector2 ppos = new Vector2(2.5f, 2.5f);
-//		ppos.x = GameState.GetInstance().Player.transform.position.x;
-//		ppos.y = GameState.GetInstance().Player.transform.position.y;
-//		
-//		GridTile ggt = Util.Vect2ToGrid(gpos);
-//		GridTile pgt = Util.Vect2ToGrid(ppos);
-//				
-//		Pathfinder.FindPath(ggt, pgt);
-//	}
-
+	private void FollowPlayer(GameObject go)
+	{
+		this.state.TargetSighted (this, go);
+	}
+	
 	public GridTile StartPoint {
 		get {
 			return startPoint;
@@ -129,7 +121,8 @@ public class GuardController : StateDependable
 		}
 	}
 
-	public GridTile EndPoint {
+	public GridTile EndPoint 
+	{
 		get {
 			return endPoint;
 		}
@@ -138,14 +131,20 @@ public class GuardController : StateDependable
 		}
 	}
 
-	public override void SetCutscene(bool cutscene){
-		if (cutscene) {
-			if(!(this.state is GuardControllerStateIdle)){
+	public override void SetCutscene(bool cutscene)
+	{
+		if (cutscene) 
+		{
+			if(!(this.state is GuardControllerStateIdle))
+			{
 				state = new GuardControllerStateIdle();
 			}
 
-		} else {
-			if(!(this.state is GuardControllerStatePatrolling)){
+		} 
+		else 
+		{
+			if((this.state is GuardControllerStateIdle))
+			{
 				state = new GuardControllerStatePatrolling();
 			}
 		}
