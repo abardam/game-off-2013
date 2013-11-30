@@ -77,11 +77,11 @@ public class GuardController : StateDependable
 			alertTimer = PLAYER_SPOTTED_ALERT;
 			alertState = AlertState.RED;
 			orientation = GameState.GetInstance().Player.transform.position - this.transform.position;
-			if (this.IsPlayerInFightingRange())
+
+			if (this.IsPlayerInFightingRange() && !(this.state is GuardControllerStateFight))
 			{
 				this.state = new GuardControllerStateFight();
 				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
-				Debug.Log("fight");
 			}
 		}
 
@@ -131,15 +131,11 @@ public class GuardController : StateDependable
 		return isVisible;
 	}
 
-<<<<<<< HEAD
-	private bool IsPlayerInFightingRange()
-=======
 	public void FlipSightArc(){
 		sightArcUp = !sightArcUp;
 	}
 
-	private void FollowPlayer(GameObject go)
->>>>>>> 0c8ebf3ed0a742d3125df27e6450f9f42b9ff71e
+	private bool IsPlayerInFightingRange()
 	{
 		float fightingRange = 0.1f;
 		float dist = Vector3.SqrMagnitude(this.transform.position - GameState.GetInstance().Player.transform.position);

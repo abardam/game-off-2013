@@ -91,4 +91,9 @@ public class PlayerController : StateDependable
 	{
 		this.state = new PlayerControllerStateFight();
 	}
+
+	public void SetState(PlayerControllerState state)
+	{
+		this.state = state;
+	}
 }
