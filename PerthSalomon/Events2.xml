@@ -1,0 +1,24 @@
+<Events>
+	<Event>
+		<Trigger type="start"/>
+		<Eventlet type="dialogue" text="ALASKA: OK Solomon, listen up. We've tracked Di Caprio to the Bellagio Fountains in Las Vegas!" 
+leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Perfect! I can finally get my revenge on Di Caprio AND sample some of that world-renowned Vegas Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: Las Vegas isn't known for its salmon!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Ha! You say that now, Ferrari, but when this is all over, I will bring you the best salmon Vegas has to offer." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: Solomon--you pay me in salmon. I don't need any more salmon! GIVE ME MONEY!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: . . . ." leftPortrait="solomon face right" rightPortrait="alaska face right"/>
+		
+	</Event>
+  <Event>
+		<Trigger type="onenter" rectTop = "2" rectLeft = "9" rectBottom = "4" rectRight = "11"/>
+		<Eventlet type="dialogue" text="SOLOMON: !!!!" leftPortrait="solomon face left" rightPortrait=""/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: So, you've finally caught up." leftPortrait="solomon face left" rightPortrait=""/>
+		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="solomon talk left" rightPortrait=""/>
+		
+		
+	</Event>
+  <Event>
+		<Trigger type="defeated" rectTop = "2" rectLeft = "9" rectBottom = "4" rectRight = "11"/>
+	</Event>
+</Events>
