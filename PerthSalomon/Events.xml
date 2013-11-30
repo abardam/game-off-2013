@@ -2,17 +2,17 @@
 	<Event>
 		<Trigger type="start"/>
 		<Eventlet type="dialogue" text="ALASKA: Solomon! This is Alaska, do you copy?" 
-leftPortrait="alaska talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="ALASKA: How many times have told you, call me ALASKA!" leftPortrait="alaska talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: A thousand pardons, Ferrari. What's the mission again?" leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="ALASKA: Ugh, whatever. OK, Solomon, your mission is to grab up all the change in the famous Trevi Fountain." leftPortrait="alaska talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="ALASKA: What?" leftPortrait="alaska talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: Don't you know? It means, 'This will be easy.'" leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="ALASKA: I think you mean, 'Piece of Cake.'" leftPortrait="alaska talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: Got it! Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="ALASKA: . . . ." leftPortrait="alaska face left" rightPortrait=""/>
+leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: How many times have told you, call me ALASKA!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: A thousand pardons, Ferrari. What's the mission again?" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: Ugh, whatever. OK, Solomon, your mission is to grab up all the change in the famous Trevi Fountain." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: What?" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Don't you know? It means, 'This will be easy.'" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: I think you mean, 'Piece of Cake.'" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Got it! Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="ALASKA: . . . ." leftPortrait="solomon face left" rightPortrait="alaska face left"/>
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>
