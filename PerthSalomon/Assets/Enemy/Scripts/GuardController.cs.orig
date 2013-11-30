@@ -51,6 +51,24 @@ public class GuardController : StateDependable
 	
 	void Update() 
 	{
+<<<<<<< HEAD
+		if(this.state == null)
+		{
+			this.state = new GuardControllerStatePatrolling();
+		}
+		
+		if (this.IsPlayerVisible(GameState.GetInstance().Player))
+		{
+			FollowPlayer(GameState.GetInstance().Player);
+
+			if (this.IsPlayerInFightingRange())
+			{
+				this.state = new GuardControllerStateFight();
+				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
+				Debug.Log("fight");
+			}
+
+=======
 		alertTimer -= Time.deltaTime;
 
 		if(this.state == null || (alertTimer < 0 && alertState != AlertState.GREEN)) {
@@ -77,12 +95,7 @@ public class GuardController : StateDependable
 			alertTimer = PLAYER_SPOTTED_ALERT;
 			alertState = AlertState.RED;
 			orientation = GameState.GetInstance().Player.transform.position - this.transform.position;
-			if (this.IsPlayerInFightingRange())
-			{
-				this.state = new GuardControllerStateFight();
-				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
-				Debug.Log("fight");
-			}
+>>>>>>> 0c8ebf3ed0a742d3125df27e6450f9f42b9ff71e
 		}
 
 		this.state.Update(this);

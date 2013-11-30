@@ -6,7 +6,7 @@ leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 		<Eventlet type="dialogue" text="ALASKA: How many times have I told you, call me ALASKA!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: A thousand pardons, Ferrari. What's the mission again?" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
-		<Eventlet type="dialogue" text="ALASKA: Ugh, whatever. OK, Solomon, your mission is to grab up all the change in the famous Trevi Fountain." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="ALASKA: Ugh, whatever. OK, Solomon, your mission is to grab up all the loose change in the famous Trevi Fountain." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 		<Eventlet type="dialogue" text="ALASKA: What?" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Don't you know? It means, 'This will be easy.'" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
@@ -17,12 +17,12 @@ leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
   <Event>
 		<Trigger type="onenter" rectTop = "9" rectLeft = "1" rectBottom = "13" rectRight = "3"/>
 		<Eventlet type="dialogue" text="SOLOMON: !!!!" leftPortrait="solomon face left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="DON DI CAPRIO: You salmon-smoking fool, you are too late, as always..." leftPortrait="solomon face left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="DON DI CAPRIO: You always say the same thing, every time we meet.Can't you think of something more creative?" leftPortrait="solomon face left" rightPortrait=""/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: You salmon-smoking fool, you are too late, as always..." leftPortrait="solomon face left" rightPortrait="don dicaprio smug talk left"/>
+		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="solomon talk left" rightPortrait="don dicaprio face left"/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: You always say the same thing, every time we meet.Can't you think of something more creative?" leftPortrait="solomon face left" rightPortrait="don dicaprio smug talk left"/>
 		<Eventlet type="dialogue" text="ALASKA: Solomon! Tell him he's a washed up actor!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
-		<Eventlet type="dialogue" text="SOLOMON: How dare you, Don Di Caprio! You bathe actors up!" leftPortrait="solomon talk left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="DON DI CAPRIO: . . . ." leftPortrait="solomon face left" rightPortrait=""/>
+		<Eventlet type="dialogue" text="SOLOMON: How dare you, Don Di Caprio! You bathe actors up!" leftPortrait="solomon talk left" rightPortrait="don dicaprio smug left"/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: . . . ." leftPortrait="solomon face left" rightPortrait="don dicaprio face left"/>
 		<Eventlet type="dialogue" text="ALASKA: Ugh, whatever! Just get him, he's getting away again!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Right-O!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Oh, he's gone already." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>

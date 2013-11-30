@@ -13,8 +13,8 @@ leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
   <Event>
 		<Trigger type="onenter" rectTop = "22" rectLeft = "20" rectBottom = "25" rectRight = "24"/>
 		<Eventlet type="dialogue" text="SOLOMON: !!!!" leftPortrait="solomon face left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="DON DI CAPRIO: So, you've finally caught up." leftPortrait="solomon face left" rightPortrait=""/>
-		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="solomon talk left" rightPortrait=""/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: So, you've finally caught up." leftPortrait="solomon face left" rightPortrait="don dicaprio smug talk left"/>
+		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="solomon talk left" rightPortrait="don dicaprio smug left"/>
 		
 		
 	</Event>
