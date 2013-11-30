@@ -5,19 +5,165 @@ using System.Collections.Generic;
 
 public class GuardControllerStatePatrolling : GuardControllerState
 {
+	enum PatrolState
+	{
+		STATE_PATROLLING_START_TO_END = 0,
+		STATE_PATROLLING_END_TO_START,
+		STATE_PATROLLING_INITIAL_TO_START,
+		STATE_NOT_PATROLLING
+	};
+
+	enum MoveState
+	{
+		STATE_MOVING = 0,
+		STATE_IDLE
+	};
+
 	private GridTile currentStartPoint;
 	private GridTile currentEndPoint;
-
+	private GridTile currentTile;
 	private List<GridTile> currentPath;
-	private List<GridTile> patrolPath;
+	private PatrolState patrolState;
+	private MoveState moveState;
+
+	private float speed;
+
+	public GuardControllerStatePatrolling()
+	{
+		// default init member
+		this.speed = 0.8f;
+
+		this.moveState = MoveState.STATE_IDLE;
+		this.patrolState = PatrolState.STATE_NOT_PATROLLING;
+	}
 
 	public override void Update(GuardController guardController)
 	{
+		switch (this.patrolState)
+		{
+		case PatrolState.STATE_NOT_PATROLLING:
+			this.SetStartPointAndEndPoint(guardController);
+			break;
+		default:
+			this.Patrol(guardController);
+			break;
+		}
+	}
+
+	private void Patrol(GuardController guardController)
+	{
+		UpdateCurrentTile(guardController);
+		GridTile nextTile = FindNextTile(guardController);	
+
+		if (nextTile == null)
+		{
+			this.SetStartPointAndEndPoint(guardController);
+		}
+		else
+		{
+			nextTile.Dump();
+			MoveTo(nextTile, guardController);
+		}
+	}
+
+	private void UpdateCurrentTile(GuardController guardController)
+	{
+		this.currentTile = Util.Vect3ToGrid(guardController.transform.position);
+	}
+
+	private GridTile FindNextTile(GuardController guardController)
+	{
+		int i = 0;
+
+		foreach (GridTile gt in this.currentPath)
+		{
+			if (gt.Equals(this.currentTile))
+			{
+				return this.DetermineNextTile(i, guardController);
+			}
+			
+			i++;
+		}
+
+		return null;
+	}
+
+	private GridTile DetermineNextTile(int i, GuardController guardController)
+	{
+		if (i >= currentPath.Count - 1)
+		{
+			return null;
+		}
 		
+		return this.currentPath[i + 1];
+
+		Vector2 v0 = Util.GridToVec2(this.currentTile);
+		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
+		Vector2 d = v0 - v1;
+
+		if (d.magnitude <= 0.1f)
+		{
+			if (i >= currentPath.Count - 1)
+			{
+				return null;
+			}
+
+			return this.currentPath[i + 1];
+		}
+		else 
+		{
+			return this.currentPath[i];
+		}
+	}
+
+	private void MoveTo(GridTile gt, GuardController guardController)
+	{
+		Vector2 v0 = Util.GridToVec2(gt);
+		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
+		Vector2 d = v0 - v1;
+
+		d.Normalize();
+
+		Vector3 m = new Vector3(d.x, d.y, 0.0f);
+
+		guardController.GetComponent<CharacterController>().Move(this.speed*Time.deltaTime*m);
 	}
 
 	private void SetStartPointAndEndPoint(GuardController guardController)
 	{
 		this.currentStartPoint = Util.Vect3ToGrid(guardController.transform.position);
+
+		if (this.currentStartPoint.Equals(guardController.StartPoint))
+		{
+			this.currentStartPoint = guardController.StartPoint;
+			this.currentEndPoint = guardController.EndPoint;
+			patrolState = PatrolState.STATE_PATROLLING_START_TO_END;
+		}
+		else if (this.currentStartPoint.Equals(guardController.EndPoint))
+		{
+			this.currentStartPoint = guardController.EndPoint;
+			this.currentEndPoint = guardController.StartPoint;
+			patrolState = PatrolState.STATE_PATROLLING_END_TO_START;
+		}
+		else 
+		{
+			bool s = this.currentStartPoint.DistTo(guardController.StartPoint) < 
+				this.currentStartPoint.DistTo(guardController.EndPoint);
+
+			if (s)
+			{
+				this.currentEndPoint = guardController.StartPoint;
+			}
+			else
+			{
+				this.currentEndPoint = guardController.EndPoint;
+			}
+
+			patrolState = PatrolState.STATE_PATROLLING_INITIAL_TO_START;
+		}
+
+		this.currentTile = this.currentStartPoint;
+		this.currentPath = Pathfinder.FindPath(this.currentStartPoint, this.currentEndPoint);
+		this.moveState = MoveState.STATE_IDLE;
 	}
 }

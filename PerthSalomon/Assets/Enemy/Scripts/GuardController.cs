@@ -10,28 +10,29 @@ public class GuardController : MonoBehaviour
 	private Vector2 orientation;
 	private CharacterController characterController;
 	private GuardControllerState state;
+	private GridTile startPoint;		// start point for patrolling
+	private GridTile endPoint;			// end point for patrolling
+
 
 	void Start() 
 	{
 		this.orientation = new Vector2(-1.0f, 0.0f);
 		this.arc = 1.0f/3.0f*(float)(Math.PI);
 		this.characterController = this.GetComponent<CharacterController>();
+		this.startPoint = Util.Vect3ToGrid(this.transform.position);
+		this.endPoint = new GridTile(1, 1);
+		this.state = new GuardControllerStatePatrolling();
 	}
 	
 	void Update() 
 	{
+		this.state.Update(this);
 //		this.FindPathToPlayer();
 
 //		if (this.IsPlayerVisible())
 //		{
 //			FollowPlayer();
 //		}
-	}
-
-
-	public void Update(GuardControllerState state)
-	{
-		this.state = state;
 	}
 
 //	private bool IsPlayerVisible()
@@ -84,4 +85,22 @@ public class GuardController : MonoBehaviour
 //				
 //		Pathfinder.FindPath(ggt, pgt);
 //	}
+
+	public GridTile StartPoint {
+		get {
+			return startPoint;
+		}
+		set {
+			startPoint = value;
+		}
+	}
+
+	public GridTile EndPoint {
+		get {
+			return endPoint;
+		}
+		set {
+			endPoint = value;
+		}
+	}
 }

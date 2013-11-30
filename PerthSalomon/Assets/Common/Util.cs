@@ -24,6 +24,16 @@ public class GridTile
 	{
 		Debug.Log("Grid Tile = [i = " + i + " j = " + j + "]");
 	}
+
+	public string ToString()
+	{ 
+		return "[i = " + i + " j = " + j + "]";
+	}
+
+	public float DistTo(GridTile gt)
+	{
+		return (float)(Math.Abs(this.i - gt.i) + Math.Abs(this.j - gt.j));
+	}
 };
 
 
@@ -51,6 +61,16 @@ public class Util
 		
 		return new Vector2 (xs + x, ys - y);
 	}
+
+	public static Vector3 GridToVec2(GridTile gt)
+	{
+		
+		float xs = -3.5f;
+		float ys = 2.5f;
+		
+		return new Vector2 (xs + gt.i, ys - gt.j);
+	}
+
 
 	public static Vector2 Vect3ToVect2(Vector3 v)
 	{

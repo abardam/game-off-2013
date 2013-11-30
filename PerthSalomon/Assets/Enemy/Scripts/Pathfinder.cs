@@ -79,15 +79,17 @@ public class Pathfinder
 				Stack<GridTile> spath = new Stack<GridTile>();
 				Node backt = current;
 
-				while (backt.pred != null)
+				while (backt != null)
 				{
 					spath.Push(backt.gt);
+					backt.gt.Dump();
 					backt = backt.pred;
 				}
 
 				while (spath.Count > 0)
 				{
 					GridTile gt = spath.Pop();
+					gt.Dump();
 					path.Add(gt);
 				}
 
