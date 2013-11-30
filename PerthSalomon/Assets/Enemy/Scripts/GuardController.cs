@@ -53,13 +53,17 @@ public class GuardController : StateDependable
 		sightArcCW.transform.RotateAround (sightArcCW.transform.position,
 		                                  Vector3.forward,
 		                                  cwAngle);
+		sightArcCW.GetComponent<LineRenderer> ().
+			SetPosition (0, new Vector3 (range, 0, 0));
 
 		float ccwAngle = (orientationAngle + arc / 2f) * (180f/(float)Math.PI);
 		sightArcCCW.transform.position = this.transform.position;
 		sightArcCCW.transform.rotation = Quaternion.identity;
 		sightArcCCW.transform.RotateAround (sightArcCCW.transform.position,
 		                                   Vector3.forward,
-		                                   ccwAngle);
+		                                    ccwAngle);
+		sightArcCCW.GetComponent<LineRenderer> ().
+			SetPosition (0, new Vector3 (range, 0, 0));
 	}
 
 	private bool IsPlayerVisible(GameObject go)
