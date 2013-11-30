@@ -2,7 +2,7 @@
 	<Event>
 		<Trigger type="start"/>
 		<Eventlet type="focus" targetX="15" targetY="15" debug="m1" />
-		<Eventlet type="dialogue" text="hehehehehe" leftPortrait="alaska talk" rightPortrait="solomon talk"/>
+		<Eventlet type="dialogue" text="hehehehehe" leftPortrait="solomon face left" rightPortrait="solomon face right"/>
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>

@@ -85,18 +85,67 @@ public class DialogueManager : MonoBehaviour {
 		//init textures
 		
 		DialoguePortrait alaskaTalk = new DialoguePortrait();
-		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 1"));
-		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 2"));
-		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 3"));
+		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaskatalk1flop"));
+		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaskatalk2flop"));
+		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaskatalk3flop"));
 		
-		dialoguePortraitTable.Add("alaska talk", alaskaTalk);
+		dialoguePortraitTable.Add("alaska talk right", alaskaTalk);
+
+		
+		DialoguePortrait alaskaTalkL = new DialoguePortrait();
+		alaskaTalkL.AddTexture((Texture2D)Resources.Load("alaskatalk1"));
+		alaskaTalkL.AddTexture((Texture2D)Resources.Load("alaskatalk2"));
+		alaskaTalkL.AddTexture((Texture2D)Resources.Load("alaskatalk3"));
+		
+		dialoguePortraitTable.Add("alaska talk left", alaskaTalkL);
+
+		DialoguePortrait alaskaFace = new DialoguePortrait();
+		alaskaFace.AddTexture((Texture2D)Resources.Load("alaskaface"));
+		dialoguePortraitTable.Add ("alaska face left", alaskaFace);
+		
+		DialoguePortrait alaskaFaceR = new DialoguePortrait();
+		alaskaFaceR.AddTexture((Texture2D)Resources.Load("alaskafaceflop"));
+		dialoguePortraitTable.Add ("alaska face right", alaskaFaceR);
 
 		DialoguePortrait solomonTalk = new DialoguePortrait();
-		solomonTalk.AddTexture((Texture2D)Resources.Load("solomon talk 1"));
-		solomonTalk.AddTexture((Texture2D)Resources.Load("solomon talk 2"));
-		solomonTalk.AddTexture((Texture2D)Resources.Load("solomon talk 3"));
+		solomonTalk.AddTexture((Texture2D)Resources.Load("solomontalk1flop"));
+		solomonTalk.AddTexture((Texture2D)Resources.Load("solomontalk2flop"));
+		solomonTalk.AddTexture((Texture2D)Resources.Load("solomontalk3flop"));
 
-		dialoguePortraitTable.Add("solomon talk", solomonTalk);
+		dialoguePortraitTable.Add("solomon talk right", solomonTalk);
+
+		DialoguePortrait solomonTalkL = new DialoguePortrait();
+		solomonTalkL.AddTexture((Texture2D)Resources.Load("solomontalk1"));
+		solomonTalkL.AddTexture((Texture2D)Resources.Load("solomontalk2"));
+		solomonTalkL.AddTexture((Texture2D)Resources.Load("solomontalk3"));
+		
+		dialoguePortraitTable.Add("solomon talk left", solomonTalkL);
+
+		DialoguePortrait solomonFaceL = new DialoguePortrait();
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomontalk1"));
+		solomonFaceL.AddTexture((Texture2D)Resources.Load ("solomonblink"));
+
+		dialoguePortraitTable.Add ("solomon face left", solomonFaceL);
+
+		DialoguePortrait solomonFaceR = new DialoguePortrait();
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomontalk1flop"));
+		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomonblinkflop"));
+		
+		dialoguePortraitTable.Add ("solomon face right", solomonFaceR);
 	}
 
 	// Update is called once per frame
