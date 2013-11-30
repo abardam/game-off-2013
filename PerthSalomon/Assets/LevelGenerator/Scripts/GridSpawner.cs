@@ -112,7 +112,7 @@ public class GridSpawner : MonoBehaviour
 
 					case "f":
 						if(startOrEndpoint.ContainsKey(id)){
-							(startOrEndpoint[id] as GuardController).EndPoint = new GridTile(j,i);
+							(startOrEndpoint[id] as GameObject).GetComponent<GuardController>().EndPoint = new GridTile(j,i);
 							startOrEndpoint.Remove (id);
 						}else{
 							startOrEndpoint.Add(id, new GridTile(j,i));

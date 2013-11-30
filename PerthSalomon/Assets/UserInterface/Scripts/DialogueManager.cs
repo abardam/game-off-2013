@@ -149,6 +149,26 @@ public class DialogueManager : MonoBehaviour {
 		solomonFaceR.AddTexture((Texture2D)Resources.Load ("solomonblinkflop"));
 		
 		dialoguePortraitTable.Add ("solomon face right", solomonFaceR);
+
+		DialoguePortrait dondFaceL = new DialoguePortrait ();
+		dondFaceL.AddTexture ((Texture2D)Resources.Load ("dondface0001"));
+		dialoguePortraitTable.Add ("don dicaprio face left", dondFaceL);
+
+		DialoguePortrait dondSmugL = new DialoguePortrait ();
+		dondSmugL.AddTexture ((Texture2D)Resources.Load ("dondface0005"));
+		dialoguePortraitTable.Add ("don dicaprio smug left", dondSmugL);
+
+		DialoguePortrait dondTalkL = new DialoguePortrait ();
+		dondTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0002"));
+		dondTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0003"));
+		dondTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0004"));
+		dialoguePortraitTable.Add ("don dicaprio talk left", dondTalkL);
+		
+		DialoguePortrait dondSmugTalkL = new DialoguePortrait ();
+		dondSmugTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0006"));
+		dondSmugTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0007"));
+		dondSmugTalkL.AddTexture ((Texture2D)Resources.Load ("dondface0008"));
+		dialoguePortraitTable.Add ("don dicaprio smug talk left", dondSmugTalkL);
 	}
 
 	// Update is called once per frame
