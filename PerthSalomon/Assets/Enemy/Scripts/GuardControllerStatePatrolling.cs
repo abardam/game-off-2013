@@ -115,7 +115,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 	private void MoveTo(GuardController guardController)
 	{
-		this.pathQueue.Peek().Dump();
+		//this.pathQueue.Peek().Dump();
 		Vector2 v0 = Util.GridToVec2(this.pathQueue.Peek());
 		Vector2 v1 = Util.Vect3ToVect2(guardController.transform.position);
 		Vector2 d = v0 - v1;
