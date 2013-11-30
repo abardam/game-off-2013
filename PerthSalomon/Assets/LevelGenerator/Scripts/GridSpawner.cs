@@ -10,6 +10,8 @@ public class GridSpawner : MonoBehaviour
 	public GameObject player;
 	public GameObject guard1;
 	public GameObject coin;
+	public GameObject key;
+	public GameObject gridDoor;
 	public CameraControl cameraControl;
 
 	private bool parsed;
@@ -124,6 +126,12 @@ public class GridSpawner : MonoBehaviour
 						obj = coin;
 						break;
 
+					case "k":
+						obj = key;
+						break;
+					case "d":
+						obj = gridDoor;
+						break;
 					default:
 						continue;
 					}
@@ -151,9 +159,12 @@ public class GridSpawner : MonoBehaviour
 						break;
 					}
 
-					if(grid1[i,j] == "1"){
+					if(code == "1"){
 						gameState.SetGridCell(i,j,1);
-					}else{
+					}else if(code == "d"){
+						gameState.SetGridCell(i,j,1);
+					}
+					else{
 						gameState.SetGridCell(i,j,0);
 					}
 
@@ -291,7 +302,8 @@ public class GridSpawner : MonoBehaviour
 
 		for (int i = 0; i < 8; i++)
 		{
-			if (!((neighborCode[i] == tileCode[i]) || (tileCode[i] == '*')))
+			if (!((neighborCode[i] == tileCode[i]) || (tileCode[i] == '*')
+			      ))
 			{
 				s = false;
 			}
@@ -315,7 +327,7 @@ public class GridSpawner : MonoBehaviour
 				if(i2 == i && j2 == j) continue;
 
 				if(CheckValid(i2,grid.GetLength(0)) && CheckValid(j2,grid.GetLength(1))){
-					n[u] = grid[i2,j2] == "1"? '1' : '0';
+					n[u] = grid[i2,j2] == "1" || grid[i2,j2].Substring(0,1) == "d" ? '1' : '0';
 				}else{
 					n[u] = '1';
 				}
