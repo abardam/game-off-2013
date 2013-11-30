@@ -232,7 +232,15 @@ public class EventManager : MonoBehaviour
 										break;
 								case Eventlet.EventletType.Focus:
 										gameState.SetModeDialogue ();
-										dialogueManager.SetTarget (el.Target);
+					GridTile gt = Util.Vect2ToGrid(new Vector2(el.Target.x, el.Target.y));
+					
+					if(gt.i < 4) gt.i = 4;
+					if(gt.i > gameState.ObstacleGrid.GetLength(1) - 5) gt.i = gameState.ObstacleGrid.GetLength(1) - 5;
+					
+					if(gt.j < 4) gt.j = 4;
+					if(gt.j > gameState.ObstacleGrid.GetLength(0) - 5) gt.j = gameState.ObstacleGrid.GetLength(0) - 5;
+
+										dialogueManager.SetTarget (Util.GridToVec3(gt.i, gt.j));
 										dialogueManager.SetCallback (el);
 					break;
 				case Eventlet.EventletType.LoadLevel:
