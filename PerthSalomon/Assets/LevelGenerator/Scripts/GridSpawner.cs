@@ -113,6 +113,7 @@ public class GridSpawner : MonoBehaviour
 					case "f":
 						if(startOrEndpoint.ContainsKey(id)){
 							(startOrEndpoint[id] as GuardController).EndPoint = new GridTile(j,i);
+							startOrEndpoint.Remove (id);
 						}else{
 							startOrEndpoint.Add(id, new GridTile(j,i));
 						}
@@ -143,6 +144,7 @@ public class GridSpawner : MonoBehaviour
 					case "e":
 						if(startOrEndpoint.ContainsKey(id)){
 							(temp as GameObject).GetComponent<GuardController>().EndPoint = (GridTile)startOrEndpoint[id];
+							startOrEndpoint.Remove (id);
 						}else{
 							startOrEndpoint.Add(id, temp);
 						}
@@ -156,6 +158,12 @@ public class GridSpawner : MonoBehaviour
 					}
 
 					allGameObjects.Add ((GameObject)temp);
+				}
+			}
+
+			foreach(DictionaryEntry entry in startOrEndpoint){
+				if(entry.Value is GameObject){
+					(entry.Value as GameObject).GetComponent<GuardController>().EndPoint = Util.Vect3ToGrid((entry.Value as GameObject).transform.position);
 				}
 			}
 		}

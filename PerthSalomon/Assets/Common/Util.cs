@@ -17,7 +17,10 @@ public class GridTile
 
 	public bool Equals(GridTile gt)
 	{
-		return this.i == gt.i && this.j == gt.j;
+		bool a = this.i == gt.i;
+		bool b = this.j == gt.j;
+		bool c = a && b;
+		return c;
 	}
 
 	public void Dump()

@@ -14,6 +14,10 @@ public class GuardController : StateDependable
 	private GridTile endPoint;			// end point for patrolling
 	private int id;						//guard id, w/r/t the grid
 
+	public GameObject sightArcPrefab;
+	private GameObject sightArcCW; //the sight arc line clockwise
+	private GameObject sightArcCCW; //the sight arc line counterclockwise
+
 	void Start() 
 	{	
 		this.orientation = new Vector2(-1.0f, 0.0f);
@@ -23,6 +27,10 @@ public class GuardController : StateDependable
 		//this.state = new GuardControllerStatePatrolling(); apparently this comes after events, so i commented it -- enzo
 
 		Physics.IgnoreCollision(this.characterController, GameState.GetInstance().Player.GetComponent<CharacterController>());
+
+		//sight arcs
+		sightArcCW = (GameObject)Instantiate (sightArcPrefab, this.transform.position, Quaternion.identity);
+		sightArcCCW = (GameObject)Instantiate (sightArcPrefab, this.transform.position, Quaternion.identity);
 	}
 	
 	void Update() 
@@ -37,6 +45,21 @@ public class GuardController : StateDependable
 		this.state.Update(this);
 		//this.FindPathToPlayer();
 
+		float orientationAngle = (float)Math.Atan2 (orientation.y, orientation.x);
+
+		float cwAngle = (orientationAngle - arc / 2f) * (180f/(float)Math.PI);
+		sightArcCW.transform.position = this.transform.position;
+		sightArcCW.transform.rotation = Quaternion.identity;
+		sightArcCW.transform.RotateAround (sightArcCW.transform.position,
+		                                  Vector3.forward,
+		                                  cwAngle);
+
+		float ccwAngle = (orientationAngle + arc / 2f) * (180f/(float)Math.PI);
+		sightArcCCW.transform.position = this.transform.position;
+		sightArcCCW.transform.rotation = Quaternion.identity;
+		sightArcCCW.transform.RotateAround (sightArcCCW.transform.position,
+		                                   Vector3.forward,
+		                                   ccwAngle);
 	}
 
 	private bool IsPlayerVisible(GameObject go)

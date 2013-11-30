@@ -112,7 +112,7 @@ public class Pathfinder
 		HashSet<Node> closed
 	)
 	{
-		HashSet<Node> succ = GetSuccessors(current);
+		HashSet<Node> succ = GetSuccessors(current, endNode.gt);
 
 		foreach (Node successor in succ)
 		{
@@ -152,7 +152,7 @@ public class Pathfinder
 		//Debug.Log("Expand end");
 	}
 
-	private static HashSet<Node> GetSuccessors(Node current)
+	private static HashSet<Node> GetSuccessors(Node current, GridTile ultimateTarget)
 	{
 		NodeEqComp eq = new NodeEqComp();
 		HashSet<Node> succ = new HashSet<Node>(eq);
@@ -173,20 +173,23 @@ public class Pathfinder
 		int i = current.gt.i;
 		int j = current.gt.j;
 
-		SafeAdd(new Node(new GridTile(i - 1, j), 0.0f, 0.0f), succ);
-		SafeAdd(new Node(new GridTile(i + 1, j), 0.0f, 0.0f), succ);
-		SafeAdd(new Node(new GridTile(i, j - 1), 0.0f, 0.0f), succ);
-		SafeAdd(new Node(new GridTile(i, j + 1), 0.0f, 0.0f), succ);
+		SafeAdd(new Node(new GridTile(i - 1, j), 0.0f, 0.0f), succ, ultimateTarget);
+		SafeAdd(new Node(new GridTile(i + 1, j), 0.0f, 0.0f), succ, ultimateTarget);
+		SafeAdd(new Node(new GridTile(i, j - 1), 0.0f, 0.0f), succ, ultimateTarget);
+		SafeAdd(new Node(new GridTile(i, j + 1), 0.0f, 0.0f), succ, ultimateTarget);
 
 		return succ;
 	}
 
-	private static void SafeAdd(Node node, HashSet<Node> succ)
+	private static void SafeAdd(Node node, HashSet<Node> succ, GridTile ultimateTarget) //i'm adding the ultimateTarget because the player can "hide" inside tiles sometimes
 	{
 		int gw = GameState.GetInstance().ObstacleGrid.GetLength(1);
 		int gh = GameState.GetInstance().ObstacleGrid.GetLength(0);
 
-		if (node.gt.i >= 0  && node.gt.i < gw && node.gt.j >= 0 && node.gt.j < gh && 0 == GameState.GetInstance().ObstacleGrid[node.gt.j, node.gt.i])
+		if (node.gt.i >= 0  && node.gt.i < gw && node.gt.j >= 0 && node.gt.j < gh && 
+		    (0 == GameState.GetInstance().ObstacleGrid[node.gt.j, node.gt.i]
+		 	|| node.gt.Equals(ultimateTarget))
+		    )
 		{
 			succ.Add(node);
 		}

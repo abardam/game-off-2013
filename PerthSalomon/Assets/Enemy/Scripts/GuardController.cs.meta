@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 0d2ae657b241041a5afebf400c195ece
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sightArcPrefab: {fileID: 100000, guid: 1d0fb150d2d964a4ab8095c8c3f19863, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
