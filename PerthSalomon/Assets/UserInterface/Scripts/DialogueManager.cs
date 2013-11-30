@@ -72,7 +72,7 @@ public class DialogueManager : MonoBehaviour {
 
 	private void LoadPortraits(){
 
-		portraitRectLeft = new Rect(0f, Screen.height*0.5f, Screen.height*3.0f/8.0f, Screen.height*0.5f);
+		portraitRectLeft = new Rect(0f, Screen.height*0.5f, Screen.height*0.5f, Screen.height*0.5f);
 
 		//init textures
 		
