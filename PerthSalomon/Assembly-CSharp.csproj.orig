@@ -22,8 +22,8 @@
 <<<<<<< HEAD
 	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_0;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 =======
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
->>>>>>> 1ba22d3d5d91418fc229fc98589e4f425fe5989b
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_0;UNITY_4_3;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+>>>>>>> 0c8ebf3ed0a742d3125df27e6450f9f42b9ff71e
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -43,26 +43,47 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Camera\CameraControl.cs" />
+     <Compile Include="Assets\Camera\Scripts\CameraControl.cs" />
+     <Compile Include="Assets\Camera\Scripts\CameraGhost.cs" />
      <Compile Include="Assets\Common\SPFileReader.cs" />
      <Compile Include="Assets\Common\SPFileReaderLocal.cs" />
      <Compile Include="Assets\Common\Util.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardController.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardControllerState.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardControllerStateFight.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardControllerStateIdle.cs" />
+     <Compile Include="Assets\Enemy\Scripts\GuardControllerStatePatrolling.cs" />
+     <Compile Include="Assets\Enemy\Scripts\Pathfinder.cs" />
+     <Compile Include="Assets\Events\DialogueController.cs" />
+     <Compile Include="Assets\Events\EventDependable.cs" />
      <Compile Include="Assets\Events\EventManager.cs" />
      <Compile Include="Assets\Events\Eventlet.cs" />
      <Compile Include="Assets\Events\SPEvent.cs" />
+     <Compile Include="Assets\Events\StateDependable.cs" />
      <Compile Include="Assets\Events\Trigger.cs" />
      <Compile Include="Assets\GameLogic\GameState.cs" />
+     <Compile Include="Assets\LevelGenerator\LevelLoader.cs" />
+     <Compile Include="Assets\LevelGenerator\Prefabs\GridCubeController.cs" />
      <Compile Include="Assets\LevelGenerator\Scripts\GridSpawner.cs" />
+     <Compile Include="Assets\LevelGenerator\Scripts\SPLevel.cs" />
+     <Compile Include="Assets\LevelLoader.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerController.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerState.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerStateDiving.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerStateFight.cs" />
+     <Compile Include="Assets\Player\Scripts\Controller\PlayerControllerStateIdle.cs" />
      <Compile Include="Assets\Player\Scripts\Controls.cs" />
      <Compile Include="Assets\Player\Scripts\SingleAnimation.cs" />
      <Compile Include="Assets\UserInterface\Scripts\Button.cs" />
+     <Compile Include="Assets\UserInterface\Scripts\Dialogue.cs" />
+     <Compile Include="Assets\UserInterface\Scripts\DialogueManager.cs" />
      <Compile Include="Assets\UserInterface\Scripts\MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

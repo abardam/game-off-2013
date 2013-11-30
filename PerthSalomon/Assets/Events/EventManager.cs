@@ -278,7 +278,7 @@ public class EventManager : MonoBehaviour
 								dialogueManager.SetTarget (gameState.Player);
 						}*/
 				} else {
-						gameState.SetModeGame ();
+						gameState.SetModeGame();
 						dialogueManager.SetTarget (gameState.Player);
 				}
 		}
