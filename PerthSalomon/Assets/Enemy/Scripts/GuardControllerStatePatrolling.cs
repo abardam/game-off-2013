@@ -15,8 +15,8 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 	enum MoveState
 	{
-		STATE_MOVING = 0,
-		STATE_IDLE
+		STATE_MOVING_RIGHT = 0,
+		STATE_MOVING_LEFT
 	};
 
 	private GridTile currentStartPoint;
@@ -34,7 +34,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		// default init member
 		this.speed = 0.8f;
 		this.pathQueue = new Queue<GridTile>();
-		this.moveState = MoveState.STATE_IDLE;
+		this.moveState = MoveState.STATE_MOVING_LEFT;
 		this.patrolState = PatrolState.STATE_NOT_PATROLLING;
 	}
 
@@ -49,6 +49,11 @@ public class GuardControllerStatePatrolling : GuardControllerState
 			this.Patrol(guardController);
 			break;
 		}
+	}
+
+	private void UpdateAnimation()
+	{
+
 	}
 
 	private void Patrol(GuardController guardController)
@@ -116,8 +121,20 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		Vector2 d = v0 - v1;
 
 		d.Normalize();
-
+	
 		Vector3 m = new Vector3(d.x, d.y, 0.0f);
+
+		// updated animation if neccessary
+		if (d.x < 0f && this.moveState == MoveState.STATE_MOVING_RIGHT)
+		{
+			this.moveState = MoveState.STATE_MOVING_LEFT;
+			guardController.GetComponent<Animator>().Play("DiveLeft");
+		}
+		if (d.x > 0f && this.moveState == MoveState.STATE_MOVING_LEFT)
+		{
+			this.moveState = MoveState.STATE_MOVING_RIGHT;
+			guardController.GetComponent<Animator>().Play("Dive");
+		}
 
 		guardController.GetComponent<CharacterController>().Move(this.speed*Time.deltaTime*m);
 	}
@@ -157,8 +174,19 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 		this.currentTile = this.currentStartPoint;
 		this.currentPath = Pathfinder.FindPath(this.currentStartPoint, this.currentEndPoint);
-		this.moveState = MoveState.STATE_IDLE;
 		this.pathQueue.Clear();
 		this.pathQueue.Enqueue(this.currentStartPoint);
+	
+		if (this.currentEndPoint.i > this.currentStartPoint.i)
+		{
+			this.moveState = MoveState.STATE_MOVING_RIGHT;
+			guardController.GetComponent<Animator>().Play("Dive");
+		}
+		else
+		{
+			this.moveState = MoveState.STATE_MOVING_LEFT;
+			guardController.GetComponent<Animator>().Play("DiveLeft");
+		}
+		
 	}
 }
