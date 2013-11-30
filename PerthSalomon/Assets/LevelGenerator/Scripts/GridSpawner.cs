@@ -81,6 +81,8 @@ public class GridSpawner : MonoBehaviour
 			cameraControl.SetBounds (Util.GridToVec2 (0, 0), Util.GridToVec2 (width-1, height-1));
 
 			gameState.SetGridSize(height, width);
+			gameState.Coins = 0;
+			gameState.DoorTable.Clear();
 
 			Hashtable startOrEndpoint = new Hashtable(); // for guards. if the endpoint comes first, hashtable[id] should have it; and vice versa
 			
@@ -156,6 +158,15 @@ public class GridSpawner : MonoBehaviour
 						}else{
 							startOrEndpoint.Add(id, temp);
 						}
+						break;
+					case "c":
+						++gameState.Coins;
+						break;
+					case "d":
+						gameState.DoorTable[id] = temp;
+						break;
+					case "k":
+						(temp as GameObject).GetComponent<PickupObject>().ID = id;
 						break;
 					}
 

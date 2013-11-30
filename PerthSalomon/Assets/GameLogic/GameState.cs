@@ -11,6 +11,8 @@ public class GameState {
 	private bool cutscene;
 	private List<StateDependable> stateDependables;
 	private LevelLoader levelLoader;
+	private int coins;
+	private Hashtable doorTable;
 
 	public DialogueManager dialogueManager;
 
@@ -29,6 +31,7 @@ public class GameState {
 		enemies = new List<GameObject> ();
 		stateDependables = new List<StateDependable>();
 		cutscene = false;
+		doorTable = new Hashtable();
 	}
 
 	public GameObject Player {
@@ -112,5 +115,31 @@ public class GameState {
 		}
 
 		return gtList;
+	}
+
+	public int Coins {
+		get {
+			return coins;
+		}
+		set {
+			coins = value;
+		}
+	}
+
+	public void PickupKey (int ID)
+	{
+		if(doorTable[ID] != null){
+			GameObject.Destroy (doorTable[ID] as GameObject);
+			doorTable.Remove(ID);
+		}
+	}
+
+	public Hashtable DoorTable {
+		get {
+			return doorTable;
+		}
+		set {
+			doorTable = value;
+		}
 	}
 }

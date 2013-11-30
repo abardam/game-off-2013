@@ -23,8 +23,12 @@ public class PickupObject : MonoBehaviour {
 		if(c.gameObject.GetComponent<PlayerController>() != null){
 			switch(pickupType){
 			case PickupType.Coin:
+				--GameState.GetInstance().Coins;
+				GameObject.Destroy(this.gameObject);
 				break;
 			case PickupType.Key:
+				GameState.GetInstance().PickupKey(ID);
+				GameObject.Destroy(this.gameObject);
 				break;
 			}
 
