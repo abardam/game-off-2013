@@ -50,6 +50,7 @@ public class GuardControllerStatePatrolling : GuardControllerState
 		{
 		case PatrolState.STATE_NOT_PATROLLING:
 			this.SetStartPointAndEndPoint(guardController);
+			guardController.SetAlertState(GuardController.AlertState.GREEN);
 			break;
 		case PatrolState.STATE_DIRECT_CHASE:
 			MoveToDirect(guardController);

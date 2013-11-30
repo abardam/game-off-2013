@@ -7,8 +7,9 @@ public class GuardController : StateDependable
 {
 
 	private float arc;
-	private float range = 5.0f;
+	private float range = 3.0f;
 	private Vector2 orientation;
+
 	private CharacterController characterController;
 	private GuardControllerState state;
 	private GridTile startPoint;		// start point for patrolling
@@ -59,7 +60,18 @@ public class GuardController : StateDependable
 			alertState = AlertState.GREEN;
 		}
 
-		if(alertState == AlertState.GREEN){
+		bool playerVisible = this.IsPlayerVisible(GameState.GetInstance().Player);
+
+		if(alertState == AlertState.RED && !playerVisible)
+		{
+			if(state is GuardControllerStatePatrolling){
+				Vector2 d = (state as GuardControllerStatePatrolling).GetLastMovement();
+				if(d.x < 0) orientation.x = - Math.Abs(orientation.x);
+				else if(d.x > 0) orientation.x = Math.Abs(orientation.x);
+			}
+
+		}
+		else if(alertState == AlertState.GREEN && !playerVisible){
 			if(sightArcUp){
 				orientation.y = 0.5f;
 			}else{
@@ -71,8 +83,7 @@ public class GuardController : StateDependable
 				else if(d.x > 0) orientation.x = 0.86603f;
 			}
 		}
-
-		if (this.IsPlayerVisible(GameState.GetInstance().Player))
+		else if (playerVisible)
 		{
 			FollowPlayer(GameState.GetInstance().Player);
 			alertTimer = PLAYER_SPOTTED_ALERT;
@@ -214,4 +225,15 @@ public class GuardController : StateDependable
 			id = value;
 		}
 	}
+
+	public void OnDestroy(){
+		GameObject.Destroy(sightArcCW);
+		GameObject.Destroy(sightArcCCW);
+	}
+
+	public void SetAlertState (GuardController.AlertState gREEN)
+	{
+		alertState = gREEN;
+	}
+
 }

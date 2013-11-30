@@ -200,7 +200,7 @@ public class DialogueManager : MonoBehaviour {
 			GUI.skin = skin;
 			//GUI.Box (dialogueRect, "");
 
-			GUI.TextArea(textRect, dispText);
+			GUI.Label(textRect, dispText);
 
 			if(currentPortraitLeft != ""){
 				GUI.DrawTexture(portraitRectLeft, (dialoguePortraitTable[currentPortraitLeft] as DialoguePortrait).GetCurrentTexture());
