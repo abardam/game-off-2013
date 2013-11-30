@@ -27,49 +27,55 @@ public class GuardController : StateDependable
 	
 	void Update() 
 	{
-		this.state.Update(this);
-//		this.FindPathToPlayer();
+		if(this.state == null) this.state = new GuardControllerStatePatrolling();
+		
+		if (this.IsPlayerVisible(GameState.GetInstance().Player))
+		{
+			FollowPlayer(GameState.GetInstance().Player);
+		}
 
-//		if (this.IsPlayerVisible())
-//		{
-//			FollowPlayer();
-//		}
+		this.state.Update(this);
+		//this.FindPathToPlayer();
+
 	}
 
-//	private bool IsPlayerVisible()
-//	{
-//		Vector3 pp = GameState.GetInstance().Player.transform.position;
-//		Vector3 gp = this.transform.position;
-//
-//		Vector3 d = pp - gp;
-//		float dist = d.magnitude;
-//
-//		bool isVisible = false;
-//
-//		Vector2 d2 = new Vector2();
-//		d2.x = d.x;
-//		d2.y = d.y;
-//
-//		if (this.range > dist && this.arc/2.0f > Math.Acos(Vector2.Dot(d2, orientation)/(d2.magnitude*orientation.magnitude)))
-//		{
-//			Debug.Log("I SEE YA");
-//			isVisible = true;
-//		}
-//
-//		return isVisible;
-//	}
-//
-//	private void FollowPlayer()
-//	{
-//		Vector3 pp = GameState.GetInstance().Player.transform.position;
-//		Vector3 gp = this.transform.position;
-//
-//		Vector3 d = pp - gp;
-//		d.Normalize();
-//		this.characterController.Move(Time.deltaTime*0.25f*d);
-//		Debug.Log(d);
-//	
-//	}
+	private bool IsPlayerVisible(GameObject go)
+	{
+		Vector3 pp = go.transform.position;
+		Vector3 gp = this.transform.position;
+
+		Vector3 d = pp - gp;
+		float dist = d.magnitude;
+
+		bool isVisible = false;
+
+		Vector2 d2 = new Vector2();
+		d2.x = d.x;
+		d2.y = d.y;
+
+		if (this.range > dist && this.arc/2.0f > Math.Acos(Vector2.Dot(d2, orientation)/(d2.magnitude*orientation.magnitude)))
+		{
+			Debug.Log("I SEE YA");
+			isVisible = true;
+		}
+
+		return isVisible;
+	}
+
+	private void FollowPlayer(GameObject go)
+	{
+		/*
+		Vector3 pp = GameState.GetInstance().Player.transform.position;
+		Vector3 gp = this.transform.position;
+
+		Vector3 d = pp - gp;
+		d.Normalize();
+		this.characterController.Move(Time.deltaTime*0.25f*d);
+		Debug.Log(d);*/
+
+		this.state.TargetSighted (this, go);
+	
+	}
 
 //	private void FindPathToPlayer()
 //	{

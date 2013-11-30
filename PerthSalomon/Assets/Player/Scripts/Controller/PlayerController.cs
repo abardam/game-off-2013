@@ -10,7 +10,6 @@ public class PlayerController : StateDependable
 
 	public PlayerController():base()
 	{	
-		this.state = new PlayerControllerStateDiving();
 	}
 
 	void Start() 
@@ -55,10 +54,9 @@ public class PlayerController : StateDependable
 //		Debug.Log("[" + gc.i + ", " + gc.j + "]");
 //		Pathfinder.FindPath();
 
-		if (this.state != null)
-		{
-			this.state.Update(this);
-		}
+		if (this.state == null) 
+			this.state = new PlayerControllerStateDiving();
+		this.state.Update(this);
 	}
 
 	public CharacterController GetCharacterController()
