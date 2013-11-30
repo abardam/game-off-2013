@@ -15,7 +15,7 @@ leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="ALASKA: . . . ." leftPortrait="solomon face left" rightPortrait="alaska face left"/>
 	</Event>
   <Event>
-		<Trigger type="onenter" rectTop = "2" rectLeft = "9" rectBottom = "4" rectRight = "11"/>
+		<Trigger type="onenter" rectTop = "9" rectLeft = "1" rectBottom = "13" rectRight = "3"/>
 		<Eventlet type="dialogue" text="SOLOMON: !!!!" leftPortrait="solomon face left" rightPortrait=""/>
 		<Eventlet type="dialogue" text="DON DI CAPRIO: You salmon-smoking fool, you are too late, as always..." leftPortrait="solomon face left" rightPortrait=""/>
 		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="solomon talk left" rightPortrait=""/>
