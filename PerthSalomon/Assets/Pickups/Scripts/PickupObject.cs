@@ -4,7 +4,7 @@ using System.Collections;
 public class PickupObject : MonoBehaviour {
 
 	public enum PickupType{
-		Coin, Key
+		Coin, Key, Health
 	};
 
 	public PickupType pickupType;
@@ -28,6 +28,10 @@ public class PickupObject : MonoBehaviour {
 				break;
 			case PickupType.Key:
 				GameState.GetInstance().PickupKey(ID);
+				GameObject.Destroy(this.gameObject);
+				break;
+			case PickupType.Health:
+				c.gameObject.GetComponent<PlayerController>().Health += 10f;
 				GameObject.Destroy(this.gameObject);
 				break;
 			}
