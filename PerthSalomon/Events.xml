@@ -2,8 +2,7 @@
 	<Event>
 		<Trigger type="start"/>
 		<Eventlet type="focus" targetX="15" targetY="15" debug="m1" />
-		<Eventlet type="focus" targetX="1" targetY="1" debug="m2" />
-		<Eventlet type="focus" targetX="15" targetY="1" debug="m3" />
+		<Eventlet type="dialogue" text="hehehehehe" />
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "1" rectLeft = "1" rectBottom = "2" rectRight = "2"/>

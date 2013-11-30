@@ -1,9 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+public class DialoguePortrait {
+	private List<Texture2D> textures;
+	private float currentFrame;
+
+	public DialoguePortrait(){
+		textures = new List<Texture2D>();
+		currentFrame = 0;
+	}
+
+	public void AddTexture(Texture2D texture){
+		textures.Add(texture);
+	}
+
+	public void AddTime(float t){
+		currentFrame += t;
+	}
+
+	public Texture2D GetCurrentTexture(){
+		if(currentFrame > textures.Count){
+			currentFrame = 0;
+		}
+		return textures[(int)currentFrame];
+	}
+}
 
 public class DialogueManager : MonoBehaviour {
 
 	private static int TEXTSPEED = 50; //characters per second
+	private static int PORTRAITSPEED = 12;
 	public enum CutsceneType {None, Dialogue, Camera};
 	
 	public CameraGhost cameraGhost;
@@ -13,6 +40,18 @@ public class DialogueManager : MonoBehaviour {
 	private Rect dialogueRect;
 	private CutsceneType activeCutscene;
 	private Eventlet callback;
+
+	private Hashtable dialoguePortraitTable;
+	private bool portraitsLoaded;
+	private Rect portraitRectLeft;
+	private Rect portraitRectRight;
+
+	public DialogueManager():base(){
+		dialoguePortraitTable = new Hashtable();
+		portraitsLoaded = false;
+
+	}
+
 	// Use this for initialization
 	void Start () {
 		GameState.GetInstance().dialogueManager = this;
@@ -30,14 +69,38 @@ public class DialogueManager : MonoBehaviour {
 	public void SetCallback(Eventlet e){
 		callback = e;
 	}
-	
+
+	private void LoadPortraits(){
+
+		portraitRectLeft = new Rect(0f, Screen.height*0.5f, Screen.height*3.0f/8.0f, Screen.height*0.5f);
+
+		//init textures
+		
+		DialoguePortrait alaskaTalk = new DialoguePortrait();
+		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 1"));
+		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 2"));
+		alaskaTalk.AddTexture((Texture2D)Resources.Load("alaska talk 3"));
+		
+		dialoguePortraitTable.Add("alaska talk", alaskaTalk);
+	}
+
 	// Update is called once per frame
 	void Update () {
+
+		if(!portraitsLoaded){
+			LoadPortraits();
+			portraitsLoaded = true;
+		}
+
 		if(activeCutscene == CutsceneType.Dialogue){
 			dialogueIndex += (TEXTSPEED * Time.deltaTime);
 
 			if(dialogueIndex >= dialogue.Length){
 
+			}
+
+			foreach(DictionaryEntry entry in dialoguePortraitTable){
+				(entry.Value as DialoguePortrait).AddTime(PORTRAITSPEED * Time.deltaTime);
 			}
 		}
 	}
@@ -48,6 +111,7 @@ public class DialogueManager : MonoBehaviour {
 			string dispText = dialogue.Substring(0, dialogueIndex<dialogue.Length?
 			                                     (int)dialogueIndex:dialogue.Length);
 			GUI.Box (dialogueRect, dispText);
+			GUI.DrawTexture(portraitRectLeft, (dialoguePortraitTable["alaska talk"] as DialoguePortrait).GetCurrentTexture());
 		}
 	}
 
