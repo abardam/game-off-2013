@@ -3,13 +3,18 @@ using System.Collections;
 
 public class PlayerController : StateDependable 
 {
-	public float speed;
+	private float speed;
 	private CharacterController characterController;
 	private Animator animator;
 	private PlayerControllerState state;
 	private float health;
+	private int salmon;
 
 	public static float MAXHEALTH=15f;
+
+	private static float SALMONTIME = 10f;
+	private static float BOOSTSPEED = 0.8f;
+	private float speedBoostTime;
 
 	public PlayerController():base()
 	{	
@@ -35,6 +40,8 @@ public class PlayerController : StateDependable
 		this.animator.Play("IdleRight");
 
 		this.speed = 0.8f;
+		speedBoostTime = 0;
+		salmon = 0;
 	}
 
 	void SetIdle()
@@ -63,6 +70,10 @@ public class PlayerController : StateDependable
 		this.state.Update(this);
 
 		if(this.health < 0) Application.LoadLevel ("GameOver");
+
+		if(state is PlayerControllerStateDiving){
+			if(speedBoostTime >= 0) speedBoostTime -= Time.deltaTime;
+		}
 	}
 
 	public CharacterController GetCharacterController()
@@ -110,6 +121,36 @@ public class PlayerController : StateDependable
 		set {
 			health = value;
 			if(health > MAXHEALTH) health = MAXHEALTH;
+		}
+	}
+
+	public int Salmon {
+		get {
+			return salmon;
+		}
+		set {
+			salmon = value;
+		}
+	}
+
+	public bool IsBoosted(){
+		return this.speedBoostTime > 0;
+	}
+
+	public void SpeedBoost ()
+	{
+		if(!IsBoosted() && salmon > 0){
+			--salmon;
+			speedBoostTime = SALMONTIME;
+		}
+	}
+
+	public float RealSpeed {
+		get {
+			return speed + (IsBoosted()?BOOSTSPEED:0);
+		}
+		set {
+			speed = value;
 		}
 	}
 }

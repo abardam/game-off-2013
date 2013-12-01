@@ -98,6 +98,9 @@ public class EventManager : MonoBehaviour
 										e.addTrigger (t2);
 
 										break;
+				case "allcoinscollected":
+					tt = Trigger.TriggerType.Coins;
+					t = new Trigger(tt,r);
 								default:
 										tt = Trigger.TriggerType.Start;
 										t = new Trigger (tt);
@@ -127,6 +130,10 @@ public class EventManager : MonoBehaviour
 										case "loadlevel":
 												ett = Eventlet.EventletType.LoadLevel;
 												break;
+					case "gamewin":
+						ett = Eventlet.EventletType.GameWin;
+						break;
+
 										}
 								}
 
@@ -207,6 +214,8 @@ public class EventManager : MonoBehaviour
 												eventList [e].TriggerATrigger (t);
 										}
 										break;
+				case Trigger.TriggerType.Coins:
+					if(gameState.Coins > 0) triggered = false;
 								default:
 										triggered = false;
 										break;
@@ -270,6 +279,9 @@ public class EventManager : MonoBehaviour
 					levelLoader.TryLoadLevel();
 
 										break;
+				case Eventlet.EventletType.GameWin:
+					Application.LoadLevel("WinScreen");
+					break;
 								}
 						} else if (el.Executed == Eventlet.ExecuteState.Executed) {
 								eventletQueue.RemoveAt (0);

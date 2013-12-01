@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Eventlet
 {
-	public enum EventletType {Nothing, Dialogue, Focus, LoadLevel};
+	public enum EventletType {Nothing, Dialogue, Focus, LoadLevel, GameWin};
 	public enum ExecuteState {Start, Executing, Executed};
 
 	private string debug;

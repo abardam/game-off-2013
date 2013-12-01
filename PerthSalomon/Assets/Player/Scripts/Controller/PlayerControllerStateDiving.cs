@@ -89,7 +89,7 @@ public class PlayerControllerStateDiving : PlayerControllerState
 
 		v.Normalize();
 
-		v *= (playerController.speed*Time.deltaTime);
+		v *= (playerController.RealSpeed*Time.deltaTime);
 		
 		playerController.GetCharacterController().Move(v);
 	}
@@ -136,7 +136,9 @@ public class PlayerControllerStateDiving : PlayerControllerState
 			this.vState = deltaV[(int)this.vState, (int)VEvent.KEY_DOWN_UP];
 		}
 
-	
+		if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)){
+			playerController.SpeedBoost();
+		}
 	}
 
 	private void UpdateAnimation(PlayerController playerController)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trigger
 {
-	public enum TriggerType {Start, OnEnter, Outside};
+	public enum TriggerType {Start, OnEnter, Outside, Coins};
 
 	private TriggerType triggerType;
 	private Rect rectangle;

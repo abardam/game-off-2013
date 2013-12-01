@@ -13,6 +13,7 @@ public class GridSpawner : MonoBehaviour
 	public GameObject key;
 	public GameObject gridDoor;
 	public GameObject health;
+	public GameObject salmon;
 	public CameraControl cameraControl;
 
 	private bool parsed;
@@ -163,6 +164,9 @@ public class GridSpawner : MonoBehaviour
 						break;
 					case "h":
 						obj = health;
+						break;
+					case "p":
+						obj = salmon;
 						break;
 					default:
 						continue;

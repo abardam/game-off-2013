@@ -22,9 +22,20 @@ public class UIManager : StateDependable {
 	void OnGUI(){
 		if(!cutscene)
 		{
-			float healthPercent = GameState.GetInstance().Player.GetComponent<PlayerController>().Health / PlayerController.MAXHEALTH;
+			PlayerController p = GameState.GetInstance().Player.GetComponent<PlayerController>();
+			float healthPercent = p.Health / PlayerController.MAXHEALTH;
 			healthPercent = (float)Math.Round(healthPercent * 100);
-			GUI.Box(UIRect, "Coins left: " + GameState.GetInstance().Coins + " Health: " + healthPercent + "%");
+			string outRect = "Coins left: " + GameState.GetInstance().Coins + "\nHealth: " + healthPercent + "%\n";
+
+			if(p.IsBoosted())
+			{
+				outRect += "Speed boosted!";
+			}else{
+				int salmon = p.Salmon;
+				if(salmon > 0) outRect += "Salmon: " + salmon;
+			}
+
+			GUI.Box(UIRect, outRect);
 		}
 	}
 
