@@ -53,11 +53,18 @@ public class GameState {
 			player2 = value;
 		}
 	}
-
+	/*
 	public List<GameObject> Enemies {
 		get {
 			return enemies;
 		}
+	}*/
+
+	public void AddEnemy(GameObject enemy){
+		foreach (GameObject go in enemies) {
+			Physics.IgnoreCollision(enemy.collider, go.collider);
+		}
+		enemies.Add (enemy);
 	}
 
 	public void SetModeDialogue(){
@@ -78,6 +85,7 @@ public class GameState {
 
 	public void RegisterDependable(StateDependable sd){
 		stateDependables.Add(sd);
+		sd.SetCutscene (cutscene);
 	}
 
 	public int[,] ObstacleGrid {

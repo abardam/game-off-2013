@@ -189,6 +189,7 @@ public class GridSpawner : MonoBehaviour
 						}else{
 							startOrEndpoint.Add(id, temp);
 						}
+						gameState.AddEnemy(temp);
 						break;
 					case "c":
 						++gameState.Coins;
