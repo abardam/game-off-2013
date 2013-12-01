@@ -3,6 +3,7 @@
 		<Trigger type="start"/>
 		<Eventlet type="dialogue" text="ALASKA: Solomon! This is Alaska, do you copy?" 
 leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+    <Eventlet type="gamewin" />
 		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 		<Eventlet type="dialogue" text="ALASKA: How many times have I told you, call me ALASKA!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: A thousand pardons, Ferrari. What's the mission again?" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>

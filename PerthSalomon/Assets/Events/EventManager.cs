@@ -101,6 +101,7 @@ public class EventManager : MonoBehaviour
 				case "allcoinscollected":
 					tt = Trigger.TriggerType.Coins;
 					t = new Trigger(tt,r);
+					break;
 								default:
 										tt = Trigger.TriggerType.Start;
 										t = new Trigger (tt);
@@ -216,6 +217,7 @@ public class EventManager : MonoBehaviour
 										break;
 				case Trigger.TriggerType.Coins:
 					if(gameState.Coins > 0) triggered = false;
+					break;
 								default:
 										triggered = false;
 										break;
