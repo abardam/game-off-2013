@@ -35,6 +35,10 @@ public class GuardControllerStatePatrolling : GuardControllerState
 	private float speed;
 	private Vector2 lastMovement;
 
+	private bool donePatrol;
+	private float patrolCooldown;
+	private static float MAXCOOLDOWN = 3f;
+
 	public GuardControllerStatePatrolling()
 	{
 		// default init member
@@ -59,6 +63,8 @@ public class GuardControllerStatePatrolling : GuardControllerState
 			this.Patrol(guardController);
 			break;
 		}
+
+		patrolCooldown -= Time.deltaTime;
 	}
 
 	public override void TargetSighted (GuardController guardController, GameObject target)
@@ -100,7 +106,16 @@ public class GuardControllerStatePatrolling : GuardControllerState
 
 		if (UpdatePathQueueAndCheckIsEnd(guardController))
 		{
-			this.SetStartPointAndEndPoint(guardController);
+			if(!donePatrol)
+			{
+				patrolCooldown = MAXCOOLDOWN;
+				donePatrol = true;
+			}
+			else if(patrolCooldown < 0)
+			{
+				this.SetStartPointAndEndPoint(guardController);
+				donePatrol = false;
+			}
 		}
 		else
 		{

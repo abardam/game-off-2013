@@ -7,7 +7,7 @@ public class GuardController : StateDependable
 {
 
 	private float arc;
-	private float range = 3.0f;
+	private float range = 4.0f;
 	private Vector2 orientation;
 
 	private CharacterController characterController;
@@ -89,14 +89,14 @@ public class GuardController : StateDependable
 			alertTimer = PLAYER_SPOTTED_ALERT;
 			alertState = AlertState.RED;
 			orientation = GameState.GetInstance().Player.transform.position - this.transform.position;
-
-			if (this.IsPlayerInFightingRange() && !(this.state is GuardControllerStateFight))
-			{
-				this.state = new GuardControllerStateFight();
-				GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
-			}
 		}
 
+		if (this.IsPlayerInFightingRange() && !(this.state is GuardControllerStateFight))
+		{
+			this.state = new GuardControllerStateFight();
+			GameState.GetInstance().Player.GetComponent<PlayerController>().SetFighting();
+		}
+		
 		this.state.Update(this);
 		//this.FindPathToPlayer();
 
