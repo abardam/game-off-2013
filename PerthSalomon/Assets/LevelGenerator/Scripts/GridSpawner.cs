@@ -111,6 +111,7 @@ public class GridSpawner : MonoBehaviour
 			gameState.SetGridSize(height, width);
 			gameState.Coins = 0;
 			gameState.DoorTable.Clear();
+			gameState.ClearEnemies();
 
 			Hashtable startOrEndpoint = new Hashtable(); // for guards. if the endpoint comes first, hashtable[id] should have it; and vice versa
 			
@@ -377,7 +378,7 @@ public class GridSpawner : MonoBehaviour
 				if(i2 == i && j2 == j) continue;
 
 				if(CheckValid(i2,grid.GetLength(0)) && CheckValid(j2,grid.GetLength(1))){
-					n[u] = grid[i2,j2] == "1" || grid[i2,j2].Substring(0,1) == "d" ? '1' : '0';
+					n[u] = grid[i2,j2] == "1" || (grid[i2,j2].Length>0 && grid[i2,j2].Substring(0,1) == "d") ? '1' : '0';
 				}else{
 					n[u] = '1';
 				}

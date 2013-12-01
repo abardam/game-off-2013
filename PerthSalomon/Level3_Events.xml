@@ -1,0 +1,17 @@
+<Events>
+  <Event>
+    <Trigger type="start" />
+		<Eventlet type="dialogue" text="You know what to do." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+  </Event>
+  
+  <Event>
+    <Trigger type="allcoinscollected" />
+    <Trigger type="onexit" rectTop="1" rectBottom="1" rectLeft="1" rectRight="1" />
+    <Eventlet type="dialogue" text="SOLOMON: !!!!" leftPortrait="solomon face right" rightPortrait=""/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: So, you've finally caught up." leftPortrait="don dicaprio smug talk left" rightPortrait="solomon face right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="don dicaprio smug left" rightPortrait="solomon talk right"/>
+    
+    <Eventlet type="gamewin" />
+  </Event>
+  
+</Events>

@@ -1,0 +1,13 @@
+<Events>
+  
+  <Event>
+    <Trigger type="allcoinscollected" />
+    
+    <Eventlet type="dialogue" text="SOLOMON: !!!!" leftPortrait="solomon face right" rightPortrait=""/>
+		<Eventlet type="dialogue" text="DON DI CAPRIO: So, you've finally caught up." leftPortrait="don dicaprio smug talk left" rightPortrait="solomon face right"/>
+		<Eventlet type="dialogue" text="SOLOMON: Damn you, Don Di Caprio!" leftPortrait="don dicaprio smug left" rightPortrait="solomon talk right"/>
+    
+    <Eventlet type="gamewin" />
+  </Event>
+  
+</Events>

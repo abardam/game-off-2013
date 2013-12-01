@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraGhost : MonoBehaviour {
 
 	private static float ACCELERATION = 1f;
-	private static float MAXSPEED = 2f;
+	private static float MAXSPEED = 5f;
 	private static float THRESHOLD = 0.01f;
 	private GameObject target;
 	private Vector3 targetV;

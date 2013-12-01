@@ -1,0 +1,8 @@
+<Events>
+  
+  <Event>
+    <Trigger type="allcoinscollected" />
+    <Eventlet type="gamewin" />
+  </Event>
+  
+</Events>

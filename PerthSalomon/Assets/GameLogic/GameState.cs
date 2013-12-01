@@ -161,4 +161,9 @@ public class GameState {
 			levelName = value;
 		}
 	}
+
+	public void ClearEnemies ()
+	{
+		enemies.Clear ();
+	}
 }

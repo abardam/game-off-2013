@@ -1,9 +1,7 @@
 <Events>
 	<Event>
 		<Trigger type="start"/>
-		<Eventlet type="dialogue" text="ALASKA: Solomon! This is Alaska, do you copy?" 
-leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
-    <Eventlet type="gamewin" />
+		<Eventlet type="dialogue" text="ALASKA: Solomon! This is Alaska, do you copy? Press SPACE and answer, you dolt." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Ferrari! It's about damn time..." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 		<Eventlet type="dialogue" text="ALASKA: How many times have I told you, call me ALASKA!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: A thousand pardons, Ferrari. What's the mission again?" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
@@ -13,7 +11,7 @@ leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Don't you know? It means, 'This will be easy.'" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
 		<Eventlet type="dialogue" text="ALASKA: I think you mean, 'Piece of Cake.'" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
 		<Eventlet type="dialogue" text="SOLOMON: Got it! Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
-		<Eventlet type="dialogue" text="ALASKA: . . . ." leftPortrait="solomon face left" rightPortrait="alaska face left"/>
+		<Eventlet type="dialogue" text="ALASKA: . . . ." leftPortrait="solomon face left" rightPortrait="alaska face right"/>
 	</Event>
   <Event>
 		<Trigger type="onenter" rectTop = "9" rectLeft = "1" rectBottom = "13" rectRight = "3"/>

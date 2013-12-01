@@ -1,0 +1,57 @@
+<Events>
+	<Event>
+		<Trigger type="start"/>
+		<Eventlet type="dialogue" text="Solomon! This is Alaska, do you copy? Press SPACE and answer, you dolt." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="Ferrari! It's about damn time..." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="How many times have I told you, call me ALASKA!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="A thousand pardons, Ferrari. What's the mission again?" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="Ugh, whatever. OK, Solomon, your mission is to grab up all the loose change in the famous Trevi Fountain." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="What?" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="Don't you know? It means, 'This will be easy.'" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="I think you mean, 'Piece of Cake.'" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="Got it! Piece of Salmon!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text=". . . ." leftPortrait="solomon face left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="Do you even remember how to swim?" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="I know! ARROW KEYS." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+	</Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="1" rectLeft="2" rectBottom="2" rectRight="3" />
+		<Eventlet type="dialogue" text="See? Like riding a bike." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="A bike made out of water." leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+  </Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="1" rectLeft="6" rectBottom="2" rectRight="7" />
+		<Eventlet type="dialogue" text="These fountains go deeper than I thought!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="Strange... it seems you're not alone." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+  </Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="4" rectLeft="6" rectBottom="5" rectRight="7" />
+		<Eventlet type="dialogue" text="Careful, Solomon! There's a guard in the next alcove!" leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+    <Eventlet type="focus" targetX="8" targetY="7" />
+		<Eventlet type="dialogue" text="You forget who you're talking to: Solomon Perth, master of stealth!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+  </Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="10" rectLeft="4" rectBottom="11" rectRight="4" />
+		<Eventlet type="dialogue" text="That was harder than it needed to be." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="No sweat! But what's this over here?" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="That's a door." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="No door can stand before the power of Solomon Perth, master of strength!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="There's probably a key around here somewhere." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+  </Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="14" rectLeft="3" rectBottom="14" rectRight="3" />
+    <Eventlet type="focus" targetX="2" targetY="9" />
+  </Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="9" rectLeft="0" rectBottom="9" rectRight="0" />
+    <Eventlet type="loadlevel" text="shit2" />
+  </Event>
+  
+</Events>

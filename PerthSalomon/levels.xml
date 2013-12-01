@@ -1,4 +1,6 @@
 <Levels>
-	<Level name="shit" grid="Book1r.csv" events="Events.xml" />
-	<Level name="shit2" grid="Book2.csv" events="Events2.xml" />
+	<Level name="shit" grid="Level1_Grid.csv" events="Level1_Events.xml" />
+	<Level name="shit2" grid="Level2_Grid.csv" events="Level2_Events.xml" />
+	<Level name="shit3" grid="Level3_Grid.csv" events="Level3_Events.xml" />
+	<Level name="shit4" grid="Level4_Grid.csv" events="LastLevel_Events.xml" />
 </Levels>

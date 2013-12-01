@@ -1,0 +1,19 @@
+<Events>
+  <Event>
+    <Trigger type="start" />
+		<Eventlet type="dialogue" text="Coins! We're rich!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+  </Event>
+  
+  <Event>
+    <Trigger type="allcoinscollected" />
+    <Trigger type="onexit" rectTop="1" rectBottom="1" rectLeft="1" rectRight="1" />
+    <Eventlet type="loadlevel" text="shit3" />
+  </Event>
+  
+  <Event>
+    <Trigger type="onenter" rectTop="1" rectBottom="1" rectLeft="4" rectRight="5" />
+		<Eventlet type="dialogue" text="Ooh!" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+		<Eventlet type="dialogue" text="What are you planning to do with that..." leftPortrait="solomon face left" rightPortrait="alaska talk right"/>
+		<Eventlet type="dialogue" text="Eat it, of course. (With SHIFT.)" leftPortrait="solomon talk left" rightPortrait="alaska face right"/>
+  </Event>
+</Events>
